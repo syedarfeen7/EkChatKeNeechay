@@ -1,16 +1,20 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import LoginScreen from './src/screens/LoginScreen';
+export type RootStackParamList = {
+  Login: undefined;
+  Home: undefined;
+};
 
-function App(): React.JSX.Element {
-  return (
-    <SafeAreaView>
-      <ScrollView>
-        <View>
-          <Text>Hello world</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
+const Stack = createStackNavigator<RootStackParamList>();
 
-export default App;
+const AppNavigator = () => (
+  <NavigationContainer>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Login" component={LoginScreen} />
+    </Stack.Navigator>
+  </NavigationContainer>
+);
+
+export default AppNavigator;
