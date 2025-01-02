@@ -1,20 +1,24 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import LoginScreen from './src/screens/LoginScreen';
-export type RootStackParamList = {
-  Login: undefined;
-  Home: undefined;
+import {SafeAreaView, StyleSheet} from 'react-native';
+import AppNavigator from './src/navigation/AppNavigator';
+import {I18nextProvider} from 'react-i18next';
+import i18n from './src/i18n/index'; // Path to your i18n setup
+
+const App = () => {
+  return (
+    <I18nextProvider i18n={i18n}>
+      <SafeAreaView style={styles.container}>
+        <AppNavigator />
+      </SafeAreaView>
+    </I18nextProvider>
+  );
 };
 
-const Stack = createStackNavigator<RootStackParamList>();
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFF',
+  },
+});
 
-const AppNavigator = () => (
-  <NavigationContainer>
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Login" component={LoginScreen} />
-    </Stack.Navigator>
-  </NavigationContainer>
-);
-
-export default AppNavigator;
+export default App;

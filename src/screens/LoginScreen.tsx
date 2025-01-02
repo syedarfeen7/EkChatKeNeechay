@@ -5,12 +5,14 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../types/navigation';
 import {loginSchema} from '../utils/validations';
+import {useTranslation} from 'react-i18next';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -27,6 +29,8 @@ interface FormValues {
 }
 
 const LoginScreen: React.FC<Props> = ({navigation}) => {
+  const {t, i18n} = useTranslation();
+
   const {
     control,
     handleSubmit,
@@ -43,7 +47,17 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>{t('login')}</Text>
+        <Button
+          title="Change to Arabic"
+          onPress={() => i18n.changeLanguage('ar')}
+        />
+        <Button
+          title="Change to English"
+          onPress={() => i18n.changeLanguage('en')}
+        />
+      </View>
       <Controller
         name="email"
         control={control}
