@@ -1,13 +1,5 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import React from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {StackNavigationProp} from '@react-navigation/stack';
@@ -17,6 +9,7 @@ import {useTranslation} from 'react-i18next';
 import LanguageToggle from '../components/LanguageToggle';
 import images from '../asstes';
 import {currentLanguage} from '../helpers/common';
+import InputField from '../components/InputField';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -33,7 +26,6 @@ interface FormValues {
 
 const LoginScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
-  const [isFocused, setIsFocused] = useState(false);
 
   const {
     control,
@@ -45,7 +37,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
 
   const onSubmit = (data: FormValues) => {
     console.log('Login data:', data);
-    navigation.navigate('Home');
+    navigation.navigate('Register');
   };
 
   return (
@@ -65,28 +57,17 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
           name="phone"
           control={control}
           render={({field: {onChange, onBlur, value}}) => (
-            <View
-              style={[
-                styles.phoneInputContainer,
-                errors.phone && styles.errorInput,
-                isFocused && styles.isFocusedStyle,
-              ]}>
-              <Icon name="phone" size={20} style={styles.phoneIcon} />
-              <Text style={styles.countryCode}>+966</Text>
-              <TextInput
-                style={styles.phoneInput}
-                placeholder="Enter phone number"
-                keyboardType="phone-pad"
-                onChangeText={onChange}
-                value={value}
-                maxLength={9}
-                onBlur={() => {
-                  onBlur();
-                  setIsFocused(false); // On blur, remove focus
-                }}
-                onFocus={() => setIsFocused(true)}
-              />
-            </View>
+            <InputField
+              iconName="phone"
+              placeholder="Enter phone number"
+              keyboardType="phone-pad"
+              maxLength={9}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              error={errors.phone?.message}
+              countryCode="+966"
+            />
           )}
         />
         <Text
@@ -94,9 +75,6 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
           onPress={() => navigation.navigate('Register')}>
           {t('register.link')}
         </Text>
-        {errors.phone && (
-          <Text style={styles.errorText}>{errors.phone.message}</Text>
-        )}
 
         <TouchableOpacity
           style={styles.button}
@@ -136,45 +114,6 @@ const styles = StyleSheet.create({
     width: 220,
     marginBottom: 20,
   },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-  },
-  phoneInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 30,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
-  phoneIcon: {
-    marginRight: 10,
-    marginLeft: 10,
-    color: '#05c3de',
-  },
-  countryCode: {
-    fontSize: 16,
-    color: '#808080',
-    marginRight: 10,
-    fontWeight: '700',
-  },
-  phoneInput: {
-    flex: 1,
-    fontSize: 16,
-    paddingVertical: 15,
-  },
-  errorInput: {
-    borderColor: 'red',
-  },
-  errorText: {
-    color: 'red',
-    marginBottom: 10,
-  },
   createAnAccount: {
     textDecorationLine: 'underline',
     color: '#05c3de',
@@ -190,9 +129,6 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
-  },
-  isFocusedStyle: {
-    borderColor: '#05c3de',
   },
 });
 
