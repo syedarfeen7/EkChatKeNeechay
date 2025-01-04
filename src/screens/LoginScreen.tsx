@@ -10,6 +10,9 @@ import LanguageToggle from '../components/LanguageToggle';
 import images from '../asstes';
 import {currentLanguage} from '../helpers/common';
 import InputField from '../components/InputField';
+import {useDispatch, useSelector} from 'react-redux';
+import {loginUserAPI} from '../features/auth/authAPI';
+import {RootState} from '../app/store';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -26,6 +29,8 @@ interface FormValues {
 
 const LoginScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.auth);
 
   const {
     control,
@@ -37,7 +42,8 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
 
   const onSubmit = (data: FormValues) => {
     console.log('Login data:', data);
-    navigation.navigate('Register');
+    dispatch(loginUserAPI(data));
+    // navigation.navigate('Register');
   };
 
   return (
@@ -108,7 +114,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: '100%',
     textAlign: 'center',
-    color: '#000',
+    color: 'darkgary',
+    fontWeight: '700',
   },
   logo: {
     width: 220,
