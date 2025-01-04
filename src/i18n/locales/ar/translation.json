@@ -1,7 +1,12 @@
 {
-  "login": "تسجيل الدخول",
+  "login": {
+    "title": "تسجيل الدخول"
+  },
   "validations": {
     "phoneNumber": "رقم الهاتف مطلوب",
     "phoneNumberInvalid": "رقم الهاتف يجب أن يكون 9 أرقام بالضبط"
+  },
+  "register": {
+    "link": "يسجل"
   }
 }

@@ -1,7 +1,12 @@
 {
-  "login": "Login",
+  "login": {
+    "title": "Login"
+  },
   "validations": {
     "phoneNumber": "Phone number is required",
     "phoneNumberInvalid": "Phone number must be exactly 9 digits"
+  },
+  "register": {
+    "link": "Create an account"
   }
 }

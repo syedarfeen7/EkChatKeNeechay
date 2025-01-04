@@ -58,7 +58,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text style={styles.title}>{t('login')}</Text>
+          <Text style={styles.title}>{t('login.title')}</Text>
         </View>
 
         <Controller
@@ -89,6 +89,11 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
             </View>
           )}
         />
+        <Text
+          style={styles.createAnAccount}
+          onPress={() => navigation.navigate('Register')}>
+          {t('register.link')}
+        </Text>
         {errors.phone && (
           <Text style={styles.errorText}>{errors.phone.message}</Text>
         )}
@@ -96,7 +101,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={handleSubmit(onSubmit)}>
-          <Text style={styles.buttonText}>{t('login')}</Text>
+          <Text style={styles.buttonText}>{t('login.title')}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -169,6 +174,10 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     marginBottom: 10,
+  },
+  createAnAccount: {
+    textDecorationLine: 'underline',
+    color: '#05c3de',
   },
   button: {
     backgroundColor: '#ffb71b',
