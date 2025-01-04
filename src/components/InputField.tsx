@@ -38,7 +38,10 @@ const InputField: React.FC<InputFieldProps> = ({
         {iconName && <Icon name={iconName} size={20} style={styles.icon} />}
         {countryCode && <Text style={styles.countryCode}>{countryCode}</Text>}
         <TextInput
-          style={styles.input}
+          style={[
+            styles.input,
+            (!iconName || !countryCode) && styles.paddingLeft,
+          ]}
           placeholder={placeholder}
           keyboardType={keyboardType}
           maxLength={maxLength}
@@ -69,13 +72,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 30,
-    marginBottom: 10,
+    marginBottom: 20,
     paddingHorizontal: 10,
   },
   input: {
     flex: 1,
     fontSize: 16,
     paddingVertical: 15,
+  },
+  paddingLeft: {
+    paddingLeft: 10,
   },
   icon: {
     marginRight: 10,
