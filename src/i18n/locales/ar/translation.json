@@ -1,12 +1,15 @@
 {
   "login": {
-    "title": "تسجيل الدخول"
+    "title": "تسجيل الدخول",
+    "link": "يسجل"
   },
   "validations": {
     "phoneNumber": "رقم الهاتف مطلوب",
     "phoneNumberInvalid": "رقم الهاتف يجب أن يكون 9 أرقام بالضبط"
   },
   "register": {
-    "link": "يسجل"
+    "cretaAnAccount": "إنشاء حساب",
+    "link": "هل لديك حساب بالفعل؟",
+    "button": "يخلق"
   }
 }

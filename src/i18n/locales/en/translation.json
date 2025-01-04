@@ -1,12 +1,17 @@
 {
   "login": {
-    "title": "Login"
+    "title": "Login",
+    "link": "Create an account"
   },
   "validations": {
     "phoneNumber": "Phone number is required",
-    "phoneNumberInvalid": "Phone number must be exactly 9 digits"
+    "phoneNumberInvalid": "Phone number must be exactly 9 digits",
+    "firstName": "First name is required",
+    "lastName": "Last name is required"
   },
   "register": {
-    "link": "Create an account"
+    "cretaAnAccount": "Create an Account",
+    "link": "Already have an acoount?",
+    "button": "Create"
   }
 }

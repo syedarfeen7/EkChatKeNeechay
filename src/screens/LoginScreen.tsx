@@ -73,7 +73,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
         <Text
           style={styles.createAnAccount}
           onPress={() => navigation.navigate('Register')}>
-          {t('register.link')}
+          {t('login.link')}
         </Text>
 
         <TouchableOpacity
