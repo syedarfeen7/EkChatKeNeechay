@@ -15,7 +15,6 @@ const Checkbox: React.FC<CheckboxFieldProps> = ({
   onChange,
   error,
 }) => {
-    console.log(error)
   return (
     <View style={styles.container}>
       <CheckBox
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
     padding: 0,
     marginLeft: 7,
     width: '100%',
-    marginTop: -5,
+    marginTop: 5,
     marginBottom: 20,
   },
 
@@ -51,8 +50,9 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: 'red',
-    fontSize: 12,
-    marginTop: 5,
+    fontSize: 14,
+    marginTop: -10,
+    marginLeft: 8,
   },
   icon: {
     color: 'red',

@@ -72,9 +72,10 @@ const InputField: React.FC<InputFieldProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    width: 'auto',
+    width: '100%',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   inputWrap: {
     flexDirection: 'row',
@@ -109,7 +110,10 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: 'red',
-    marginBottom: 10,
+    marginTop: -15,
+    marginBottom: 15,
+    width: '100%',
+    marginLeft: 20,
   },
   focusedInput: {
     borderColor: '#05c3de',
