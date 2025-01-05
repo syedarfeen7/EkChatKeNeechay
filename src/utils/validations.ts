@@ -17,3 +17,10 @@ export const registerSchema = Yup.object().shape({
     .oneOf([true], i18n.t('validations.terms'))
     .required(i18n.t('validations.terms')),
 });
+export const otpSchema = Yup.object().shape({
+  otp1: Yup.string().required('Required').max(1, 'Only one digit'),
+  otp2: Yup.string().required('Required').max(1, 'Only one digit'),
+  otp3: Yup.string().required('Required').max(1, 'Only one digit'),
+  otp4: Yup.string().required('Required').max(1, 'Only one digit'),
+  otp5: Yup.string().required('Required').max(1, 'Only one digit'),
+});
