@@ -15,6 +15,7 @@ interface InputFieldProps {
   containerStyle?: ViewStyle; // Specific type for containerStyle
   inputRef?: React.Ref<TextInput> | null;
   onKeyPress?: (e: any) => void;
+  otpContainer?: boolean;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -30,12 +31,13 @@ const InputField: React.FC<InputFieldProps> = ({
   containerStyle,
   inputRef,
   onKeyPress,
+  otpContainer,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, otpContainer && styles.secondContainer]}>
       <View
         style={[
           styles.inputWrap,
@@ -65,7 +67,11 @@ const InputField: React.FC<InputFieldProps> = ({
           {...rest}
         />
       </View>
-      {error && <Text style={styles.errorText}>{error}</Text>}
+      {error && (
+        <Text style={[styles.errorText, otpContainer && styles.otpErrorText]}>
+          {error}
+        </Text>
+      )}
     </View>
   );
 };
@@ -76,6 +82,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  secondContainer: {
+    width: 'auto',
+    justifyContent: 'flex-start',
   },
   inputWrap: {
     flexDirection: 'row',
@@ -114,6 +124,11 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     width: '100%',
     marginLeft: 20,
+  },
+  otpErrorText: {
+    width: 'auto',
+    marginLeft: 0,
+    marginTop: 0,
   },
   focusedInput: {
     borderColor: '#05c3de',

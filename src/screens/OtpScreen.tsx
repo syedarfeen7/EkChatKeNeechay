@@ -81,6 +81,7 @@ const OtpScreen: React.FC = () => {
                   maxLength={1}
                   error={errors[`otp${index + 1}`]?.message}
                   containerStyle={styles.squareInput}
+                  otpContainer={true}
                   inputRef={(ref: TextInput | null) =>
                     (refs.current[index] = ref)
                   }
