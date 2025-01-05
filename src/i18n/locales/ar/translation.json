@@ -10,6 +10,12 @@
   "register": {
     "cretaAnAccount": "إنشاء حساب",
     "link": "هل لديك حساب بالفعل؟",
-    "button": "يخلق"
+    "button": "يخلق",
+    "agreeToTerms": "أوافق على الشروط والأحكام"
+  },
+  "otp": {
+    "title": "التحقق",
+    "message": "يرجى إدخال رمز التحقق",
+    "verify": "تحقق"
   }
 }

@@ -15,5 +15,10 @@
     "link": "Already have an acoount?",
     "button": "Create",
     "agreeToTerms": "I agree to the Terms and Conditions"
+  },
+  "otp": {
+    "title": "Verification",
+    "message": "Please enter your OTP",
+    "verify": "Verify"
   }
 }
