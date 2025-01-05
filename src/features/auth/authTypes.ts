@@ -2,14 +2,27 @@ export interface AuthState {
   user: User | null;
   isLoading: boolean;
   error: string | null;
+  otp: string | null;
 }
 
 export interface User {
-  id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
+  email: string;
   phone: string;
+  termsAccepted: boolean;
+}
+export interface LoginOtp {
+  otp: string;
 }
 
 export interface LoginPayload {
   phone: string;
+}
+export interface RegisterPayload {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  termsAccepted: boolean;
 }
