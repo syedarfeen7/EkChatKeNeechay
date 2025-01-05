@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, StyleSheet} from 'react-native';
+import {View, Text, TextInput, StyleSheet, ViewStyle} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 interface InputFieldProps {
@@ -8,10 +8,13 @@ interface InputFieldProps {
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   maxLength?: number;
   value: string;
-  error?: string;
+  error?: string | null;
   countryCode?: string;
   onChange: (text: string) => void;
   onBlur: () => void;
+  containerStyle?: ViewStyle; // Specific type for containerStyle
+  inputRef?: React.Ref<TextInput> | null;
+  onKeyPress?: (e: any) => void;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -24,6 +27,10 @@ const InputField: React.FC<InputFieldProps> = ({
   countryCode,
   onChange,
   onBlur,
+  containerStyle,
+  inputRef,
+  onKeyPress,
+  ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -34,6 +41,7 @@ const InputField: React.FC<InputFieldProps> = ({
           styles.inputWrap,
           error && styles.errorInput,
           !error && isFocused && styles.focusedInput,
+          containerStyle,
         ]}>
         {iconName && <Icon name={iconName} size={20} style={styles.icon} />}
         {countryCode && <Text style={styles.countryCode}>{countryCode}</Text>}
@@ -52,6 +60,9 @@ const InputField: React.FC<InputFieldProps> = ({
             setIsFocused(false);
           }}
           onFocus={() => setIsFocused(true)}
+          ref={inputRef}
+          onKeyPress={onKeyPress}
+          {...rest}
         />
       </View>
       {error && <Text style={styles.errorText}>{error}</Text>}
@@ -63,7 +74,6 @@ const styles = StyleSheet.create({
   container: {
     width: 'auto',
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
   },
   inputWrap: {

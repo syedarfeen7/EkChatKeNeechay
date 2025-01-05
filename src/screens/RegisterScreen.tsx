@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
+import {useForm, Controller, FieldValues} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RootStackParamList} from '../types/navigation';
@@ -24,7 +24,7 @@ interface FormValues {
   // title: string;
   firstName: string;
   lastName: string;
-  email: string | undefined;
+  email?: string;
   phone: string;
   termsAccepted: boolean;
 }
@@ -152,7 +152,7 @@ const renderInputField = ({
   keyboardType = 'default',
 }: {
   control: any;
-  errors: any;
+  errors: FieldValues;
   name: string;
   placeholder: string;
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
