@@ -13,7 +13,7 @@ const Loader: React.FC<LoaderProps> = ({visible}) => {
   return (
     <Modal transparent animationType="fade" visible={visible}>
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#ffb71b" />
+        <ActivityIndicator size="large" color="#05c3de" />
       </View>
     </Modal>
   );
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.67)',
   },
 });
 
