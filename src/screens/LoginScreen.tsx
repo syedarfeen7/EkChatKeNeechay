@@ -10,9 +10,9 @@ import LanguageToggle from '../components/LanguageToggle';
 import images from '../asstes';
 import {currentLanguage} from '../helpers/common';
 import InputField from '../components/InputField';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {loginUserAPI} from '../features/auth/authAPI';
-import {RootState} from '../app/store';
+import {AppDispatch} from '../app/store';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -29,8 +29,7 @@ interface FormValues {
 
 const LoginScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch<AppDispatch>();
 
   const {
     control,
@@ -43,7 +42,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
   const onSubmit = (data: FormValues) => {
     console.log('Login data:', data);
     dispatch(loginUserAPI(data));
-    // navigation.navigate('Register');
+    navigation.navigate('OTP');
   };
 
   return (

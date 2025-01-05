@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import LoginScreen from '../screens/LoginScreen';
 import {RootStackParamList} from '../types/navigation';
 import RegisterScreen from '../screens/RegisterScreen';
+import OtpScreen from '../screens/OtpScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -19,6 +20,11 @@ const AppNavigator = () => (
         name="Register"
         component={RegisterScreen}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OTP"
+        component={OtpScreen}
+        // options={{headerShown: false}}
       />
     </Stack.Navigator>
   </NavigationContainer>
