@@ -9,6 +9,9 @@ import {useTranslation} from 'react-i18next';
 import LanguageToggle from '../components/LanguageToggle';
 import InputField from '../components/InputField';
 import Checkbox from '../components/Checkbox';
+import {useDispatch} from 'react-redux';
+import {AppDispatch} from '../app/store';
+import {registerUserAPI} from '../features/auth/authAPI';
 // import Dropdown from '../components/Dropdown';
 
 type LoginScreenNavigationProp = StackNavigationProp<
@@ -42,6 +45,7 @@ interface FormValues {
 
 const RegisterScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
+  const dispatch = useDispatch<AppDispatch>();
 
   const {
     control,
@@ -51,9 +55,8 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
     resolver: yupResolver(registerSchema),
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log('Login data:', data);
-    // navigation.navigate('Home');
+  const onSubmit = (payload: FormValues) => {
+    dispatch(registerUserAPI({payload, navigation}));
   };
 
   return (
