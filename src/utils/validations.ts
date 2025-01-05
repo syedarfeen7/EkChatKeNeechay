@@ -13,4 +13,7 @@ export const registerSchema = Yup.object().shape({
   phone: Yup.string()
     .required(i18n.t('validations.phoneNumber'))
     .matches(/^[0-9]{9}$/, i18n.t('validations.phoneNumberInvalid')),
+  termsAccepted: Yup.boolean()
+    .oneOf([true], i18n.t('validations.terms'))
+    .required(i18n.t('validations.terms')),
 });

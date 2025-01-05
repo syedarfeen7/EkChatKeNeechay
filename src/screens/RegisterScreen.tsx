@@ -8,6 +8,7 @@ import {registerSchema} from '../utils/validations';
 import {useTranslation} from 'react-i18next';
 import LanguageToggle from '../components/LanguageToggle';
 import InputField from '../components/InputField';
+import Checkbox from '../components/Checkbox';
 // import Dropdown from '../components/Dropdown';
 
 type LoginScreenNavigationProp = StackNavigationProp<
@@ -25,6 +26,7 @@ interface FormValues {
   lastName: string;
   email: string | undefined;
   phone: string;
+  termsAccepted: boolean;
 }
 
 // const titleOptions = [
@@ -51,7 +53,7 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
 
   const onSubmit = (data: FormValues) => {
     console.log('Login data:', data);
-    navigation.navigate('Home');
+    // navigation.navigate('Home');
   };
 
   return (
@@ -109,6 +111,19 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
               onBlur={onBlur}
               error={errors.phone?.message}
               countryCode="+966"
+            />
+          )}
+        />
+
+        <Controller
+          name="termsAccepted"
+          control={control}
+          render={({field: {onChange, value}}) => (
+            <Checkbox
+              label={t('register.agreeToTerms')}
+              value={value}
+              onChange={onChange}
+              error={errors.termsAccepted?.message}
             />
           )}
         />
