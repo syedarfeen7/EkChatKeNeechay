@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {loginUserAPI, registerUserAPI} from './authAPI';
+import {loginUserAPI, otpVerificationAPI, registerUserAPI} from './authAPI';
 import {AuthState, LoginOtp, User} from './authTypes';
 // import {persistUserData, clearUserData} from './authStorage';
 
@@ -53,6 +53,23 @@ const authSlice = createSlice({
       .addCase(registerUserAPI.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Registration failed';
+      });
+    builder
+      .addCase(otpVerificationAPI.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(
+        otpVerificationAPI.fulfilled,
+        (state, action: PayloadAction<User>) => {
+          state.isLoading = false;
+          state.user = action.payload;
+          state.otp = null;
+        },
+      )
+      .addCase(otpVerificationAPI.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || 'OTP Verification failed';
       });
   },
 });
