@@ -1,6 +1,12 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {hideLoader, showLoader} from '../loader/loaderSlice';
-import {LoginOtp, LoginPayload, RegisterPayload, User} from './authTypes';
+import {
+  LoginOtp,
+  LoginPayload,
+  OtpPayload,
+  RegisterPayload,
+  User,
+} from './authTypes';
 
 export const loginUserAPI = createAsyncThunk(
   'auth/login',
@@ -48,6 +54,34 @@ export const registerUserAPI = createAsyncThunk(
         return {firstName, lastName, email, phone, termsAccepted};
       } else {
         throw new Error('Registration Failed!');
+      }
+    } catch (error) {
+      throw error;
+    } finally {
+      dispatch(hideLoader());
+    }
+  },
+);
+export const otpVerificationAPI = createAsyncThunk(
+  'auth/otp/verification',
+  async (
+    {
+      payload,
+      navigation,
+      otp,
+      user,
+    }: {payload: OtpPayload; navigation: any; otp: string; user: User},
+    {dispatch},
+  ): Promise<User> => {
+    try {
+      dispatch(showLoader());
+
+      if (payload?.otp === otp) {
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        navigation.navigate('Login');
+        return {...user};
+      } else {
+        throw new Error('OTP Verification Failed!');
       }
     } catch (error) {
       throw error;
