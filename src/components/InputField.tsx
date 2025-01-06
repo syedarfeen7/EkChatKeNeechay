@@ -52,6 +52,7 @@ const InputField: React.FC<InputFieldProps> = ({
             styles.input,
             (!iconName || !countryCode) && styles.paddingLeft,
           ]}
+          placeholderTextColor="#888"
           placeholder={placeholder}
           keyboardType={keyboardType}
           maxLength={maxLength}
