@@ -5,20 +5,25 @@ import {LoginOtp, LoginPayload, RegisterPayload, User} from './authTypes';
 export const loginUserAPI = createAsyncThunk(
   'auth/login',
   async (
-    {payload, navigation}: {payload: LoginPayload; navigation: any},
+    {
+      payload,
+      navigation,
+      user,
+    }: {payload: LoginPayload; navigation: any; user: User},
     {dispatch},
   ): Promise<LoginOtp> => {
     try {
       dispatch(showLoader());
 
       const {phone} = payload;
-      if (phone) {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        navigation.navigate('OtpScreen');
-        return {otp: '12345'};
-      } else {
+
+      if (user?.phone !== phone) {
         throw new Error('Invalid user');
       }
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      navigation.navigate('OTP');
+      return {otp: '12345'};
     } catch (error) {
       throw error;
     } finally {

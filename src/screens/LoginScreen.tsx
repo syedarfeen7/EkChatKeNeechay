@@ -10,7 +10,7 @@ import LanguageToggle from '../components/LanguageToggle';
 import images from '../asstes';
 import {currentLanguage} from '../helpers/common';
 import InputField from '../components/InputField';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {loginUserAPI} from '../features/auth/authAPI';
 import {AppDispatch} from '../app/store';
 
@@ -30,6 +30,7 @@ interface FormValues {
 const LoginScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
+  const {user, error} = useSelector((state: any) => state.auth);
 
   const {
     control,
@@ -39,10 +40,8 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
     resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log('Login data:', data);
-    dispatch(loginUserAPI(data));
-    navigation.navigate('OTP');
+  const onSubmit = (payload: FormValues) => {
+    dispatch(loginUserAPI({payload, navigation, user}));
   };
 
   return (
@@ -70,7 +69,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
               value={value}
               onChange={onChange}
               onBlur={onBlur}
-              error={errors.phone?.message}
+              error={errors.phone?.message || error}
               countryCode="+966"
             />
           )}
