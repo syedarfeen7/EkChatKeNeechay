@@ -83,14 +83,14 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
           control,
           name: 'firstName',
           errors,
-          keyboardType: 'numeric',
+          keyboardType: 'default',
           placeholder: 'Enter first name',
         })}
         {renderInputField({
           control,
           name: 'lastName',
           errors,
-          keyboardType: 'numeric',
+          keyboardType: 'default',
           placeholder: 'Enter last name',
         })}
         {renderInputField({
