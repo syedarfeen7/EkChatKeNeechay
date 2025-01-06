@@ -26,3 +26,6 @@ export interface RegisterPayload {
   phone: string;
   termsAccepted: boolean;
 }
+export interface OtpPayload {
+  otp: string;
+}

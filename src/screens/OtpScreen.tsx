@@ -12,6 +12,11 @@ import InputField from '../components/InputField';
 import {useTranslation} from 'react-i18next';
 import {otpSchema} from '../utils/validations';
 import LanguageToggle from '../components/LanguageToggle';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch} from '../app/store';
+import {otpVerificationAPI} from '../features/auth/authAPI';
+import {RootStackParamList} from '../types/navigation';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 interface FormValues {
   otp1: string;
@@ -21,10 +26,16 @@ interface FormValues {
   otp5: string;
 }
 
-const OtpScreen: React.FC = () => {
-  const {t} = useTranslation();
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'OTP'>;
+type Props = {
+  navigation: LoginScreenNavigationProp;
+};
 
+const OtpScreen: React.FC<Props> = ({navigation}) => {
+  const {t} = useTranslation();
   const refs = useRef<(TextInput | null)[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const {otp, user} = useSelector((state: any) => state.auth);
 
   const {
     control,
@@ -35,9 +46,20 @@ const OtpScreen: React.FC = () => {
   });
 
   const onSubmit = (data: FormValues) => {
-    const otp = `${data.otp1}${data.otp2}${data.otp3}${data.otp4}${data.otp5}`;
-    console.log('OTP Entered:', otp);
+    const otpVerify = `${data.otp1}${data.otp2}${data.otp3}${data.otp4}${data.otp5}`;
+    dispatch(
+      otpVerificationAPI({
+        payload: {
+          otp: otpVerify,
+        },
+        otp,
+        user,
+        navigation,
+      }),
+    );
   };
+
+  console.log('>>> user', user);
 
   const handleInputChange = (
     value: string,
