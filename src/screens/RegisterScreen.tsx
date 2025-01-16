@@ -12,6 +12,7 @@ import Checkbox from '../components/Checkbox';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../app/store';
 import {registerUserAPI} from '../features/auth/authAPI';
+import {currentLanguage} from '../helpers/common';
 // import Dropdown from '../components/Dropdown';
 
 type LoginScreenNavigationProp = StackNavigationProp<
@@ -63,7 +64,13 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
     <View style={styles.mainContainer}>
       <LanguageToggle />
       <View style={styles.container}>
-        <Text style={styles.title}>{t('register.cretaAnAccount')}</Text>
+        <Text
+          style={[
+            styles.title,
+            currentLanguage() === 'ar' && styles.rtlLayout,
+          ]}>
+          {t('register.cretaAnAccount')}
+        </Text>
 
         {/* <Controller
           name="title"
@@ -198,6 +205,11 @@ const styles = StyleSheet.create({
     width: '100%',
     color: '#000',
     fontWeight: '700',
+  },
+  rtlLayout: {
+    textAlign: 'right',
+    marginRight: 20,
+    fontSize: 26,
   },
   alreadyHaveAnAccount: {
     textDecorationLine: 'underline',

@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {CheckBox} from '@rneui/base';
+import {currentLanguage} from '../helpers/common';
 
 interface CheckboxFieldProps {
   label: string;
@@ -16,7 +17,11 @@ const Checkbox: React.FC<CheckboxFieldProps> = ({
   error,
 }) => {
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        currentLanguage() === 'ar' && styles.rtlLayout,
+      ]}>
       <CheckBox
         title={label}
         checked={value}
@@ -41,6 +46,9 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 5,
     marginBottom: 20,
+  },
+  rtlLayout: {
+    direction: 'rtl',
   },
 
   checkboxLabel: {
