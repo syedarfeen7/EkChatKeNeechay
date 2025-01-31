@@ -38,6 +38,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   container: {
+    direction: 'ltr',
     flex: 1,
     backgroundColor: '#fff',
   },
