@@ -8,7 +8,7 @@ import OtpScreen from '../screens/OtpScreen';
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AuthNavigation = () => (
-  <Stack.Navigator initialRouteName="OTP">
+  <Stack.Navigator initialRouteName="Login">
     <Stack.Screen
       name="Login"
       component={LoginScreen}
