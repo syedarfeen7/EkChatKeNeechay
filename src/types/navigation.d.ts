@@ -3,4 +3,5 @@ export type RootStackParamList = {
   Register: undefined;
   Home: undefined;
   OTP: undefined;
+  Home: undefined;
 };
