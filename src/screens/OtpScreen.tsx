@@ -59,8 +59,6 @@ const OtpScreen: React.FC<Props> = ({navigation}) => {
     );
   };
 
-  console.log('>>> user', user);
-
   const handleInputChange = (
     value: string,
     index: number,
