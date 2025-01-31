@@ -1,33 +1,18 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import LoginScreen from '../screens/LoginScreen';
-import {RootStackParamList} from '../types/navigation';
-import RegisterScreen from '../screens/RegisterScreen';
-import OtpScreen from '../screens/OtpScreen';
+import AuthNavigation from './AuthNavigation';
+import BottomTab from './BottomTabNavigaton';
+import {useSelector} from 'react-redux';
 
-const Stack = createStackNavigator<RootStackParamList>();
-
-const AppNavigator = () => (
-  <NavigationContainer>
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Register"
-        component={RegisterScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="OTP"
-        component={OtpScreen}
-        // options={{headerShown: false}}
-      />
-    </Stack.Navigator>
-  </NavigationContainer>
-);
+const AppNavigator = () => {
+  const isAuthenticated = useSelector(
+    (state: any) => state?.auth?.isAuthenticated,
+  );
+  return (
+    <NavigationContainer>
+      {isAuthenticated ? <BottomTab /> : <AuthNavigation />}
+    </NavigationContainer>
+  );
+};
 
 export default AppNavigator;
