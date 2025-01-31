@@ -20,7 +20,7 @@ const Checkbox: React.FC<CheckboxFieldProps> = ({
     <View
       style={[
         styles.container,
-        currentLanguage() === 'ar' && styles.rtlLayout,
+        currentLanguage() === 'ur' && styles.rtlLayout,
       ]}>
       <CheckBox
         title={label}

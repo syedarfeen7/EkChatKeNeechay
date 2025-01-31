@@ -40,16 +40,16 @@ const LanguageToggle: React.FC = () => {
         <TouchableOpacity
           style={[
             styles.button,
-            currentLanguage() === 'ar' && styles.activeButton,
+            currentLanguage() === 'ur' && styles.activeButton,
             styles.arButton,
           ]}
-          onPress={() => handleLanguageChange('ar')}>
+          onPress={() => handleLanguageChange('ur')}>
           <Text
             style={[
               styles.text,
-              currentLanguage() === 'ar' && styles.activeText,
+              currentLanguage() === 'ur' && styles.activeText,
             ]}>
-            عربي
+            اردو
           </Text>
         </TouchableOpacity>
       </Animated.View>

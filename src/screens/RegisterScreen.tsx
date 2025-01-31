@@ -67,7 +67,7 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
         <Text
           style={[
             styles.title,
-            currentLanguage() === 'ar' && styles.rtlLayout,
+            currentLanguage() === 'ur' && styles.rtlLayout,
           ]}>
           {t('register.cretaAnAccount')}
         </Text>
