@@ -65,12 +65,12 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
               iconName="phone"
               placeholder="Enter phone number"
               keyboardType="phone-pad"
-              maxLength={9}
+              maxLength={10}
               value={value}
               onChange={onChange}
               onBlur={onBlur}
               error={errors.phone?.message || error}
-              countryCode="+966"
+              countryCode="+92"
             />
           )}
         />
