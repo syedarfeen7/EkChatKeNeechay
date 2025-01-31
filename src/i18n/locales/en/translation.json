@@ -5,7 +5,7 @@
   },
   "validations": {
     "phoneNumber": "Phone number is required",
-    "phoneNumberInvalid": "Phone number must be exactly 9 digits",
+    "phoneNumberInvalid": "Phone number must be exactly 10 digits",
     "firstName": "First name is required",
     "lastName": "Last name is required",
     "terms": "Please accept the terms and conditions"
