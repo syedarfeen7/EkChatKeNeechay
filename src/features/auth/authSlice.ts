@@ -8,6 +8,7 @@ const initialState: AuthState = {
   isLoading: false,
   error: null,
   otp: null,
+  isAuthenticated: false,
 };
 
 const authSlice = createSlice({
@@ -65,10 +66,12 @@ const authSlice = createSlice({
           state.isLoading = false;
           state.user = action.payload;
           state.otp = null;
+          state.isAuthenticated = true;
         },
       )
       .addCase(otpVerificationAPI.rejected, (state, action) => {
         state.isLoading = false;
+        state.isAuthenticated = false;
         state.error = action.error.message || 'OTP Verification failed';
       });
   },

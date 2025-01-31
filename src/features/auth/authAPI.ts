@@ -67,7 +67,6 @@ export const otpVerificationAPI = createAsyncThunk(
   async (
     {
       payload,
-      navigation,
       otp,
       user,
     }: {payload: OtpPayload; navigation: any; otp: string; user: User},
@@ -78,7 +77,6 @@ export const otpVerificationAPI = createAsyncThunk(
 
       if (payload?.otp === otp) {
         await new Promise(resolve => setTimeout(resolve, 3000));
-        navigation.navigate('Login');
         return {...user};
       } else {
         throw new Error('OTP Verification Failed!');

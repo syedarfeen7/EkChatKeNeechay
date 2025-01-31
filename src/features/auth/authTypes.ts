@@ -3,6 +3,7 @@ export interface AuthState {
   isLoading: boolean;
   error: string | null;
   otp: string | null;
+  isAuthenticated: boolean;
 }
 
 export interface User {
