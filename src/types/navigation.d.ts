@@ -4,4 +4,7 @@ export type RootStackParamList = {
   Home: undefined;
   OTP: undefined;
   Home: undefined;
+  Messages: undefined;
+  Cart: undefined;
+  Acount: undefined;
 };
