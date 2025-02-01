@@ -3,16 +3,16 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {useForm, Controller, FieldValues} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../types/navigation';
-import {registerSchema} from '../utils/validations';
+import {RootStackParamList} from '../../types/navigation';
+import {registerSchema} from '../../utils/validations';
 import {useTranslation} from 'react-i18next';
-import LanguageToggle from '../components/LanguageToggle';
-import InputField from '../components/InputField';
-import Checkbox from '../components/Checkbox';
+import LanguageToggle from '../../components/LanguageToggle';
+import InputField from '../../components/InputField';
+import Checkbox from '../../components/Checkbox';
 import {useDispatch} from 'react-redux';
-import {AppDispatch} from '../app/store';
-import {registerUserAPI} from '../features/auth/authAPI';
-import {currentLanguage} from '../helpers/common';
+import {AppDispatch} from '../../app/store';
+import {registerUserAPI} from '../../features/auth/authAPI';
+import {currentLanguage} from '../../helpers/common';
 // import Dropdown from '../components/Dropdown';
 
 type LoginScreenNavigationProp = StackNavigationProp<

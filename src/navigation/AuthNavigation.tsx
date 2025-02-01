@@ -1,9 +1,9 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import LoginScreen from '../screens/LoginScreen';
+import LoginScreen from '../screens/Auth/LoginScreen';
 import {RootStackParamList} from '../types/navigation';
-import RegisterScreen from '../screens/RegisterScreen';
-import OtpScreen from '../screens/OtpScreen';
+import RegisterScreen from '../screens/Auth/RegisterScreen';
+import OtpScreen from '../screens/Auth/OtpScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

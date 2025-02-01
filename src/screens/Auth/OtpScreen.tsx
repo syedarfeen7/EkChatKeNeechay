@@ -8,14 +8,14 @@ import {
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import InputField from '../components/InputField';
+import InputField from '../../components/InputField';
 import {useTranslation} from 'react-i18next';
-import {otpSchema} from '../utils/validations';
-import LanguageToggle from '../components/LanguageToggle';
+import {otpSchema} from '../../utils/validations';
+import LanguageToggle from '../../components/LanguageToggle';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppDispatch} from '../app/store';
-import {otpVerificationAPI} from '../features/auth/authAPI';
-import {RootStackParamList} from '../types/navigation';
+import {AppDispatch} from '../../app/store';
+import {otpVerificationAPI} from '../../features/auth/authAPI';
+import {RootStackParamList} from '../../types/navigation';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 interface FormValues {

@@ -3,16 +3,16 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../types/navigation';
-import {loginSchema} from '../utils/validations';
+import {RootStackParamList} from '../../types/navigation';
+import {loginSchema} from '../../utils/validations';
 import {useTranslation} from 'react-i18next';
-import LanguageToggle from '../components/LanguageToggle';
-import images from '../asstes';
-import {currentLanguage} from '../helpers/common';
-import InputField from '../components/InputField';
+import LanguageToggle from '../../components/LanguageToggle';
+import images from '../../asstes';
+import {currentLanguage} from '../../helpers/common';
+import InputField from '../../components/InputField';
 import {useDispatch, useSelector} from 'react-redux';
-import {loginUserAPI} from '../features/auth/authAPI';
-import {AppDispatch} from '../app/store';
+import {loginUserAPI} from '../../features/auth/authAPI';
+import {AppDispatch} from '../../app/store';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
