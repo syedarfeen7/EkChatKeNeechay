@@ -8,6 +8,7 @@ const SearchBarComponent = ({
   onSearch: (query: string) => void;
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -24,8 +25,13 @@ const SearchBarComponent = ({
         round
         autoCorrect={false}
         containerStyle={styles.searchContainer}
-        inputContainerStyle={styles.inputContainer}
+        inputContainerStyle={[
+          styles.inputContainer,
+          isFocused && styles.focusedInput,
+        ]}
         searchIcon={{size: 20}}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
     </View>
   );
@@ -47,6 +53,11 @@ const styles = StyleSheet.create({
   inputContainer: {
     backgroundColor: '#fff',
     borderRadius: 10,
+  },
+  focusedInput: {
+    borderColor: '#05c3de',
+    borderWidth: 1,
+    borderBottomWidth: 1,
   },
 });
 
