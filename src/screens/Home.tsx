@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {RootStackParamList} from '../types/navigation';
 import SearchBarComponent from '../components/SearchBar';
+import MyCarousel from '../components/Carousel';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -18,6 +19,7 @@ const Home: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
       <SearchBarComponent onSearch={setSearchText} />
+      <MyCarousel />
     </View>
   );
 };
