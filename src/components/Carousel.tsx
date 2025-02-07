@@ -11,7 +11,7 @@ import images from '../asstes';
 
 const {width} = Dimensions.get('window');
 const IMAGE_ASPECT_RATIO = 16 / 9; // Adjust this based on your images
-const IMAGE_HEIGHT = width / IMAGE_ASPECT_RATIO; // Dynamic height
+export const IMAGE_HEIGHT = width / IMAGE_ASPECT_RATIO; // Dynamic height
 
 const MyCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -59,26 +59,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   carouselContainer: {
-    position: 'absolute',
     flex: 1,
-    height: '100%',
+    height: IMAGE_HEIGHT,
+    justifyContent: 'center',
   },
   imageContainer: {
     width: width,
-    height: IMAGE_HEIGHT,
+    height: '80%',
     overflow: 'hidden',
     elevation: 5,
   },
   image: {
     width: '100%',
-    height: '80%',
+    height: '100%',
     resizeMode: 'cover',
   },
   dotsContainer: {
     flexDirection: 'row',
     position: 'relative',
     alignSelf: 'center',
-    top: 160,
+    top: 155,
   },
   dot: {
     width: 10,

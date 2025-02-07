@@ -3,7 +3,8 @@ import React, {useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {RootStackParamList} from '../types/navigation';
 import SearchBarComponent from '../components/SearchBar';
-import MyCarousel from '../components/Carousel';
+import MyCarousel, {IMAGE_HEIGHT} from '../components/Carousel';
+import {useSelector} from 'react-redux';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -15,11 +16,18 @@ type Props = {
 
 const Home: React.FC<Props> = () => {
   const [searchText, setSearchText] = useState('');
+  const user = useSelector((state: any) => state?.auth?.user);
 
   return (
     <View style={styles.container}>
       <SearchBarComponent onSearch={setSearchText} />
-      <MyCarousel />
+
+      <View style={{height: IMAGE_HEIGHT}}>
+        <MyCarousel />
+      </View>
+      <View style={styles.categoriesWrapper}>
+        <Text style={styles.title}>Welcome: {user?.firstName}</Text>
+      </View>
     </View>
   );
 };
@@ -31,7 +39,10 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    color: '#000',
+    textAlign: 'center',
+  },
+  categoriesWrapper: {
+    marginTop: -20,
   },
 });
 
