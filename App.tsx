@@ -29,7 +29,7 @@ const AppContent = () => {
 };
 
 const App = () => {
-  console.log(">>> store", store)
+  console.log('>>> store', store);
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
@@ -44,7 +44,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#eb5d031a',
   },
 });
 

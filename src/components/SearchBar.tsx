@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {SearchBar} from '@rneui/base';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const SearchBarComponent = ({
   onSearch,
@@ -18,7 +19,7 @@ const SearchBarComponent = ({
   return (
     <View style={styles.container}>
       <SearchBar
-        placeholder="type here..."
+        placeholder="search here..."
         onChangeText={handleSearch}
         value={searchQuery}
         lightTheme
@@ -29,10 +30,11 @@ const SearchBarComponent = ({
           styles.inputContainer,
           isFocused && styles.focusedInput,
         ]}
-        searchIcon={{size: 20}}
+        searchIcon={null}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
+      <Icon name="search" size={20} style={styles.searchIcon} />
     </View>
   );
 };
@@ -41,9 +43,10 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     paddingHorizontal: 10,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#eb5d031a',
     height: 100,
     justifyContent: 'center',
+    position: 'relative',
   },
   searchContainer: {
     backgroundColor: 'transparent',
@@ -51,13 +54,31 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
   },
   inputContainer: {
+    borderRadius: 30,
     backgroundColor: '#fff',
-    borderRadius: 10,
+    paddingLeft: 10,
   },
   focusedInput: {
-    borderColor: '#05c3de',
+    borderColor: '#ff801b80',
     borderWidth: 1,
     borderBottomWidth: 1,
+  },
+  searchWrapper: {
+    position: 'relative',
+    width: '100%',
+  },
+  searchIcon: {
+    position: 'absolute',
+    right: 35,
+    top: '50%',
+    transform: [{translateY: -15}],
+    backgroundColor: '#ff801bc7',
+    width: 30,
+    height: 30,
+    lineHeight: 30,
+    textAlign: 'center',
+    borderRadius: '100%',
+    color: '#fff',
   },
 });
 
