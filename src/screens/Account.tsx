@@ -1,5 +1,5 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {RootStackParamList} from '../types/navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -12,19 +12,24 @@ type Props = {
   navigation: LoginScreenNavigationProp;
 };
 
+const accountMenus = [
+  {icon: 'person-outline', label: 'Profile'},
+  {icon: 'cart-outline', label: 'My Orders'},
+  {icon: 'heart-outline', label: 'Wishlist'},
+  {icon: 'card-outline', label: 'Payment Methods'},
+  {icon: 'location-outline', label: 'Address Book'},
+  {icon: 'lock-closed-outline', label: 'Security Settings'},
+  {icon: 'pricetag-outline', label: 'Coupons & Offers'},
+  {icon: 'call-outline', label: 'Contact Support'},
+  {icon: 'settings-outline', label: 'Settings'},
+  {icon: 'log-out-outline', label: 'Logout'},
+];
+
 const Account: React.FC<Props> = () => {
-  const accountMenus = [
-    {icon: 'person-outline', label: 'Profile'},
-    {icon: 'cart-outline', label: 'My Orders'},
-    {icon: 'heart-outline', label: 'Wishlist'},
-    {icon: 'card-outline', label: 'Payment Methods'},
-    {icon: 'location-outline', label: 'Address Book'},
-    {icon: 'lock-closed-outline', label: 'Security Settings'},
-    {icon: 'pricetag-outline', label: 'Coupons & Offers'},
-    {icon: 'call-outline', label: 'Contact Support'},
-    {icon: 'settings-outline', label: 'Settings'},
-    {icon: 'log-out-outline', label: 'Logout'},
-  ];
+  const [isSelected, setIsSelected] = useState<Number | null>(null);
+  const handleActiveMenu = (index: Number) => {
+    setIsSelected(index);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.profileSection}>
@@ -44,12 +49,24 @@ const Account: React.FC<Props> = () => {
       </View>
 
       <View style={styles.lineBreak} />
-      {accountMenus.map((item, index) => (
-        <TouchableOpacity key={index} style={styles.menuItem}>
-          <Icon name={item.icon} size={22} style={styles.icon} />
-          <Text style={styles.menuText}>{item.label}</Text>
-        </TouchableOpacity>
-      ))}
+      <View style={styles.menuContainer}>
+        {accountMenus.map((item, index) => {
+          const selected = isSelected === index;
+          const iconName = selected
+            ? item.icon.replace('-outline', '')
+            : item.icon;
+
+          return (
+            <TouchableOpacity
+              key={index}
+              style={[styles.menuItem, selected && styles.selectedMenu]}
+              onPress={() => handleActiveMenu(index)}>
+              <Icon name={iconName} size={22} style={[styles.icon]} />
+              <Text style={styles.menuText}>{item.label}</Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
     </View>
   );
 };
@@ -85,11 +102,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#777',
   },
+  menuContainer: {
+    paddingHorizontal: 15,
+  },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 12,
+    paddingVertical: 15,
     paddingHorizontal: 15,
+  },
+  selectedMenu: {
+    backgroundColor: '#eee8',
+    borderRadius: 20,
   },
   menuText: {
     fontSize: 16,
@@ -97,7 +121,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   icon: {
-    color: '#ccc',
+    color: '#333',
   },
   notificationIcon: {
     position: 'absolute',
