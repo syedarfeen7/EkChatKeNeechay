@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {RootStackParamList} from '../types/navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useDispatch} from 'react-redux';
+import {AppDispatch} from '../app/store';
+import {logout} from '../features/auth/authSlice';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -25,10 +28,16 @@ const accountMenus = [
   {icon: 'log-out-outline', label: 'Logout'},
 ];
 
-const Account: React.FC<Props> = () => {
+const Account: React.FC<Props> = ({navigation}) => {
   const [isSelected, setIsSelected] = useState<Number | null>(null);
-  const handleActiveMenu = (index: Number) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleActiveMenu = ({index, label}: {index: Number; label: String}) => {
     setIsSelected(index);
+    if (label === 'Logout') {
+      dispatch(logout());
+      navigation.navigate('Login');
+    }
   };
   return (
     <View style={styles.container}>
@@ -60,7 +69,7 @@ const Account: React.FC<Props> = () => {
             <TouchableOpacity
               key={index}
               style={[styles.menuItem, selected && styles.selectedMenu]}
-              onPress={() => handleActiveMenu(index)}>
+              onPress={() => handleActiveMenu({index, label: item.label})}>
               <Icon name={iconName} size={22} style={[styles.icon]} />
               <Text style={styles.menuText}>{item.label}</Text>
             </TouchableOpacity>

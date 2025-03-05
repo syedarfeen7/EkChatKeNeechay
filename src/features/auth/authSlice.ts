@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loginUserAPI, otpVerificationAPI, registerUserAPI} from './authAPI';
 import {AuthState, LoginOtp, User} from './authTypes';
-// import {persistUserData, clearUserData} from './authStorage';
+import {clearUserData} from './authStorage';
 
 const initialState: AuthState = {
   user: null,
@@ -17,7 +17,8 @@ const authSlice = createSlice({
   reducers: {
     logout(state) {
       state.user = null;
-      //   clearUserData(); // Clear user data from storage
+      state.isAuthenticated = false;
+      clearUserData(); // Clear user data from storage
     },
   },
   extraReducers: builder => {
