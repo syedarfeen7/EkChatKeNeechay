@@ -29,7 +29,6 @@ const AppContent = () => {
 };
 
 const App = () => {
-  console.log('>>> store', store);
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
