@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   searchIcon: {
     position: 'absolute',
     right: 30,
-    top: '35%',
+    top: '50%',
     transform: [{translateY: -15}],
     backgroundColor: '#ff801bc7',
     width: 30,
