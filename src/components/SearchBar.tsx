@@ -57,9 +57,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: '#fff',
     paddingLeft: 10,
+    paddingRight: 40,
   },
   focusedInput: {
-    borderColor: '#ff801b80',
+    borderColor: '#ff801b0f',
     borderWidth: 1,
     borderBottomWidth: 1,
   },
@@ -69,8 +70,8 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     position: 'absolute',
-    right: 35,
-    top: '50%',
+    right: 30,
+    top: '35%',
     transform: [{translateY: -15}],
     backgroundColor: '#ff801bc7',
     width: 30,
