@@ -6,7 +6,7 @@ import {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
 import {RouteProp} from '@react-navigation/native';
 import Messages from '../screens/Messages';
 import Cart from '../screens/Cart';
-import Account from '../screens/Account';
+import AccountStack from './AccountStack';
 
 // Define type for route names
 type TabParamList = {
@@ -78,9 +78,10 @@ const BottomTab = () => {
         component={Cart}
         options={{tabBarLabel: 'Cart'}}
       />
+
       <Tab.Screen
         name="Account"
-        component={Account}
+        component={AccountStack}
         options={{tabBarLabel: 'Account'}}
       />
     </Tab.Navigator>
