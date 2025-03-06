@@ -17,27 +17,45 @@ type Props = {
 };
 
 const accountMenus = [
-  {icon: 'person-outline', label: 'Profile'},
-  {icon: 'cart-outline', label: 'My Orders'},
-  {icon: 'heart-outline', label: 'Wishlist'},
-  {icon: 'card-outline', label: 'Payment Methods'},
-  {icon: 'location-outline', label: 'Address Book'},
-  {icon: 'lock-closed-outline', label: 'Security Settings'},
-  {icon: 'pricetag-outline', label: 'Coupons & Offers'},
-  {icon: 'call-outline', label: 'Contact Support'},
-  {icon: 'settings-outline', label: 'Settings'},
-  {icon: 'log-out-outline', label: 'Logout'},
+  {icon: 'person-outline', label: 'Profile', navigate: 'Profile'},
+  {icon: 'cart-outline', label: 'My Orders', navigate: 'MyOrders'},
+  {icon: 'heart-outline', label: 'Wishlist', navigate: 'Wishlist'},
+  {icon: 'card-outline', label: 'Payment Methods', navigate: 'PaymentMethods'},
+  {icon: 'location-outline', label: 'Address Book', navigate: 'Address'},
+  {
+    icon: 'lock-closed-outline',
+    label: 'Security Settings',
+    navigate: 'Profile',
+  },
+  {
+    icon: 'pricetag-outline',
+    label: 'Coupons & Offers',
+    navigate: 'CoupnsOffers',
+  },
+  {icon: 'call-outline', label: 'Contact Support', navigate: 'Contact'},
+  {icon: 'settings-outline', label: 'Settings', navigate: 'Settings'},
+  {icon: 'log-out-outline', label: 'Logout', navigate: 'Logout'},
 ];
 
 const Account: React.FC<Props> = ({navigation}) => {
   const [isSelected, setIsSelected] = useState<Number | null>(null);
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleActiveMenu = ({index, label}: {index: Number; label: String}) => {
+  const handleActiveMenu = ({
+    index,
+    label,
+    navigateTo,
+  }: {
+    index: Number;
+    label: String;
+    navigateTo: String;
+  }) => {
     setIsSelected(index);
     if (label === 'Logout') {
       dispatch(logout());
       navigation.navigate('Login');
+    } else {
+      navigation.navigate(navigateTo);
     }
   };
   return (
@@ -83,7 +101,13 @@ const Account: React.FC<Props> = ({navigation}) => {
             <TouchableOpacity
               key={index}
               style={[styles.menuItem, selected && styles.selectedMenu]}
-              onPress={() => handleActiveMenu({index, label: item.label})}>
+              onPress={() =>
+                handleActiveMenu({
+                  index,
+                  label: item.label,
+                  navigateTo: item?.navigate,
+                })
+              }>
               <Icon name={iconName} size={22} style={[styles.icon]} />
               <Text style={styles.menuText}>{item.label}</Text>
             </TouchableOpacity>
