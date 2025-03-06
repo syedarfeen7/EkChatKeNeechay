@@ -7,4 +7,5 @@ export type RootStackParamList = {
   Messages: undefined;
   Cart: undefined;
   Account: undefined;
+  Profile: undefined;
 };
