@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   progressContainer: {
-    marginTop:10,
+    marginTop: 10,
   },
   lineBreak: {
     borderColor: '#ccc',
@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 12,
     color: '#333',
+    fontWeight: '700',
   },
   icon: {
     color: '#333',
