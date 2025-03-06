@@ -18,8 +18,9 @@ const SplashScreen: React.FC<SplashScreenProps> = ({onComplete}) => {
   return (
     <View style={styles.container}>
       <Image source={images.enLogo} style={styles.logo} resizeMode="contain" />
-      <Text style={styles.title}>Welcome to Autohub</Text>
-      <ActivityIndicator size="large" color="#05c3de" style={styles.loader} />
+      <Text style={styles.title}>Online Shop</Text>
+      <Text style={styles.subTitle}>Easy Solution</Text>
+      <ActivityIndicator size="large" color="#ffffff" style={styles.loader} />
     </View>
   );
 };
@@ -27,17 +28,27 @@ const SplashScreen: React.FC<SplashScreenProps> = ({onComplete}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#0066b2',
     justifyContent: 'center',
     alignItems: 'center',
   },
   logo: {
-    width: 250,
-    marginBottom: 20,
+    height: 170,
+    marginLeft: 10,
   },
   title: {
-    fontSize: 24,
-    color: '#000',
+    fontSize: 30,
+    color: '#FFFFFF',
+    textTransform: 'uppercase',
+    padding: 5,
+    letterSpacing: 2,
+  },
+  subTitle: {
+    letterSpacing: 2,
+    fontSize: 16,
+    textTransform: 'uppercase',
+    padding: 5,
+    color: '#FFFFFF',
   },
   loader: {
     marginTop: 20,

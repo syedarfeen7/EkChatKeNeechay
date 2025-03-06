@@ -1,6 +1,5 @@
 const images = {
-  enLogo: require('../asstes/images/autohub-en.webp'),
-  arLogo: require('../asstes/images/autohub-ah.webp'),
+  enLogo: require('../asstes/images/logo.png'),
   carouselImages: [
     require('../asstes/images/carousel1.png'),
     require('../asstes/images/carousel2.png'),
