@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../app/store';
 import {logout} from '../features/auth/authSlice';
+import ProfileProgress from '../components/ProgressBar';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -47,9 +48,22 @@ const Account: React.FC<Props> = ({navigation}) => {
             source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
             style={styles.avatar}
           />
+
           <Text style={styles.name}>Daniel</Text>
           <Text style={styles.role}>UX/UI Designer</Text>
+          <View style={styles.progressContainer}>
+            <ProfileProgress
+              user={{
+                name: 'John Doe',
+                email: 'john@example.com',
+                phone: '',
+                avatar: 'image_url',
+                address: '123 Street',
+              }}
+            />
+          </View>
         </View>
+
         <View>
           <TouchableOpacity style={styles.notificationIcon}>
             <Icon name="notifications-outline" size={24} color="#333" />
@@ -90,6 +104,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'flex-start',
+  },
+  progressContainer: {
+    marginTop:10,
   },
   lineBreak: {
     borderColor: '#ccc',
@@ -113,6 +131,7 @@ const styles = StyleSheet.create({
   },
   menuContainer: {
     paddingHorizontal: 15,
+    overflow: 'scroll',
   },
   menuItem: {
     flexDirection: 'row',
@@ -133,12 +152,13 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   notificationIcon: {
-    position: 'absolute',
+    // position: 'absolute',
     top: 0,
     right: 20,
     padding: 10,
     backgroundColor: '#f5f5f5',
     borderRadius: 20,
+    width: 'auto',
   },
 });
 
