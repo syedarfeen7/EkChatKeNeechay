@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: 8,
     paddingHorizontal: 12,
-    backgroundColor: '#05c3de',
+    backgroundColor: '#9B1B1B',
   },
   enButton: {
     borderTopLeftRadius: 5,
@@ -85,10 +85,10 @@ const styles = StyleSheet.create({
   activeButton: {
     backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: '#05c3de',
+    borderColor: '#9B1B1B',
   },
   activeText: {
-    color: '#05c3de',
+    color: '#9B1B1B',
   },
 });
 
