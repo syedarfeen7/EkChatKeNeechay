@@ -20,6 +20,8 @@ type Props = {
 const HomeScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
 
+  const handleNavigation = (to: string) => navigation.navigate(to);
+
   return (
     <LinearGradient
       colors={['#9B1B1B', '#220F30']}
@@ -37,10 +39,14 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
 
         <View>
           <Text style={styles.text}>{t('authHome.welcomeBack')}</Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => handleNavigation('Login')}>
             <Text style={styles.buttonText}>{t('login.signin')}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.signUp]}>
+          <TouchableOpacity
+            style={[styles.button, styles.signUp]}
+            onPress={() => handleNavigation('Register')}>
             <Text style={[styles.buttonText, styles.signUpText]}>
               {t('register.signup')}
             </Text>
