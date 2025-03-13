@@ -1,6 +1,6 @@
 {
   "login": {
-    "title": "Login",
+    "signin": "Sign In",
     "link": "Create an account"
   },
   "validations": {
@@ -14,7 +14,8 @@
     "cretaAnAccount": "Create an Account",
     "link": "Already have an acoount?",
     "button": "Create",
-    "agreeToTerms": "I agree to the Terms and Conditions"
+    "agreeToTerms": "I agree to the Terms and Conditions",
+    "signup": "Sign up"
   },
   "otp": {
     "title": "Verification",

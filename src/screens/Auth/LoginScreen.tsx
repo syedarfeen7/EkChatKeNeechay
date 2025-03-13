@@ -54,7 +54,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text style={styles.title}>{t('login.title')}</Text>
+          <Text style={styles.title}>{t('login.signin')}</Text>
         </View>
 
         <Controller
