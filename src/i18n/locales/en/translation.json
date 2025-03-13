@@ -21,5 +21,9 @@
     "title": "Verification",
     "message": "Please enter your OTP",
     "verify": "Verify"
+  },
+  "authHome": {
+    "welcomeBack": "Welcome Back",
+    "signinWith": "Sign In With"
   }
 }

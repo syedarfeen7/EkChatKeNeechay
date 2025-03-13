@@ -36,7 +36,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
         </View>
 
         <View>
-          <Text style={styles.text}>Welcome Back</Text>
+          <Text style={styles.text}>{t('authHome.welcomeBack')}</Text>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>{t('login.signin')}</Text>
           </TouchableOpacity>
@@ -47,7 +47,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.singinWith}>Sign In With</Text>
+          <Text style={styles.singinWith}>{t('authHome.signinWith')}</Text>
           <View style={styles.iconsWrapper}>
             <Icon name="google" size={20} style={styles.signinWithIcon} />
             <Icon name="facebook" size={20} style={styles.signinWithIcon} />
