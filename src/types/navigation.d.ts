@@ -8,4 +8,5 @@ export type RootStackParamList = {
   Cart: undefined;
   Account: undefined;
   Profile: undefined;
+  AuthHome: undefined;
 };

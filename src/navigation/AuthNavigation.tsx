@@ -4,11 +4,12 @@ import LoginScreen from '../screens/Auth/LoginScreen';
 import {RootStackParamList} from '../types/navigation';
 import RegisterScreen from '../screens/Auth/RegisterScreen';
 import OtpScreen from '../screens/Auth/OtpScreen';
+import HomeScreen from '../screens/Auth/Home';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const AuthNavigation = () => (
-  <Stack.Navigator initialRouteName="Login">
+  <Stack.Navigator initialRouteName="Home">
     <Stack.Screen
       name="Login"
       component={LoginScreen}
@@ -23,6 +24,11 @@ const AuthNavigation = () => (
       name="OTP"
       component={OtpScreen}
       // options={{headerShown: false}}
+    />
+    <Stack.Screen
+      name="Home"
+      component={HomeScreen}
+      options={{headerShown: false}}
     />
   </Stack.Navigator>
 );
