@@ -51,6 +51,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
           <View style={styles.iconsWrapper}>
             <Icon name="google" size={20} style={styles.signinWithIcon} />
             <Icon name="facebook" size={20} style={styles.signinWithIcon} />
+            <Icon name="twitter" size={20} style={styles.signinWithIcon} />
           </View>
         </View>
       </View>
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'row',
-    gap: 10,
+    gap: 12,
   },
   singinWith: {
     color: '#FFFFFF',
