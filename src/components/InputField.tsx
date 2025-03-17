@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 10,
     marginLeft: 10,
-    color: '#05c3de',
+    color: '#9B1B1B',
   },
   countryCode: {
     fontSize: 16,
