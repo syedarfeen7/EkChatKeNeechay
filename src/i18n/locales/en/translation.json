@@ -1,7 +1,11 @@
 {
   "login": {
     "signin": "Sign In",
-    "link": "Create an account"
+    "link": "Create an account",
+    "hello": "Hello",
+    "signin!": "Sign in!",
+    "dontHaveAnAccount": "Don't have an account?",
+    "signup": "Sign up"
   },
   "validations": {
     "phoneNumber": "Phone number is required",

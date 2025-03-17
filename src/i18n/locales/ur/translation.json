@@ -1,7 +1,11 @@
 {
   "login": {
     "signin": "سائن ان کریں",
-    "link": "ایک اکاؤنٹ بنائیں"
+    "link": "اکاؤنٹ بنائیں",
+    "hello": "ہیلو",
+    "signin!": "سائن ان کریں!",
+    "dontHaveAnAccount": "کیا آپ کا اکاؤنٹ نہیں ہے؟",
+    "signup": "سائن اپ کریں"
   },
   "validations": {
     "phoneNumber": "فون نمبر درکار ہے",

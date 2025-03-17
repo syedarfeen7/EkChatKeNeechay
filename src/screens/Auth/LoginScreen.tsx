@@ -13,6 +13,7 @@ import {loginUserAPI} from '../../features/auth/authAPI';
 import {AppDispatch} from '../../app/store';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {currentLanguage} from '../../helpers/common';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -52,10 +53,29 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
         end={{x: 1, y: 0.5}}>
         <LanguageToggle />
         <View style={styles.topContaier}>
-          <Icon name="opencart" size={20} style={styles.icon} />
+          <Icon
+            name="opencart"
+            size={20}
+            style={[
+              styles.icon,
+              currentLanguage() === 'ur' && {transform: [{scaleX: -1}]},
+            ]}
+          />
 
-          <Text style={styles.text}>Hello</Text>
-          <Text style={styles.text}>Sign in!</Text>
+          <Text
+            style={[
+              styles.text,
+              currentLanguage() === 'ur' && {marginLeft: 'auto'},
+            ]}>
+            {t('login.hello')}
+          </Text>
+          <Text
+            style={[
+              styles.text,
+              currentLanguage() === 'ur' && {marginLeft: 'auto'},
+            ]}>
+            {t('login.signin!')}
+          </Text>
         </View>
       </LinearGradient>
       <View style={styles.container}>
@@ -84,15 +104,15 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
             start={{x: 0, y: 0.5}}
             end={{x: 1, y: 0.5}}
             style={styles.buttonGradient}>
-            <Text style={styles.buttonText}>SIGN IN</Text>
+            <Text style={styles.buttonText}>{t('login.signin')}</Text>
           </LinearGradient>
         </TouchableOpacity>
         <Text style={styles.bottomText}>
-          Don't have an account?{' '}
+          {t('login.dontHaveAnAccount')}{' '}
           <Text
             style={styles.signUpText}
             onPress={() => navigation.navigate('Register')}>
-            Sign up
+            {t('login.signup')}
           </Text>
         </Text>
       </View>
@@ -126,9 +146,10 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     paddingVertical: 15,
+    textTransform: 'uppercase',
   },
   icon: {
     color: '#FFFFFF',
