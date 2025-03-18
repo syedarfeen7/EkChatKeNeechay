@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import {Provider, useSelector} from 'react-redux';
+import {Provider, useDispatch, useSelector} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
 import AppNavigator from './src/navigation/AppNavigator';
@@ -9,10 +9,15 @@ import Loader from './src/components/Loader';
 import SplashScreen from './src/screens/SplashScreen';
 import {I18nextProvider} from 'react-i18next';
 import i18n from './src/i18n/index';
+import {clearError} from './src/features/auth/authSlice';
 
 const AppContent = () => {
   const [showSplash, setShowSplash] = useState(true);
   const loading = useSelector((state: any) => state.loader.loading);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(clearError());
+  }, []);
 
   return (
     <>

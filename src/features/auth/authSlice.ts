@@ -1,13 +1,12 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loginUserAPI, otpVerificationAPI, registerUserAPI} from './authAPI';
-import {AuthState, LoginOtp, User} from './authTypes';
+import {AuthState, User} from './authTypes';
 import {clearUserData} from './authStorage';
 
 const initialState: AuthState = {
   user: null,
   isLoading: false,
   error: null,
-  otp: null,
   isAuthenticated: false,
 };
 
@@ -20,6 +19,9 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
       clearUserData(); // Clear user data from storage
     },
+    clearError(state) {
+      state.error = null;
+    },
   },
   extraReducers: builder => {
     builder
@@ -27,14 +29,10 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(
-        loginUserAPI.fulfilled,
-        (state, action: PayloadAction<LoginOtp>) => {
-          state.isLoading = false;
-          state.otp = action.payload?.otp;
-          // persistUserData(action.payload); // Save user data to storage
-        },
-      )
+      .addCase(loginUserAPI.fulfilled, state => {
+        state.isLoading = false;
+        state.error = null;
+      })
       .addCase(loginUserAPI.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Login failed';
@@ -44,14 +42,10 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(
-        registerUserAPI.fulfilled,
-        (state, action: PayloadAction<User>) => {
-          state.isLoading = false;
-          state.user = action.payload;
-          // persistUserData(action.payload); // Save user data to storage
-        },
-      )
+      .addCase(registerUserAPI.fulfilled, state => {
+        state.isLoading = false;
+        state.error = null;
+      })
       .addCase(registerUserAPI.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Registration failed';
@@ -66,8 +60,8 @@ const authSlice = createSlice({
         (state, action: PayloadAction<User>) => {
           state.isLoading = false;
           state.user = action.payload;
-          state.otp = null;
           state.isAuthenticated = true;
+          state.error = null;
         },
       )
       .addCase(otpVerificationAPI.rejected, (state, action) => {
@@ -78,6 +72,6 @@ const authSlice = createSlice({
   },
 });
 
-export const {logout} = authSlice.actions;
+export const {logout, clearError} = authSlice.actions;
 
 export default authSlice.reducer;
