@@ -25,13 +25,13 @@ type Props = {
 };
 
 interface FormValues {
-  phone: string;
+  phoneNumber: string;
 }
 
 const LoginScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
-  const {user, error} = useSelector((state: any) => state.auth);
+  const {error} = useSelector((state: any) => state.auth);
 
   const {
     control,
@@ -42,7 +42,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
   });
 
   const onSubmit = (payload: FormValues) => {
-    dispatch(loginUserAPI({payload, navigation, user}));
+    dispatch(loginUserAPI({payload, navigation}));
   };
 
   return (
@@ -80,7 +80,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
       </LinearGradient>
       <View style={styles.container}>
         <Controller
-          name="phone"
+          name="phoneNumber"
           control={control}
           render={({field: {onChange, onBlur, value}}) => (
             <InputField
@@ -91,7 +91,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
               value={value}
               onChange={onChange}
               onBlur={onBlur}
-              error={errors.phone?.message || error}
+              error={errors.phoneNumber?.message || error}
               countryCode="+92"
             />
           )}

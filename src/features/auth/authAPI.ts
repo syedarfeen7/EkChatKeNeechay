@@ -13,25 +13,21 @@ import httpClient from '../../api/httpClient';
 export const loginUserAPI = createAsyncThunk(
   'auth/login',
   async (
-    {
-      payload,
-      navigation,
-      user,
-    }: {payload: LoginPayload; navigation: any; user: User},
+    {payload, navigation}: {payload: LoginPayload; navigation: any},
     {dispatch},
   ): Promise<LoginOtp> => {
     try {
       dispatch(showLoader());
 
-      const {phone} = payload;
+      const {phoneNumber} = payload;
 
-      if (user?.phone !== phone) {
-        throw new Error('Invalid user');
-      }
-
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await httpClient.get(API_URLS.AUTH.LOGIN, {
+        params: {
+          phoneNumber,
+        },
+      });
       navigation.navigate('OTP');
-      return {otp: '12345'};
+      return response?.data;
     } catch (error) {
       throw error;
     } finally {

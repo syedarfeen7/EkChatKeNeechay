@@ -2,7 +2,6 @@ export interface AuthState {
   user: User | null;
   isLoading: boolean;
   error: string | null;
-  otp: string | null;
   isAuthenticated: boolean;
 }
 
@@ -18,7 +17,7 @@ export interface LoginOtp {
 }
 
 export interface LoginPayload {
-  phone: string;
+  phoneNumber: string;
 }
 export interface RegisterPayload {
   firstName: string;

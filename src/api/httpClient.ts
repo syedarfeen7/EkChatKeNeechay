@@ -21,8 +21,8 @@ httpClient.interceptors.request.use(async config => {
 httpClient.interceptors.response.use(
   response => response,
   error => {
-    console.error('API Error:', error.response?.data || error.message);
-    return Promise.reject(error);
+    console.error('API Error:', error.response?.data?.message);
+    return Promise.reject(error.response?.data?.message || error?.message);
   },
 );
 
