@@ -17,6 +17,7 @@ import {AppDispatch} from '../../app/store';
 import {otpVerificationAPI} from '../../features/auth/authAPI';
 import {RootStackParamList} from '../../types/navigation';
 import {StackNavigationProp} from '@react-navigation/stack';
+import LinearGradient from 'react-native-linear-gradient';
 
 interface FormValues {
   otp1: string;
@@ -114,7 +115,13 @@ const OtpScreen: React.FC<Props> = ({navigation}) => {
         <TouchableOpacity
           style={styles.button}
           onPress={handleSubmit(onSubmit)}>
-          <Text style={styles.buttonText}>{t('otp.verify')}</Text>
+          <LinearGradient
+            colors={['#9B1B1B', '#220F30']}
+            start={{x: 0.3, y: 0.5}}
+            end={{x: 1, y: 0.5}}
+            style={styles.buttonGradient}>
+            <Text style={styles.buttonText}>{t('otp.verify')}</Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
     </View>
@@ -160,16 +167,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    backgroundColor: '#05c3de',
-    padding: 15,
-    paddingHorizontal: 50,
+    width: '80%',
+    marginTop: 20,
     borderRadius: 30,
+  },
+  buttonGradient: {
+    borderRadius: 40,
     alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+    paddingVertical: 15,
+    textTransform: 'uppercase',
   },
 });
 
