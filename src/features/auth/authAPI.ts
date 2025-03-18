@@ -7,6 +7,8 @@ import {
   RegisterPayload,
   User,
 } from './authTypes';
+import {API_URLS} from '../../api/urls';
+import httpClient from '../../api/httpClient';
 
 export const loginUserAPI = createAsyncThunk(
   'auth/login',
@@ -47,11 +49,11 @@ export const registerUserAPI = createAsyncThunk(
     try {
       dispatch(showLoader());
 
-      const {firstName, lastName, email, phone, termsAccepted} = payload;
-      if (firstName && lastName && phone && email && termsAccepted) {
-        await new Promise(resolve => setTimeout(resolve, 3000));
+      const {firstName, lastName, email, phoneNumber, termsAccepted} = payload;
+      if (firstName && lastName && phoneNumber && email && termsAccepted) {
+        const response = await httpClient.post(API_URLS.AUTH.REGISTER, payload);
         navigation.navigate('Login');
-        return {firstName, lastName, email, phone, termsAccepted};
+        return response?.data;
       } else {
         throw new Error('Registration Failed!');
       }
