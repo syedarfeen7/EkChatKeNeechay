@@ -13,7 +13,7 @@ const Loader: React.FC<LoaderProps> = ({visible}) => {
   return (
     <Modal transparent animationType="fade" visible={visible}>
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#05c3de" />
+        <ActivityIndicator size="large" color="#9B1B1B" />
       </View>
     </Modal>
   );
