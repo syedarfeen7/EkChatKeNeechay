@@ -146,7 +146,7 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
           onPress={handleSubmit(onSubmit)}>
           <LinearGradient
             colors={['#9B1B1B', '#220F30']}
-            start={{x: 0, y: 0.5}}
+            start={{x: 0.3, y: 0.5}}
             end={{x: 1, y: 0.5}}
             style={styles.buttonGradient}>
             <Text style={styles.buttonText}>{t('register.button')}</Text>
