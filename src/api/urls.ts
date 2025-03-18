@@ -4,6 +4,7 @@ const API_URLS = {
   AUTH: {
     LOGIN: `${BASE_URL}/auth/login`,
     REGISTER: `${BASE_URL}/auth/register`,
+    OTP_VERIFICATION: `${BASE_URL}/auth/otp-verification`,
   },
 };
 

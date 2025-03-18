@@ -12,12 +12,13 @@ import InputField from '../../components/InputField';
 import {useTranslation} from 'react-i18next';
 import {otpSchema} from '../../utils/validations';
 import LanguageToggle from '../../components/LanguageToggle';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../../app/store';
 import {otpVerificationAPI} from '../../features/auth/authAPI';
 import {RootStackParamList} from '../../types/navigation';
 import {StackNavigationProp} from '@react-navigation/stack';
 import LinearGradient from 'react-native-linear-gradient';
+import {useRoute} from '@react-navigation/native';
 
 interface FormValues {
   otp1: string;
@@ -36,7 +37,7 @@ const OtpScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
   const refs = useRef<(TextInput | null)[]>([]);
   const dispatch = useDispatch<AppDispatch>();
-  const {otp, user} = useSelector((state: any) => state.auth);
+  const route = useRoute();
 
   const {
     control,
@@ -52,9 +53,8 @@ const OtpScreen: React.FC<Props> = ({navigation}) => {
       otpVerificationAPI({
         payload: {
           otp: otpVerify,
+          phoneNumber: route?.params?.phoneNumber,
         },
-        otp,
-        user,
         navigation,
       }),
     );

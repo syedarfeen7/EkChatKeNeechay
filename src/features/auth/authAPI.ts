@@ -26,7 +26,7 @@ export const loginUserAPI = createAsyncThunk(
           phoneNumber,
         },
       });
-      navigation.navigate('OTP');
+      navigation.navigate('OTP', {phoneNumber});
       return response?.data;
     } catch (error) {
       throw error;
@@ -63,22 +63,18 @@ export const registerUserAPI = createAsyncThunk(
 export const otpVerificationAPI = createAsyncThunk(
   'auth/otp/verification',
   async (
-    {
-      payload,
-      otp,
-      user,
-    }: {payload: OtpPayload; navigation: any; otp: string; user: User},
+    {payload}: {payload: OtpPayload; navigation: any},
     {dispatch},
   ): Promise<User> => {
     try {
       dispatch(showLoader());
 
-      if (payload?.otp === otp) {
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        return {...user};
-      } else {
-        throw new Error('OTP Verification Failed!');
-      }
+      const response = await httpClient.get(API_URLS.AUTH.OTP_VERIFICATION, {
+        params: {
+          ...payload,
+        },
+      });
+      return response?.data;
     } catch (error) {
       throw error;
     } finally {

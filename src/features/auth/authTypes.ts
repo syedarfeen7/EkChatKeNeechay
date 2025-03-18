@@ -28,4 +28,5 @@ export interface RegisterPayload {
 }
 export interface OtpPayload {
   otp: string;
+  phoneNumber: string;
 }
