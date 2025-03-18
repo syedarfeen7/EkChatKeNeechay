@@ -137,7 +137,7 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
 
         <Text
           style={styles.signUpText}
-          onPress={() => navigation.navigate('Register')}>
+          onPress={() => navigation.navigate('Login')}>
           {t('register.link')}
         </Text>
 
