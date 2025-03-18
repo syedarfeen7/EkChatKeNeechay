@@ -18,7 +18,7 @@ import {otpVerificationAPI} from '../../features/auth/authAPI';
 import {RootStackParamList} from '../../types/navigation';
 import {StackNavigationProp} from '@react-navigation/stack';
 import LinearGradient from 'react-native-linear-gradient';
-import {useRoute} from '@react-navigation/native';
+import {RouteProp} from '@react-navigation/native';
 
 interface FormValues {
   otp1: string;
@@ -28,16 +28,18 @@ interface FormValues {
   otp5: string;
 }
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'OTP'>;
+type OtpScreenNavigationProp = StackNavigationProp<RootStackParamList, 'OTP'>;
+type OtpScreenRouteProp = RouteProp<RootStackParamList, 'OTP'>;
+
 type Props = {
-  navigation: LoginScreenNavigationProp;
+  navigation: OtpScreenNavigationProp;
+  route: OtpScreenRouteProp;
 };
 
-const OtpScreen: React.FC<Props> = ({navigation}) => {
+const OtpScreen: React.FC<Props> = ({navigation, route}) => {
   const {t} = useTranslation();
   const refs = useRef<(TextInput | null)[]>([]);
   const dispatch = useDispatch<AppDispatch>();
-  const route = useRoute();
 
   const {
     control,
@@ -66,6 +68,10 @@ const OtpScreen: React.FC<Props> = ({navigation}) => {
     onChange: (value: string) => void,
   ) => {
     onChange(value);
+
+    if (index === 4 && value) {
+      handleSubmit(onSubmit)();
+    }
 
     if (value && index < refs.current.length - 1) {
       refs.current[index + 1]?.focus();

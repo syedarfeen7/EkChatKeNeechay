@@ -2,7 +2,7 @@ export type RootStackParamList = {
   Login: undefined; // No parameters expected for Login screen
   Register: undefined;
   Home: undefined;
-  OTP: undefined;
+  OTP: {phoneNumber: string};
   Home: undefined;
   Messages: undefined;
   Cart: undefined;
