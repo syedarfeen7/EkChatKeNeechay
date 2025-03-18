@@ -10,7 +10,7 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
+  phoneNumber: string;
   termsAccepted: boolean;
 }
 export interface LoginOtp {
@@ -24,7 +24,7 @@ export interface RegisterPayload {
   firstName: string;
   lastName: string;
   email: string;
-  phone: string;
+  phoneNumber: string;
   termsAccepted: boolean;
 }
 export interface OtpPayload {

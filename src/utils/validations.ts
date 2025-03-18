@@ -10,7 +10,7 @@ export const registerSchema = Yup.object().shape({
   firstName: Yup.string().required(i18n.t('validations.firstName')),
   lastName: Yup.string().required(i18n.t('validations.lastName')),
   email: Yup.string().email(),
-  phone: Yup.string()
+  phoneNumber: Yup.string()
     .required(i18n.t('validations.phoneNumber'))
     .matches(/^[0-9]{10}$/, i18n.t('validations.phoneNumberInvalid')),
   termsAccepted: Yup.boolean()

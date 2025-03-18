@@ -29,7 +29,7 @@ interface FormValues {
   firstName: string;
   lastName: string;
   email?: string;
-  phone: string;
+  phoneNumber: string;
   termsAccepted: boolean;
 }
 
@@ -105,7 +105,7 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
           placeholder: 'Enter your email',
         })}
         <Controller
-          name="phone"
+          name="phoneNumber"
           control={control}
           render={({field: {onChange, onBlur, value}}) => (
             <InputField
@@ -116,7 +116,7 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
               value={value}
               onChange={onChange}
               onBlur={onBlur}
-              error={errors.phone?.message}
+              error={errors.phoneNumber?.message}
               countryCode="+92"
             />
           )}
