@@ -19,7 +19,9 @@
     "link": "Already have an acoount?",
     "button": "Create",
     "agreeToTerms": "I agree to the Terms and Conditions",
-    "signup": "Sign up"
+    "signup": "Sign up",
+    "register": "Register",
+    "yourAccount": "your Account!"
   },
   "otp": {
     "title": "Verification",

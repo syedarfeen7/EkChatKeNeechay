@@ -13,7 +13,8 @@ import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../../app/store';
 import {registerUserAPI} from '../../features/auth/authAPI';
 import {currentLanguage} from '../../helpers/common';
-// import Dropdown from '../components/Dropdown';
+import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -25,24 +26,12 @@ type Props = {
 };
 
 interface FormValues {
-  // title: string;
   firstName: string;
   lastName: string;
   email?: string;
   phone: string;
   termsAccepted: boolean;
 }
-
-// const titleOptions = [
-//   {
-//     label: 'Mr',
-//     value: 'Mr',
-//   },
-//   {
-//     label: 'Mrs',
-//     value: 'Mrs',
-//   },
-// ];
 
 const RegisterScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
@@ -62,30 +51,38 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
 
   return (
     <View style={styles.mainContainer}>
-      <LanguageToggle />
+      <LinearGradient
+        colors={['#9B1B1B', '#220F30']}
+        start={{x: 0, y: 0.5}}
+        end={{x: 1, y: 0.5}}>
+        <LanguageToggle />
+        <View style={styles.topContaier}>
+          <Icon
+            name="opencart"
+            size={20}
+            style={[
+              styles.icon,
+              currentLanguage() === 'ur' && {transform: [{scaleX: -1}]},
+            ]}
+          />
+
+          <Text
+            style={[
+              styles.text,
+              currentLanguage() === 'ur' && {marginLeft: 'auto'},
+            ]}>
+            {t('register.register')}
+          </Text>
+          <Text
+            style={[
+              styles.text,
+              currentLanguage() === 'ur' && {marginLeft: 'auto'},
+            ]}>
+            {t('register.yourAccount')}
+          </Text>
+        </View>
+      </LinearGradient>
       <View style={styles.container}>
-        <Text
-          style={[
-            styles.title,
-            currentLanguage() === 'ur' && styles.rtlLayout,
-          ]}>
-          {t('register.cretaAnAccount')}
-        </Text>
-
-        {/* <Controller
-          name="title"
-          control={control}
-          render={({field: {value, onChange}}) => (
-            <Dropdown
-              options={titleOptions}
-              placeholder="Title"
-              value={value}
-              onValueChange={onChange}
-              error={errors.title?.message}
-            />
-          )}
-        /> */}
-
         {renderInputField({
           control,
           name: 'firstName',
@@ -139,15 +136,21 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
         />
 
         <Text
-          style={styles.alreadyHaveAnAccount}
-          onPress={() => navigation.navigate('Login')}>
+          style={styles.signUpText}
+          onPress={() => navigation.navigate('Register')}>
           {t('register.link')}
         </Text>
 
         <TouchableOpacity
           style={styles.button}
           onPress={handleSubmit(onSubmit)}>
-          <Text style={styles.buttonText}>{t('register.button')}</Text>
+          <LinearGradient
+            colors={['#9B1B1B', '#220F30']}
+            start={{x: 0, y: 0.5}}
+            end={{x: 1, y: 0.5}}
+            style={styles.buttonGradient}>
+            <Text style={styles.buttonText}>{t('register.button')}</Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
     </View>
@@ -197,35 +200,45 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    borderTopRightRadius: 40,
+    borderTopLeftRadius: 40,
+    marginTop: -50,
+    backgroundColor: '#FFFFFF',
   },
-  title: {
-    fontSize: 22,
-    textTransform: 'uppercase',
+  topContaier: {
+    paddingHorizontal: 25,
+    paddingBottom: 100,
+  },
+  text: {
+    color: '#FFFFFF',
+    fontSize: 28,
+    letterSpacing: 1,
+    fontWeight: '500',
+  },
+  icon: {
+    color: '#FFFFFF',
+    fontSize: 38,
     marginBottom: 20,
-    width: '100%',
-    color: '#000',
-    fontWeight: '700',
-  },
-  rtlLayout: {
-    textAlign: 'right',
-    marginRight: 20,
-    fontSize: 26,
-  },
-  alreadyHaveAnAccount: {
-    textDecorationLine: 'underline',
-    color: '#05c3de',
   },
   button: {
-    backgroundColor: '#ffb71b',
-    padding: 15,
-    borderRadius: 30,
+    width: '80%',
     marginTop: 20,
-    width: 250,
+    borderRadius: 30,
+  },
+  buttonGradient: {
+    borderRadius: 40,
+    alignItems: 'center',
   },
   buttonText: {
     color: 'white',
-    textAlign: 'center',
+    fontSize: 16,
     fontWeight: 'bold',
+    paddingVertical: 15,
+    textTransform: 'uppercase',
+  },
+  signUpText: {
+    color: '#220F30',
+    fontWeight: '500',
   },
 });
 
