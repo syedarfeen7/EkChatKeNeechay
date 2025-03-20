@@ -22,7 +22,7 @@ export interface LoginPayload {
 export interface RegisterPayload {
   firstName: string;
   lastName: string;
-  email: string;
+  email?: string;
   phoneNumber: string;
   termsAccepted: boolean;
 }
