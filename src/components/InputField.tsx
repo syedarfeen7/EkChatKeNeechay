@@ -16,6 +16,7 @@ interface InputFieldProps {
   inputRef?: React.Ref<TextInput> | null;
   onKeyPress?: (e: any) => void;
   otpContainer?: boolean;
+  editable?: boolean;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -32,6 +33,7 @@ const InputField: React.FC<InputFieldProps> = ({
   inputRef,
   onKeyPress,
   otpContainer,
+  editable,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -65,6 +67,7 @@ const InputField: React.FC<InputFieldProps> = ({
           onFocus={() => setIsFocused(true)}
           ref={inputRef}
           onKeyPress={onKeyPress}
+          editable={editable}
           {...rest}
         />
       </View>
