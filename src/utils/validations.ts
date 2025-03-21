@@ -24,3 +24,10 @@ export const otpSchema = Yup.object().shape({
   otp4: Yup.string().required('Required').max(1, 'Only one digit'),
   otp5: Yup.string().required('Required').max(1, 'Only one digit'),
 });
+export const updateProfileSchema = Yup.object().shape({
+  firstName: Yup.string().required(i18n.t('validations.firstName')),
+  lastName: Yup.string().required(i18n.t('validations.lastName')),
+  email: Yup.string().email(),
+  address: Yup.string().required(i18n.t('validations.address')),
+  id: Yup.string().optional(),
+});
