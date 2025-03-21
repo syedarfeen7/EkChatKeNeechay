@@ -12,7 +12,8 @@
     "phoneNumberInvalid": "Phone number must be exactly 10 digits",
     "firstName": "First name is required",
     "lastName": "Last name is required",
-    "terms": "Please accept the terms and conditions"
+    "terms": "Please accept the terms and conditions",
+    "address": "Address is required"
   },
   "register": {
     "cretaAnAccount": "Create an Account",
