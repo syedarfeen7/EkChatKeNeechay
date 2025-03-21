@@ -6,6 +6,9 @@ const API_URLS = {
     REGISTER: `${BASE_URL}/auth/register`,
     OTP_VERIFICATION: `${BASE_URL}/auth/otp-verification`,
   },
+  USER: {
+    UPDATE: `${BASE_URL}/users/user`,
+  },
 };
 
 export {BASE_URL, API_URLS};

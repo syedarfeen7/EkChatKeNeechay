@@ -1,7 +1,7 @@
 export interface AuthState {
   user: User | null;
   isLoading: boolean;
-  error: string | null;
+  error: string;
   isAuthenticated: boolean;
 }
 
@@ -11,6 +11,7 @@ export interface User {
   email: string;
   phoneNumber: string;
   termsAccepted: boolean;
+  address?: string;
 }
 export interface LoginOtp {
   otp: string;

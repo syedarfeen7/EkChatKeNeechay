@@ -2,11 +2,12 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loginUserAPI, otpVerificationAPI, registerUserAPI} from './authAPI';
 import {AuthState, User} from './authTypes';
 import {clearUserData} from './authStorage';
+import {updateUserAPI} from '../user/userAPI';
 
 const initialState: AuthState = {
   user: null,
   isLoading: false,
-  error: null,
+  error: '',
   isAuthenticated: false,
 };
 
@@ -20,40 +21,40 @@ const authSlice = createSlice({
       clearUserData(); // Clear user data from storage
     },
     clearError(state) {
-      state.error = null;
+      state.error = '';
     },
   },
   extraReducers: builder => {
     builder
       .addCase(loginUserAPI.pending, state => {
         state.isLoading = true;
-        state.error = null;
+        state.error = '';
       })
       .addCase(loginUserAPI.fulfilled, state => {
         state.isLoading = false;
-        state.error = null;
+        state.error = '';
       })
       .addCase(loginUserAPI.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || 'Login failed';
+        state.error = action.error.message || '';
       });
     builder
       .addCase(registerUserAPI.pending, state => {
         state.isLoading = true;
-        state.error = null;
+        state.error = '';
       })
       .addCase(registerUserAPI.fulfilled, state => {
         state.isLoading = false;
-        state.error = null;
+        state.error = '';
       })
       .addCase(registerUserAPI.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message || 'Registration failed';
+        state.error = action.error.message || '';
       });
     builder
       .addCase(otpVerificationAPI.pending, state => {
         state.isLoading = true;
-        state.error = null;
+        state.error = '';
       })
       .addCase(
         otpVerificationAPI.fulfilled,
@@ -61,13 +62,30 @@ const authSlice = createSlice({
           state.isLoading = false;
           state.user = action.payload;
           state.isAuthenticated = true;
-          state.error = null;
+          state.error = '';
         },
       )
       .addCase(otpVerificationAPI.rejected, (state, action) => {
         state.isLoading = false;
         state.isAuthenticated = false;
-        state.error = action.error.message || 'OTP Verification failed';
+        state.error = action.error.message || '';
+      });
+    builder
+      .addCase(updateUserAPI.pending, state => {
+        state.isLoading = true;
+        state.error = '';
+      })
+      .addCase(
+        updateUserAPI.fulfilled,
+        (state, action: PayloadAction<User>) => {
+          state.isLoading = false;
+          state.user = action.payload;
+          state.error = '';
+        },
+      )
+      .addCase(updateUserAPI.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || '';
       });
   },
 });

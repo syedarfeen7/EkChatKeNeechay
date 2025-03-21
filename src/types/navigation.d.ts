@@ -9,4 +9,5 @@ export type RootStackParamList = {
   Account: undefined;
   Profile: undefined;
   AuthHome: undefined;
+  Edit_Profile: undefined;
 };

@@ -14,7 +14,11 @@ const AccountStack = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: true}}>
       <Stack.Screen name="Account" component={Account} />
-      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{title: 'Edit Profile'}}
+      />
     </Stack.Navigator>
   );
 };
