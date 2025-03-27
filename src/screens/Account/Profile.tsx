@@ -69,10 +69,18 @@ const Profile: React.FC<Props> = ({}) => {
         <ScrollView
           style={styles.scrollContainer}
           showsVerticalScrollIndicator={false}>
-          <View style={styles.container}>
+          <LinearGradient
+            colors={['#9B1B1B', '#220F30']}
+            start={{x: 0, y: 0.5}}
+            end={{x: 1, y: 0.5}}
+            style={styles.gradient}
+          />
+          <View style={[styles.container, styles.borderRadius]}>
             <TouchableOpacity style={styles.imageContainer}>
               <Image
-                source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
+                source={{
+                  uri: 'https://randomuser.me/api/portraits/men/1.jpg',
+                }}
                 style={styles.profileImage}
               />
               <View style={styles.cameraIcon}>
@@ -198,17 +206,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingVertical: 50,
-    overflow: 'scroll',
+  },
+  borderRadius: {
+    borderTopRightRadius: 40,
+    borderTopLeftRadius: 40,
+    marginTop: -40,
+  },
+  gradient: {
+    height: 170,
   },
   imageContainer: {
-    position: 'relative',
     width: 140,
     height: 140,
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: -80,
   },
   scrollContainer: {
     width: '100%',
@@ -217,6 +228,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     borderRadius: 100,
+    borderWidth: 5,
+    borderColor: '#FFFFFF',
   },
   cameraIcon: {
     position: 'absolute',
