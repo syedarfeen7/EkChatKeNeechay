@@ -7,6 +7,12 @@ interface SplashScreenProps {
   onComplete: () => void;
 }
 
+const IconComponent = Icon as unknown as React.FC<{
+  name: string;
+  size: number;
+  style?: object;
+}>;
+
 const SplashScreen: React.FC<SplashScreenProps> = ({onComplete}) => {
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -23,7 +29,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({onComplete}) => {
       end={{x: 1, y: 0.5}}
       style={styles.container}>
       <View style={styles.container}>
-        <Icon name="opencart" size={20} style={styles.icon} />
+        <IconComponent name="opencart" size={20} style={styles.icon} />
         <Text style={styles.text}>#EkChatKeNeeche</Text>
         <ActivityIndicator size="large" color="#ffffff" />
       </View>

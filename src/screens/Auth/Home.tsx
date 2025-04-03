@@ -17,6 +17,13 @@ type Props = {
   navigation: AuthHomeScreenNavigation;
 };
 
+const IconComponent = Icon as unknown as React.FC<{
+  name: string;
+  size: number;
+  style?: object;
+  color?: string;
+}>;
+
 const HomeScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
 
@@ -33,7 +40,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
       </View>
       <View style={styles.childContainer}>
         <View>
-          <Icon name="opencart" size={20} style={styles.icon} />
+          <IconComponent name="opencart" size={20} style={styles.icon} />
           <Text style={styles.logoText}>#EkChatKeNeeche</Text>
         </View>
 
@@ -55,9 +62,21 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
         <View>
           <Text style={styles.singinWith}>{t('authHome.signinWith')}</Text>
           <View style={styles.iconsWrapper}>
-            <Icon name="google" size={20} style={styles.signinWithIcon} />
-            <Icon name="facebook" size={20} style={styles.signinWithIcon} />
-            <Icon name="twitter" size={20} style={styles.signinWithIcon} />
+            <IconComponent
+              name="google"
+              size={20}
+              style={styles.signinWithIcon}
+            />
+            <IconComponent
+              name="facebook"
+              size={20}
+              style={styles.signinWithIcon}
+            />
+            <IconComponent
+              name="twitter"
+              size={20}
+              style={styles.signinWithIcon}
+            />
           </View>
         </View>
       </View>

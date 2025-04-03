@@ -12,6 +12,12 @@ interface DropdownProps {
   onValueChange: (value: string) => void;
 }
 
+const IconComponent = Icon as unknown as React.FC<{
+  name: string;
+  size: number;
+  style: object;
+}>;
+
 const Dropdown: React.FC<DropdownProps> = ({
   options,
   placeholder = 'Select an option',
@@ -30,7 +36,9 @@ const Dropdown: React.FC<DropdownProps> = ({
           error && styles.errorInput,
           !error && isFocused && styles.focusedInput,
         ]}>
-        {iconName && <Icon name={iconName} size={20} style={styles.icon} />}
+        {iconName && (
+          <IconComponent name={iconName} size={20} style={styles.icon} />
+        )}
         <Picker
           selectedValue={value}
           style={styles.picker}

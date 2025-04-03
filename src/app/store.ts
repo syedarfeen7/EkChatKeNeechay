@@ -1,20 +1,17 @@
 import {configureStore} from '@reduxjs/toolkit';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import rootReducer from './rootReducer'; // Ensure correct import
+import rootReducer from './rootReducer';
 
-// Persist config
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   whitelist: ['auth'], // Persist only 'auth'
 };
 
-// Create persisted reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-// Create store
-const store = configureStore({
+export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -22,7 +19,8 @@ const store = configureStore({
     }),
 });
 
-// Create persistor
-const persistor = persistStore(store);
+export const persistor = persistStore(store);
 
-export {store, persistor}; // ✅ Export correctly
+export type AppDispatch = typeof store.dispatch;
+
+export type RootState = ReturnType<typeof store.getState>;

@@ -28,6 +28,7 @@ import {
   launchCamera,
   launchImageLibrary,
 } from 'react-native-image-picker';
+import {AppDispatch} from '../../app/store';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -41,14 +42,20 @@ interface FormValues {
   firstName: string;
   lastName: string;
   email?: string;
-  phoneNumber: string;
+  phoneNumber?: string;
   address: string;
-  id: string;
+  id?: string;
 }
+
+const IconComponent = Icon as unknown as React.FC<{
+  name: string;
+  size: number;
+  color: string;
+}>;
 
 const Profile: React.FC<Props> = ({}) => {
   const user = useSelector((state: any) => state.auth.user);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const {
     control,
@@ -143,7 +150,7 @@ const Profile: React.FC<Props> = ({}) => {
                 style={styles.profileImage}
               />
               <View style={styles.cameraIcon}>
-                <Icon name="camera" size={22} color="#0008" />
+                <IconComponent name="camera" size={22} color="#0008" />
               </View>
             </TouchableOpacity>
 

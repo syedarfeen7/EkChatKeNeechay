@@ -3,6 +3,12 @@ import {View, StyleSheet} from 'react-native';
 import {SearchBar} from '@rneui/base';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+const IconComponent = Icon as unknown as React.FC<{
+  name: string;
+  size: number;
+  style: object;
+}>;
+
 const SearchBarComponent = ({
   onSearch,
 }: {
@@ -30,11 +36,11 @@ const SearchBarComponent = ({
           styles.inputContainer,
           isFocused && styles.focusedInput,
         ]}
-        searchIcon={null}
+        searchIcon={false}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />
-      <Icon name="search" size={20} style={styles.searchIcon} />
+      <IconComponent name="search" size={20} style={styles.searchIcon} />
     </View>
   );
 };

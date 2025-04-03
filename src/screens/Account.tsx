@@ -27,6 +27,7 @@ const accountMenus = [
     label: 'Security Settings',
     navigate: 'Profile',
   },
+  {icon: 'log-out-outline', label: 'Logout', navigate: 'Logout'},
   {
     icon: 'pricetag-outline',
     label: 'Coupons & Offers',
@@ -34,8 +35,14 @@ const accountMenus = [
   },
   {icon: 'call-outline', label: 'Contact Support', navigate: 'Contact'},
   {icon: 'settings-outline', label: 'Settings', navigate: 'Settings'},
-  {icon: 'log-out-outline', label: 'Logout', navigate: 'Logout'},
 ];
+
+const IconComponent = Icon as unknown as React.FC<{
+  name: string;
+  size: number;
+  style?: object;
+  color?: string;
+}>;
 
 const Account: React.FC<Props> = ({navigation}) => {
   const [isSelected, setIsSelected] = useState<Number | null>(null);
@@ -46,9 +53,9 @@ const Account: React.FC<Props> = ({navigation}) => {
     label,
     navigateTo,
   }: {
-    index: Number;
-    label: String;
-    navigateTo: String;
+    index: number;
+    label: string;
+    navigateTo: string;
   }) => {
     setIsSelected(index);
     if (label === 'Logout') {
@@ -84,7 +91,11 @@ const Account: React.FC<Props> = ({navigation}) => {
 
         <View>
           <TouchableOpacity style={styles.notificationIcon}>
-            <Icon name="notifications-outline" size={24} color="#333" />
+            <IconComponent
+              name="notifications-outline"
+              size={24}
+              color="#333"
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -108,7 +119,7 @@ const Account: React.FC<Props> = ({navigation}) => {
                   navigateTo: item?.navigate,
                 })
               }>
-              <Icon name={iconName} size={22} style={[styles.icon]} />
+              <IconComponent name={iconName} size={22} style={[styles.icon]} />
               <Text style={styles.menuText}>{item.label}</Text>
             </TouchableOpacity>
           );

@@ -28,6 +28,13 @@ interface FormValues {
   phoneNumber: string;
 }
 
+const IconComponent = Icon as unknown as React.FC<{
+  name: string;
+  size: number;
+  style?: object;
+  color?: string;
+}>;
+
 const LoginScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
@@ -53,7 +60,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
         end={{x: 1, y: 0.5}}>
         <LanguageToggle />
         <View style={styles.topContaier}>
-          <Icon
+          <IconComponent
             name="opencart"
             size={20}
             style={[
@@ -65,14 +72,14 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
           <Text
             style={[
               styles.text,
-              currentLanguage() === 'ur' && {marginLeft: 'auto'},
+              currentLanguage() === 'ur' && styles.rtlStyle,
             ]}>
             {t('login.hello')}
           </Text>
           <Text
             style={[
               styles.text,
-              currentLanguage() === 'ur' && {marginLeft: 'auto'},
+              currentLanguage() === 'ur' && styles.rtlStyle,
             ]}>
             {t('login.signin!')}
           </Text>
@@ -174,6 +181,9 @@ const styles = StyleSheet.create({
   signUpText: {
     color: '#220F30',
     fontWeight: 'bold',
+  },
+  rtlStyle: {
+    marginLeft: 'auto',
   },
 });
 

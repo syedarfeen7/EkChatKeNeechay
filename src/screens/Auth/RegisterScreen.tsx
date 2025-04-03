@@ -33,6 +33,13 @@ interface FormValues {
   termsAccepted: boolean;
 }
 
+const IconComponent = Icon as unknown as React.FC<{
+  name: string;
+  size: number;
+  style?: object;
+  color?: string;
+}>;
+
 const RegisterScreen: React.FC<Props> = ({navigation}) => {
   const {t} = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
@@ -57,7 +64,7 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
         end={{x: 1, y: 0.5}}>
         <LanguageToggle />
         <View style={styles.topContaier}>
-          <Icon
+          <IconComponent
             name="opencart"
             size={20}
             style={[
@@ -69,14 +76,14 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
           <Text
             style={[
               styles.text,
-              currentLanguage() === 'ur' && {marginLeft: 'auto'},
+              currentLanguage() === 'ur' && styles.rtlStyle,
             ]}>
             {t('register.register')}
           </Text>
           <Text
             style={[
               styles.text,
-              currentLanguage() === 'ur' && {marginLeft: 'auto'},
+              currentLanguage() === 'ur' && styles.rtlStyle,
             ]}>
             {t('register.yourAccount')}
           </Text>
@@ -239,6 +246,9 @@ const styles = StyleSheet.create({
   signUpText: {
     color: '#220F30',
     fontWeight: '500',
+  },
+  rtlStyle: {
+    marginLeft: 'auto',
   },
 });
 

@@ -16,6 +16,12 @@ type TabParamList = {
   Cart: undefined;
 };
 
+const IconComponent = Icon as unknown as React.FC<{
+  name: string;
+  size: number;
+  color: string;
+}>;
+
 const Tab = createBottomTabNavigator<TabParamList>();
 
 // Define a function to return the correct icon based on the route name
@@ -37,7 +43,7 @@ const getTabBarIcon = (route: string, color: string, size: number) => {
     default:
       iconName = 'help-circle-sharp';
   }
-  return <Icon name={iconName} size={size} color={color} />;
+  return <IconComponent name={iconName} size={size} color={color} />;
 };
 
 // Define the screen options separately

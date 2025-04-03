@@ -7,7 +7,7 @@ interface InputFieldProps {
   placeholder?: string;
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   maxLength?: number;
-  value: string;
+  value: string | undefined;
   error?: string | null;
   countryCode?: string;
   onChange: (text: string) => void;
@@ -18,6 +18,12 @@ interface InputFieldProps {
   otpContainer?: boolean;
   editable?: boolean;
 }
+
+const IconComponent = Icon as unknown as React.FC<{
+  name: string;
+  size: number;
+  style: object;
+}>;
 
 const InputField: React.FC<InputFieldProps> = ({
   iconName,
@@ -47,7 +53,9 @@ const InputField: React.FC<InputFieldProps> = ({
           !error && isFocused && styles.focusedInput,
           containerStyle,
         ]}>
-        {iconName && <Icon name={iconName} size={20} style={styles.icon} />}
+        {iconName && (
+          <IconComponent name={iconName} size={20} style={styles.icon} />
+        )}
         {countryCode && <Text style={styles.countryCode}>{countryCode}</Text>}
         <TextInput
           style={[
