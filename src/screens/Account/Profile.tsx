@@ -95,11 +95,8 @@ const Profile: React.FC<Props> = ({}) => {
       } else if (response.errorCode) {
         console.log('Image picker error: ', response.errorMessage);
       } else {
-        let imageUri = response.assets?.[0]?.uri || '';
+        const imageUri = response.assets?.[0]?.uri || '';
         uploadUserImage(imageUri);
-        if (imageUri) {
-          setProfileImage(imageUri);
-        }
       }
     });
   };
@@ -115,11 +112,8 @@ const Profile: React.FC<Props> = ({}) => {
       } else if (response.errorCode) {
         console.log('Camera Error: ', response.errorMessage);
       } else {
-        let imageUri = response.assets?.[0]?.uri;
-        if (imageUri) {
-          setProfileImage(imageUri);
-        }
-        console.log(imageUri);
+        const imageUri = response.assets?.[0]?.uri || '';
+        uploadUserImage(imageUri);
       }
     });
   };
