@@ -10,6 +10,9 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
+  PermissionsAndroid,
+  Platform,
+  Alert,
 } from 'react-native';
 import {RootStackParamList} from '../../types/navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -19,7 +22,14 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {updateProfileSchema} from '../../utils/validations';
 import {useDispatch, useSelector} from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
-import {updateUserAPI} from '../../features/user/userAPI';
+import {updateUserAPI, uploadUserImageAPI} from '../../features/user/userAPI';
+import {
+  CameraOptions,
+  ImageLibraryOptions,
+  ImagePickerResponse,
+  launchCamera,
+  launchImageLibrary,
+} from 'react-native-image-picker';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -39,6 +49,7 @@ interface FormValues {
 }
 
 const Profile: React.FC<Props> = ({}) => {
+  const [profileImage, setProfileImage] = React.useState<string | null>(null);
   const user = useSelector((state: any) => state.auth.user);
   const dispatch = useDispatch();
 
@@ -57,10 +68,63 @@ const Profile: React.FC<Props> = ({}) => {
     },
   });
 
-  console.log(user);
-
   const onSubmit = (payload: FormValues) => {
     dispatch(updateUserAPI({payload, id: user?._id}));
+  };
+
+  const handleImagePick = async () => {
+    const options: ImageLibraryOptions & CameraOptions = {
+      mediaType: 'photo',
+      quality: 1,
+      saveToPhotos: true,
+      includeBase64: true,
+    };
+
+    Alert.alert(
+      'Choose an option',
+      'Select a method to update your profile picture',
+      [
+        {text: 'Capture from Camera', onPress: () => openCamera(options)},
+        {text: 'Choose from Gallery', onPress: () => openGallery(options)},
+        {text: 'Cancel', style: 'cancel'},
+      ],
+    );
+  };
+
+  const openGallery = (options: ImageLibraryOptions) => {
+    launchImageLibrary(options, (response: ImagePickerResponse) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.errorCode) {
+        console.log('Image picker error: ', response.errorMessage);
+      } else {
+        let imageUri = response.assets?.[0]?.uri || '';
+        uploadUserImage(imageUri);
+        if (imageUri) {
+          setProfileImage(imageUri);
+        }
+      }
+    });
+  };
+
+  const uploadUserImage = (image: string) => {
+    dispatch(uploadUserImageAPI({image, id: user?._id}));
+  };
+
+  const openCamera = (options: CameraOptions) => {
+    launchCamera(options, (response: ImagePickerResponse) => {
+      if (response.didCancel) {
+        console.log('User cancelled camera');
+      } else if (response.errorCode) {
+        console.log('Camera Error: ', response.errorMessage);
+      } else {
+        let imageUri = response.assets?.[0]?.uri;
+        if (imageUri) {
+          setProfileImage(imageUri);
+        }
+        console.log(imageUri);
+      }
+    });
   };
 
   return (
@@ -75,11 +139,15 @@ const Profile: React.FC<Props> = ({}) => {
             end={{x: 1, y: 0.5}}
             style={styles.gradient}
           />
-          <View style={[styles.container, styles.borderRadius]}>
-            <TouchableOpacity style={styles.imageContainer}>
+          <View style={[styles.container, styles.borderRadiuss]}>
+            <TouchableOpacity
+              style={styles.imageContainer}
+              onPress={handleImagePick}>
               <Image
                 source={{
-                  uri: 'https://randomuser.me/api/portraits/men/1.jpg',
+                  uri:
+                    user?.profileImage ||
+                    'https://randomuser.me/api/portraits/men/1.jpg',
                 }}
                 style={styles.profileImage}
               />
@@ -208,7 +276,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
   },
-  borderRadius: {
+  borderRadiuss: {
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
     marginTop: -40,

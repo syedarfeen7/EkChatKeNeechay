@@ -12,6 +12,7 @@ export interface User {
   phoneNumber: string;
   termsAccepted: boolean;
   address?: string;
+  profileImage: string;
 }
 export interface LoginOtp {
   otp: string;

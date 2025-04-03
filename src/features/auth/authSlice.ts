@@ -2,7 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loginUserAPI, otpVerificationAPI, registerUserAPI} from './authAPI';
 import {AuthState, User} from './authTypes';
 import {clearUserData} from './authStorage';
-import {updateUserAPI} from '../user/userAPI';
+import {updateUserAPI, uploadUserImageAPI} from '../user/userAPI';
 
 const initialState: AuthState = {
   user: null,
@@ -84,6 +84,23 @@ const authSlice = createSlice({
         },
       )
       .addCase(updateUserAPI.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || '';
+      });
+    builder
+      .addCase(uploadUserImageAPI.pending, state => {
+        state.isLoading = true;
+        state.error = '';
+      })
+      .addCase(
+        uploadUserImageAPI.fulfilled,
+        (state, action: PayloadAction<User>) => {
+          state.isLoading = false;
+          state.user.profileImage = action.payload;
+          state.error = '';
+        },
+      )
+      .addCase(uploadUserImageAPI.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || '';
       });

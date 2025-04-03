@@ -8,6 +8,7 @@ const API_URLS = {
   },
   USER: {
     UPDATE: `${BASE_URL}/users/user`,
+    UPLOAD: (userId: string) => `${BASE_URL}/users/upload/${userId}`,
   },
 };
 

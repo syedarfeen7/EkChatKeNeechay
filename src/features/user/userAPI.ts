@@ -31,3 +31,41 @@ export const updateUserAPI = createAsyncThunk(
     }
   },
 );
+export const uploadUserImageAPI = createAsyncThunk(
+  'users/upload',
+  async (
+    {image, id}: {image: string; id: string},
+    {dispatch},
+  ): Promise<User> => {
+    try {
+      dispatch(showLoader());
+
+      const formData = new FormData();
+
+      formData.append('image', {
+        uri: image,
+        type: 'image/jpeg',
+        name: 'profile.jpg',
+      });
+
+      if (image) {
+        const response = await httpClient.post(
+          API_URLS.USER.UPLOAD(id),
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          },
+        );
+        return response?.data;
+      } else {
+        throw new Error('Image Required');
+      }
+    } catch (error) {
+      throw error;
+    } finally {
+      dispatch(hideLoader());
+    }
+  },
+);
