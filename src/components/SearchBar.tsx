@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     height: 30,
     lineHeight: 30,
     textAlign: 'center',
-    borderRadius: '100%',
+    borderRadius: 100,
     color: '#fff',
   },
 });
