@@ -10,8 +10,6 @@ import {
   ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
-  PermissionsAndroid,
-  Platform,
   Alert,
 } from 'react-native';
 import {RootStackParamList} from '../../types/navigation';
@@ -49,7 +47,6 @@ interface FormValues {
 }
 
 const Profile: React.FC<Props> = ({}) => {
-  const [profileImage, setProfileImage] = React.useState<string | null>(null);
   const user = useSelector((state: any) => state.auth.user);
   const dispatch = useDispatch();
 
