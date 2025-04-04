@@ -15,6 +15,7 @@ interface InputFieldProps {
   containerStyle?: ViewStyle; // Specific type for containerStyle
   inputRef?: React.Ref<TextInput> | null;
   onKeyPress?: (e: any) => void;
+  onPress?: (e: any) => void;
   otpContainer?: boolean;
   editable?: boolean;
 }
@@ -40,6 +41,7 @@ const InputField: React.FC<InputFieldProps> = ({
   onKeyPress,
   otpContainer,
   editable,
+  onPress,
   ...rest
 }) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -76,6 +78,7 @@ const InputField: React.FC<InputFieldProps> = ({
           ref={inputRef}
           onKeyPress={onKeyPress}
           editable={editable}
+          onPress={onPress}
           {...rest}
         />
       </View>

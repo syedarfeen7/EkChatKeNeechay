@@ -1,5 +1,5 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -29,6 +29,7 @@ import {
   launchImageLibrary,
 } from 'react-native-image-picker';
 import {AppDispatch} from '../../app/store';
+import MapModal from '../../shared/mapModal';
 
 type ProfileScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -56,10 +57,12 @@ const IconComponent = Icon as unknown as React.FC<{
 const Profile: React.FC<Props> = ({}) => {
   const user = useSelector((state: any) => state.user.profile);
   const dispatch = useDispatch<AppDispatch>();
+  const [showMap, setShowMap] = useState(false);
 
   const {
     control,
     handleSubmit,
+    setValue,
     formState: {errors},
   } = useForm<FormValues>({
     resolver: yupResolver(updateProfileSchema),
@@ -200,6 +203,7 @@ const Profile: React.FC<Props> = ({}) => {
                   )}
                 />
               </View>
+
               {renderInputField({
                 control,
                 name: 'address',
@@ -207,6 +211,8 @@ const Profile: React.FC<Props> = ({}) => {
                 keyboardType: 'default',
                 placeholder: 'Enter your address',
                 label: 'Address',
+                onPress: () => setShowMap(true),
+                iconName: 'map-marker-alt',
               })}
 
               <TouchableOpacity
@@ -221,6 +227,13 @@ const Profile: React.FC<Props> = ({}) => {
                 </LinearGradient>
               </TouchableOpacity>
             </View>
+            <MapModal
+              visible={showMap}
+              onClose={() => setShowMap(false)}
+              onLocationSelect={address => {
+                setValue('address', address);
+              }}
+            />
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>
@@ -235,6 +248,8 @@ const renderInputField = ({
   placeholder,
   keyboardType = 'default',
   label,
+  onPress,
+  iconName,
 }: {
   control: any;
   errors: FieldValues;
@@ -242,6 +257,8 @@ const renderInputField = ({
   placeholder: string;
   keyboardType?: 'default' | 'email-address' | 'numeric' | 'phone-pad';
   label: string;
+  iconName?: string;
+  onPress?: (e: any) => void;
 }) => {
   const errorMessage = errors[name]?.message as string | undefined;
 
@@ -260,6 +277,8 @@ const renderInputField = ({
               onChange={onChange}
               onBlur={onBlur}
               error={errorMessage}
+              onPress={onPress}
+              iconName={iconName}
             />
           );
         }}
