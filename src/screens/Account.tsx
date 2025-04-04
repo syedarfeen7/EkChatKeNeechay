@@ -57,7 +57,7 @@ const IconComponent = Icon as unknown as React.FC<{
 const Account: React.FC<Props> = ({navigation}) => {
   const [isSelected, setIsSelected] = useState<Number | null>(null);
   const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector((state: any) => state.auth.user);
+  const user = useSelector((state: any) => state.user.profile);
 
   const handleActiveMenu = ({
     index,

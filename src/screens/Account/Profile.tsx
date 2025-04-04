@@ -54,7 +54,7 @@ const IconComponent = Icon as unknown as React.FC<{
 }>;
 
 const Profile: React.FC<Props> = ({}) => {
-  const user = useSelector((state: any) => state.auth.user);
+  const user = useSelector((state: any) => state.user.profile);
   const dispatch = useDispatch<AppDispatch>();
 
   const {

@@ -1,3 +1,5 @@
+import {User} from '../auth/authTypes';
+
 export interface UpdateUserPayload {
   firstName: string;
   lastName: string;
@@ -5,4 +7,10 @@ export interface UpdateUserPayload {
   phoneNumber?: string;
   address: string;
   id?: string;
+}
+
+export interface UserState {
+  profile: User | null;
+  isLoading: boolean;
+  error: string;
 }

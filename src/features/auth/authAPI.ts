@@ -9,6 +9,7 @@ import {
 } from './authTypes';
 import {API_URLS} from '../../api/urls';
 import httpClient from '../../api/httpClient';
+import {updateUserState} from '../user/userSlice';
 
 export const loginUserAPI = createAsyncThunk(
   'auth/login',
@@ -74,6 +75,7 @@ export const otpVerificationAPI = createAsyncThunk(
           ...payload,
         },
       });
+      dispatch(updateUserState(response?.data));
       return response?.data;
     } catch (error) {
       throw error;
