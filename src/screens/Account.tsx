@@ -1,12 +1,22 @@
 import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useState} from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import {RootStackParamList} from '../types/navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from '../app/store';
 import {logout} from '../features/auth/authSlice';
 import ProfileProgress from '../components/ProgressBar';
+import {ScrollView} from 'react-native-gesture-handler';
 
 type LoginScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -27,7 +37,6 @@ const accountMenus = [
     label: 'Security Settings',
     navigate: 'Profile',
   },
-  {icon: 'log-out-outline', label: 'Logout', navigate: 'Logout'},
   {
     icon: 'pricetag-outline',
     label: 'Coupons & Offers',
@@ -35,6 +44,7 @@ const accountMenus = [
   },
   {icon: 'call-outline', label: 'Contact Support', navigate: 'Contact'},
   {icon: 'settings-outline', label: 'Settings', navigate: 'Settings'},
+  {icon: 'log-out-outline', label: 'Logout', navigate: 'Logout'},
 ];
 
 const IconComponent = Icon as unknown as React.FC<{
@@ -103,30 +113,42 @@ const Account: React.FC<Props> = ({navigation}) => {
       </View>
 
       <View style={styles.lineBreak} />
-      <View style={styles.menuContainer}>
-        {accountMenus.map((item, index) => {
-          const selected = isSelected === index;
-          const iconName = selected
-            ? item.icon.replace('-outline', '')
-            : item.icon;
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <ScrollView
+            style={styles.scrollContainer}
+            showsVerticalScrollIndicator={false}>
+            <View style={styles.menuContainer}>
+              {accountMenus.map((item, index) => {
+                const selected = isSelected === index;
+                const iconName = selected
+                  ? item.icon.replace('-outline', '')
+                  : item.icon;
 
-          return (
-            <TouchableOpacity
-              key={index}
-              style={[styles.menuItem, selected && styles.selectedMenu]}
-              onPress={() =>
-                handleActiveMenu({
-                  index,
-                  label: item.label,
-                  navigateTo: item?.navigate,
-                })
-              }>
-              <IconComponent name={iconName} size={22} style={[styles.icon]} />
-              <Text style={styles.menuText}>{item.label}</Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    style={[styles.menuItem, selected && styles.selectedMenu]}
+                    onPress={() =>
+                      handleActiveMenu({
+                        index,
+                        label: item.label,
+                        navigateTo: item?.navigate,
+                      })
+                    }>
+                    <IconComponent
+                      name={iconName}
+                      size={22}
+                      style={[styles.icon]}
+                    />
+                    <Text style={styles.menuText}>{item.label}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </ScrollView>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </View>
   );
 };
@@ -142,6 +164,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
+  },
+  scrollContainer: {
+    width: '100%',
   },
   progressContainer: {
     marginTop: 10,
