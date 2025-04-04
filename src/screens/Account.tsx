@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {RootStackParamList} from '../types/navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from '../app/store';
 import {logout} from '../features/auth/authSlice';
 import ProfileProgress from '../components/ProgressBar';
@@ -47,6 +47,7 @@ const IconComponent = Icon as unknown as React.FC<{
 const Account: React.FC<Props> = ({navigation}) => {
   const [isSelected, setIsSelected] = useState<Number | null>(null);
   const dispatch = useDispatch<AppDispatch>();
+  const user = useSelector((state: any) => state.auth.user);
 
   const handleActiveMenu = ({
     index,
@@ -70,20 +71,21 @@ const Account: React.FC<Props> = ({navigation}) => {
       <View style={styles.profileSection}>
         <View>
           <Image
-            source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
+            source={{
+              uri:
+                user?.profileImage ||
+                'https://randomuser.me/api/portraits/men/1.jpg',
+            }}
             style={styles.avatar}
           />
 
-          <Text style={styles.name}>Daniel</Text>
-          <Text style={styles.role}>UX/UI Designer</Text>
+          <Text style={styles.name}>
+            {user?.firstName + ' ' + user?.lastName}
+          </Text>
           <View style={styles.progressContainer}>
             <ProfileProgress
               user={{
-                name: 'John Doe',
-                email: 'john@example.com',
-                phone: '',
-                avatar: 'image_url',
-                address: '123 Street',
+                ...user,
               }}
             />
           </View>
@@ -150,9 +152,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   avatar: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: 80,
+    height: 80,
+    borderRadius: 100,
     marginBottom: 10,
   },
   name: {

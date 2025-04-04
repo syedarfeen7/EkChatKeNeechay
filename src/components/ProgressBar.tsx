@@ -3,10 +3,11 @@ import {View, Text, StyleSheet} from 'react-native';
 import {ProgressBar} from 'react-native-paper';
 
 interface User {
-  name?: string;
+  firstName?: string;
+  lastName?: string;
   email?: string;
-  phone?: string;
-  avatar?: string;
+  phoneNumber?: string;
+  profileImage?: string;
   address?: string;
 }
 
@@ -16,12 +17,15 @@ interface ProfileProgressProps {
 
 const ProfileProgress: React.FC<ProfileProgressProps> = React.memo(({user}) => {
   const requiredFields: (keyof User)[] = [
-    'name',
+    'firstName',
+    'lastName',
     'email',
-    'phone',
-    'avatar',
+    'phoneNumber',
+    'profileImage',
     'address',
   ];
+
+  console.log(user);
   const [progress, setProgress] = useState<number>(0);
 
   const calculateProgress = useCallback(() => {
