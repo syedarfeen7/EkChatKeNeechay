@@ -3,7 +3,7 @@ import {hideLoader, showLoader} from '../loader/loaderSlice';
 import {UpdateUserPayload} from './userTypes';
 import {API_URLS} from '../../api/urls';
 import httpClient from '../../api/httpClient';
-import {User} from '../auth/authTypes';
+import {User} from '../register/registerTypes';
 
 export const updateUserAPI = createAsyncThunk(
   'users/user',

@@ -1,4 +1,4 @@
-import {User} from '../auth/authTypes';
+import {User} from '../register/registerTypes';
 
 export interface UpdateUserPayload {
   firstName: string;

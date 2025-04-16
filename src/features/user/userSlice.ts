@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {updateUserAPI, uploadUserImageAPI} from './userAPI';
-import {User} from '../auth/authTypes';
+import {User} from '../register/registerTypes';
 import {UserState} from './userTypes';
 
 const initialState: UserState = {
