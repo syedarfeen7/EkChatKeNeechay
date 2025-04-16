@@ -11,7 +11,7 @@ import InputField from '../../components/InputField';
 import Checkbox from '../../components/Checkbox';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../../app/store';
-import {registerUserAPI} from '../../features/auth/authAPI';
+import {registerUserAPI} from '../../features/register/registerAPI';
 import {currentLanguage} from '../../helpers/common';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';

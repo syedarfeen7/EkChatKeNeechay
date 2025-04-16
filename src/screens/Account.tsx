@@ -14,7 +14,7 @@ import {RootStackParamList} from '../types/navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from '../app/store';
-import {logout} from '../features/auth/authSlice';
+import {logout} from '../features/register/registerSlice';
 import ProfileProgress from '../components/ProgressBar';
 import {ScrollView} from 'react-native-gesture-handler';
 

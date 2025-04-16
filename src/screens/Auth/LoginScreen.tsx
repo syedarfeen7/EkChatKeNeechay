@@ -9,7 +9,7 @@ import {useTranslation} from 'react-i18next';
 import LanguageToggle from '../../components/LanguageToggle';
 import InputField from '../../components/InputField';
 import {useDispatch, useSelector} from 'react-redux';
-import {loginUserAPI} from '../../features/auth/authAPI';
+import {loginUserAPI} from '../../features/register/registerAPI';
 import {AppDispatch} from '../../app/store';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';

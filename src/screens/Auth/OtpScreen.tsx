@@ -14,7 +14,7 @@ import {otpSchema} from '../../utils/validations';
 import LanguageToggle from '../../components/LanguageToggle';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../../app/store';
-import {otpVerificationAPI} from '../../features/auth/authAPI';
+import {otpVerificationAPI} from '../../features/register/registerAPI';
 import {RootStackParamList} from '../../types/navigation';
 import {StackNavigationProp} from '@react-navigation/stack';
 import LinearGradient from 'react-native-linear-gradient';
