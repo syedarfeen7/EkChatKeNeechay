@@ -319,12 +319,12 @@ const Login: React.FC = () => {
   console.log(language);
 
   return (
-    <View style={[ApplicationStyles.flex, styles.bg, {alignItems: 'center'}]}>
+    <View style={[ApplicationStyles.flex, styles.bg]}>
       <ScrollView
         style={[ApplicationStyles.flex, styles.bg]}
         keyboardShouldPersistTaps="never">
         <StatusBar backgroundColor={Colors._orange} barStyle="light-content" />
-        <View style={[styles.maincontainer, {alignItems: 'center'}]}>
+        <View style={[styles.maincontainer]}>
           {renderLanguageChangeButton()}
           <View style={styles.loginLogo}>
             <Image style={styles.logo} source={Images.logo} />
@@ -336,13 +336,7 @@ const Login: React.FC = () => {
             </Text>
           </View>
           {renderPhoneInput()}
-          <View
-            style={{
-              marginVertical: Metrics.ratio(10),
-              width: Metrics.screenWidth,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
+          <View style={styles.usingMobileNumber}>
             <Text color="white" type="AvenirNextMedium" size="thirteen">
               {/* {strings('LoginPage.login_with_number')} */}
               Login using Mobile Number
@@ -355,20 +349,12 @@ const Login: React.FC = () => {
               // })
               navigation.navigate('registerProvider')
             }>
-            <View
-              style={{
-                marginVertical: Metrics.ratio(10),
-                width: Metrics.screenWidth,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
+            <View style={styles.becomeAServiceProvider}>
               <Text
                 color="white"
                 type="AvenirNextMedium"
                 size="thirteen"
-                style={{
-                  textDecorationLine: 'underline',
-                }}>
+                style={styles.becomeAServiceProviderText}>
                 {/* {strings('LoginPage.register_as_provider')} */}
                 Become a Service Provider
               </Text>
@@ -399,16 +385,7 @@ const Login: React.FC = () => {
       ) : null}
       {renderServerChangeButton()}
       {appConfig?.serverUrl && appConfig?.serverUrl !== liveServerURL && (
-        <View
-          style={{
-            position: 'absolute',
-            right: 0,
-            left: 0,
-            bottom: 0,
-            backgroundColor: 'red',
-            height: Metrics.ratio(1),
-          }}
-        />
+        <View style={styles.serverUrlBox} />
       )}
       <PasswordInputDialog
         {...{

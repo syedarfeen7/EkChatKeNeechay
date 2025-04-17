@@ -119,4 +119,27 @@ export default StyleSheet.create({
     right: 0,
     zIndex: 99,
   },
+  usingMobileNumber: {
+    marginVertical: Metrics.ratio(10),
+    width: Metrics.screenWidth,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  becomeAServiceProvider: {
+    marginVertical: Metrics.ratio(10),
+    width: Metrics.screenWidth,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  becomeAServiceProviderText: {
+    textDecorationLine: 'underline',
+  },
+  serverUrlBox: {
+    position: 'absolute',
+    right: 0,
+    left: 0,
+    bottom: 0,
+    backgroundColor: 'red',
+    height: Metrics.ratio(1),
+  },
 });
