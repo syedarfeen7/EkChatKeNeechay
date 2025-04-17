@@ -1,13 +1,15 @@
 export type RootStackParamList = {
-  Login: undefined; // No parameters expected for Login screen
+  Login: {
+    countryCode: string;
+    localeSettings: {
+      currentLocale: string;
+    };
+  }; // No parameters expected for Login screen
   Register: undefined;
-  Home: undefined;
-  OTP: {phoneNumber: string};
-  Home: undefined;
-  Messages: undefined;
-  Cart: undefined;
-  Account: undefined;
-  Profile: undefined;
-  AuthHome: undefined;
-  Edit_Profile: undefined;
+  SelectCountryCode: {
+    title: string;
+    onSubmit: (selectedCode: string) => void;
+  };
+  Verify: undefined;
 };
+export type AppNavigation = NativeStackNavigationProp<RootStackParamList>;
