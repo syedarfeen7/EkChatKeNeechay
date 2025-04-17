@@ -10,6 +10,9 @@ export type RootStackParamList = {
     title: string;
     onSubmit: (selectedCode: string) => void;
   };
-  Verify: undefined;
+  Verify: {
+    phoneNumber: string;
+  };
+  registerProvider: undefined;
 };
 export type AppNavigation = NativeStackNavigationProp<RootStackParamList>;

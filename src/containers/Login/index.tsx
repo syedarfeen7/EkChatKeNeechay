@@ -18,7 +18,7 @@ import ActionSheet from 'react-native-actionsheet';
 import {Colors, Images, ApplicationStyles, Metrics} from '../../theme';
 import {Text, ButtonView} from '../../components';
 import {useDispatch, useSelector} from 'react-redux';
-import {changeLanguage} from '../../features/locale/localeSlice';
+import {changeLanguage, Language} from '../../features/locale/localeSlice';
 import LangChangeButton from '../../controls/LangChangeButton';
 import {useNavigation} from '@react-navigation/native';
 
@@ -39,10 +39,7 @@ import {AppDispatch, RootState} from '../../app/store';
 import PasswordInputDialog from '../../components/PasswordInputDialog';
 import {i18nChangeLanguage, isRTL} from '../../i18n';
 
-type NavigationProp = StackNavigationProp<
-  RootStackParamList,
-  'SelectCountryCode'
->;
+type NavigationProp = StackNavigationProp<RootStackParamList>;
 
 const Login: React.FC = () => {
   const {t} = useTranslation();
@@ -67,9 +64,9 @@ const Login: React.FC = () => {
     // AnalyticsHelper.setCurrentScreen('Login');
   }, []);
 
-  // useEffect(() => {
-  //   changeLanguage(currentLocale);
-  // }, [currentLocale]);
+  useEffect(() => {
+    changeLanguage(currentLocale);
+  }, [currentLocale]);
 
   const onURLChanged = (newUrl: string) => {
     dispatch(changeServer(newUrl));
@@ -166,9 +163,9 @@ const Login: React.FC = () => {
           //   from: 'loginPage',
           //   languageChangedTo: lang,
           // });
-          dispatch(changeLanguage(lang));
+          dispatch(changeLanguage(lang as Language));
           i18nChangeLanguage(lang);
-          setCurrentLocale(lang);
+          setCurrentLocale(lang as Language);
 
           setDisableLanChangeBtn(true);
         }}
@@ -196,6 +193,7 @@ const Login: React.FC = () => {
         <View
           style={[
             styles.fieldPhoneWrapper,
+            // eslint-disable-next-line react-native/no-inline-styles
             {
               flexDirection: isRTL() ? 'row-reverse' : 'row',
             },
@@ -209,12 +207,7 @@ const Login: React.FC = () => {
                 },
               })
             }
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              height: Metrics.ratio(40),
-              paddingHorizontal: Metrics.ratio(6),
-            }}>
+            style={styles.countryCode}>
             <Text
               type="CircularStdBook"
               size="sixteen"
@@ -263,9 +256,6 @@ const Login: React.FC = () => {
           'Live',
           'Cancel',
         ]}
-        styles={{
-          fontSize: 12,
-        }}
         cancelButtonIndex={5}
         onPress={buttonIndex => {
           let url = defaultServer;
@@ -302,16 +292,9 @@ const Login: React.FC = () => {
   const renderServerChangeButton = () => {
     return (
       <TouchableOpacity
-        style={{
-          position: 'absolute',
-          left: 0,
-          bottom: 0,
-          width: Metrics.ratio(44),
-          height: Metrics.ratio(44),
-        }}
-        onLongPress={() => setShowPassDialog(true)}
-        underlayColor={Colors.transparent}>
-        <View style={{backgroundColor: 'red'}} />
+        style={styles.serverChaageBtn}
+        onLongPress={() => setShowPassDialog(true)}>
+        <View />
       </TouchableOpacity>
     );
   };

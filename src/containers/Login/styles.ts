@@ -142,4 +142,17 @@ export default StyleSheet.create({
     backgroundColor: 'red',
     height: Metrics.ratio(1),
   },
+  countryCode: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: Metrics.ratio(40),
+    paddingHorizontal: Metrics.ratio(6),
+  },
+  serverChaageBtn: {
+    position: 'absolute',
+    left: 0,
+    bottom: 0,
+    width: Metrics.ratio(44),
+    height: Metrics.ratio(44),
+  },
 });

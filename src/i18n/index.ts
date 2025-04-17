@@ -28,5 +28,8 @@ export function isRTL(): boolean {
 export function currentLang(): string {
   return i18n.language;
 }
+export function strings(key: string, params?: Record<string, any>): string {
+  return i18n.t(key, params);
+}
 
 export default i18n;
