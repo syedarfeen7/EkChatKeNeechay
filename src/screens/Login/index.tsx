@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-import {useTranslation} from 'react-i18next';
 import Utils from '../../utils';
 import CommonUtils from '../../utils/commonUtils';
 import ActionSheet from 'react-native-actionsheet';
@@ -35,14 +34,13 @@ import {changeServer} from '../../features/appConfig/appConfigSlice';
 import AppConfig from '../../config/AppConfig';
 import {AppDispatch, RootState} from '../../app/store';
 import PasswordInputDialog from '../../components/PasswordInputDialog';
-import {i18nChangeLanguage, isRTL} from '../../i18n';
+import {i18nChangeLanguage, isRTL, strings} from '../../i18n';
 import {loginUserAPI} from '../../features/auth/authAPI';
 import {logout} from '../../features/auth/authSlice';
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
 const Login: React.FC = () => {
-  const {t} = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigation<NavigationProp>();
   const appConfig = useSelector((state: RootState) => state.appConfig);
@@ -126,20 +124,16 @@ const Login: React.FC = () => {
 
     if (phoneNumber.length === 0) {
       Utils.showCommonMessage(
-        'alert',
-        'pleaseEnterNumber',
-        // strings('alertMessages.alert'),
-        // strings('serviceMessages.pleaseEnterNumber'),
+        strings('alertMessages.alert'),
+        strings('serviceMessages.pleaseEnterNumber'),
       );
       return;
     }
 
     if (phoneNumber.length < 9) {
       Utils.showCommonMessage(
-        'alert',
-        'invalidNumber',
-        // strings('alertMessages.alert'),
-        // strings('serviceMessages.invalidNumber'),
+        strings('alertMessages.alert'),
+        strings('serviceMessages.invalidNumber'),
       );
       return;
     }
@@ -299,8 +293,7 @@ const Login: React.FC = () => {
     );
   };
 
-  console.log(language);
-
+  console.log('>>>', currentCountryCode);
   return (
     <View style={[ApplicationStyles.flex, styles.bg]}>
       <ScrollView
@@ -314,15 +307,13 @@ const Login: React.FC = () => {
           </View>
           <View style={styles.loginText}>
             <Text color="white" type="AvenirNextMedium" size="xLarge">
-              {/* {strings('LoginPage.login')} */}
-              {t('LoginPage.login')}
+              {strings('LoginPage.login')}
             </Text>
           </View>
           {renderPhoneInput()}
           <View style={styles.usingMobileNumber}>
             <Text color="white" type="AvenirNextMedium" size="thirteen">
-              {/* {strings('LoginPage.login_with_number')} */}
-              Login using Mobile Number
+              {strings('LoginPage.login_with_number')}
             </Text>
           </View>
           <ButtonView
@@ -338,8 +329,7 @@ const Login: React.FC = () => {
                 type="AvenirNextMedium"
                 size="thirteen"
                 style={styles.becomeAServiceProviderText}>
-                {/* {strings('LoginPage.register_as_provider')} */}
-                Become a Service Provider
+                {strings('LoginPage.register_as_provider')}
               </Text>
             </View>
           </ButtonView>
@@ -355,8 +345,7 @@ const Login: React.FC = () => {
       </ScrollView>
       <ButtonView onPress={register} style={styles.login}>
         <Text color="white" type="AvenirNextDemiBold" size="fourteen">
-          {/* {strings('LoginPage.login')} */}
-          login
+          {strings('LoginPage.login')}
         </Text>
       </ButtonView>
       {appConfig?.serverUrl && appConfig?.serverUrl !== liveServerURL ? (
