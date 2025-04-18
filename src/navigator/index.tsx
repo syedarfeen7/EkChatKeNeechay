@@ -8,12 +8,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {BackHandler} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import {Login} from '../screens';
+import {Login, Verify} from '../screens';
 import {Colors, Fonts} from '../theme';
 // import {isAccepted} from '../helpers/DataHelper';
 import Utils from '../utils';
 import {RootStackParamList} from '../types/navigation';
-import Verify from '../screens/Verify';
 // import {isRTL, strings} from '../i18n';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

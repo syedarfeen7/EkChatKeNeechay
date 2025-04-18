@@ -1,4 +1,5 @@
 import {Alert, NativeModules, Platform, ToastAndroid} from 'react-native';
+import {showMessage} from 'react-native-flash-message';
 
 const {RNNativeIOSToast} = NativeModules;
 
@@ -83,6 +84,16 @@ class Util {
         {cancelable: false},
       );
     }, 150);
+  };
+  showAlert = (title: string, message: string) => {
+    showMessage({
+      message: title,
+      description: message,
+      type: 'danger', // "success" | "info" | "warning" | "danger"
+      titleStyle: {fontWeight: 'bold'},
+      textStyle: {fontSize: 14},
+      duration: 4000,
+    });
   };
 }
 
