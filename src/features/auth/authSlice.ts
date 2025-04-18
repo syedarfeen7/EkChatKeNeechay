@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loginUserAPI, otpVerificationAPI} from './authAPI';
-import {AuthState, User} from './authTypes';
+import {AuthState, LoginResponse, User} from './authTypes';
 import {clearUserData} from './authStorage';
 
 const initialState: AuthState = {
@@ -31,7 +31,7 @@ const registerSlice = createSlice({
       })
       .addCase(
         loginUserAPI.fulfilled,
-        (state, action: PayloadAction<User>) => {
+        (state, action: PayloadAction<LoginResponse>) => {
           state.isFetching = false;
           state.failure = false;
           state.errorMessage = '';

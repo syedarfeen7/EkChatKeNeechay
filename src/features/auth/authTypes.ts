@@ -20,6 +20,9 @@ export interface LoginPayload {
   phoneNumber: string;
   userType: string;
 }
+export interface LoginResponse {
+  message: string;
+}
 
 export interface OTPVerification {
   username: string;

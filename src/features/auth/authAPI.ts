@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {showLoader, hideLoader} from '../loader/loaderSlice';
-import {OTPVerification, LoginPayload, User} from './authTypes';
+import {OTPVerification, LoginPayload, User, LoginResponse} from './authTypes';
 import {API_URLS} from '../../api/urls';
 import httpClient from '../../api/httpClient';
 import {AppNavigation} from '../../types/navigation';
@@ -10,7 +10,7 @@ interface LoginArgs {
   navigation: AppNavigation;
 }
 
-export const loginUserAPI = createAsyncThunk<User, LoginArgs>(
+export const loginUserAPI = createAsyncThunk<LoginResponse, LoginArgs>(
   'auth/login',
   async ({payload, navigation}, {dispatch, rejectWithValue}) => {
     try {
@@ -26,7 +26,7 @@ export const loginUserAPI = createAsyncThunk<User, LoginArgs>(
         phoneNumber: payload?.phoneNumber,
       });
 
-      return response?.data as User;
+      return response?.data;
     } catch (error: any) {
       const message =
         error?.response?.data?.message ||
