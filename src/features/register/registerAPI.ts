@@ -22,9 +22,11 @@ export const registerUserAPI = createAsyncThunk<User, RegisterArgs>(
 
       const response = await httpClient.post(API_URLS.AUTH.REGISTER, payload);
 
-      navigation.navigate('Verify');
+      navigation.navigate('Verify', {
+        phoneNumber: payload?.phoneNumber,
+      });
 
-      return response.data as User;
+      return response?.data as User;
     } catch (error: any) {
       const message =
         error?.response?.data?.message ||
