@@ -8,12 +8,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {BackHandler} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import {Login} from '../containers';
+import {Login} from '../screens';
 import {Colors, Fonts} from '../theme';
-// import TabButtonLeft from '../components/TabButtonLeft';
 // import {isAccepted} from '../helpers/DataHelper';
 import Utils from '../utils';
 import {RootStackParamList} from '../types/navigation';
+import Verify from '../screens/Verify';
+// import {isRTL, strings} from '../i18n';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -62,31 +63,30 @@ const AppNavigator: React.FC = () => {
     return () => subscription.remove();
   }, [t]);
 
-  // Render the left button for navigation, checking if it can go back
-  // const renderLeftButton = (canGoBack: boolean = true) =>
-  //   canGoBack ? (
-  //     <TabButtonLeft
-  //       imagesArray={[I18nManager.isRTL ? 'backRTL' : 'back']}
-  //       actions={[() => navigationRef.current?.goBack()]}
-  //     />
-  //   ) : undefined;
-
   return (
     <NavigationContainer
       ref={navigationRef}
       theme={{
         ...DefaultTheme,
-        colors: {...DefaultTheme.colors, background: Colors.background},
+        colors: {...DefaultTheme.colors},
       }}>
       <Stack.Navigator
         screenOptions={{
           headerTitleStyle: {fontFamily: Fonts.type.AvenirNextDemiBold},
           headerTintColor: Colors.primary,
-        }}>
+        }}
+        initialRouteName="Login">
         <Stack.Screen
           name="Login"
           component={Login}
           options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Verify"
+          component={Verify}
+          options={{
+            headerShown: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

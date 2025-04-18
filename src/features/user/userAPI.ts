@@ -1,66 +1,24 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {hideLoader, showLoader} from '../loader/loaderSlice';
-import {UpdateUserPayload} from './userTypes';
+import {UserLogin} from './userTypes';
 import {API_URLS} from '../../api/urls';
 import httpClient from '../../api/httpClient';
 import {User} from '../register/registerTypes';
 
-export const updateUserAPI = createAsyncThunk(
-  'users/user',
-  async (
-    {payload, id}: {payload: UpdateUserPayload; id: string},
-    {dispatch},
-  ): Promise<User> => {
+export const loginUser = createAsyncThunk(
+  'user/login',
+  async ({payload}: {payload: UserLogin}, {dispatch}): Promise<User> => {
     try {
       dispatch(showLoader());
 
-      const {firstName, lastName, email, phoneNumber, address} = payload;
-      if (firstName && lastName && phoneNumber && email && address) {
-        const response = await httpClient.put(API_URLS.USER.UPDATE, {
+      const {username, password} = payload;
+      if (username && password) {
+        const response = await httpClient.post(API_URLS.USER.LOGIN, {
           ...payload,
-          id,
         });
         return response?.data;
       } else {
-        throw new Error('Update User Failed!');
-      }
-    } catch (error) {
-      throw error;
-    } finally {
-      dispatch(hideLoader());
-    }
-  },
-);
-export const uploadUserImageAPI = createAsyncThunk(
-  'users/upload',
-  async (
-    {image, id}: {image: string; id: string},
-    {dispatch},
-  ): Promise<User> => {
-    try {
-      dispatch(showLoader());
-
-      const formData = new FormData();
-
-      formData.append('image', {
-        uri: image,
-        type: 'image/jpeg',
-        name: 'profile.jpg',
-      });
-
-      if (image) {
-        const response = await httpClient.post(
-          API_URLS.USER.UPLOAD(id),
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          },
-        );
-        return response?.data;
-      } else {
-        throw new Error('Image Required');
+        throw new Error('Invalid Credentials!');
       }
     } catch (error) {
       throw error;

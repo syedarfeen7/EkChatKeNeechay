@@ -1,16 +1,14 @@
 import {User} from '../register/registerTypes';
 
-export interface UpdateUserPayload {
-  firstName: string;
-  lastName: string;
-  email?: string;
-  phoneNumber?: string;
-  address: string;
-  id?: string;
+export interface UserLogin {
+  username: string;
+  password: string;
+  userType: string;
 }
 
 export interface UserState {
-  profile: User | null;
-  isLoading: boolean;
+  data: User | null;
+  isFetching: boolean;
   error: string;
+  failure: boolean;
 }

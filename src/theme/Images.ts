@@ -54,7 +54,7 @@ const logo = require('../asstes/images/logo.png');
 
 // const cross = require('../assets/images/cross.png');
 
-// const back = require('../assets/images/back.png');
+const back = require('../asstes/images/back.png');
 // const backRTL = require('../assets/images/back_rtl.png');
 
 // const privacyPolicy = require('./../containers/PrivacyPolicy/index.html');
@@ -231,7 +231,7 @@ export default {
   //   // ================= complete order ==============
 
   //   cross,
-  //   back,
+  back,
   //   backRTL,
 
   //   privacyPolicy,
