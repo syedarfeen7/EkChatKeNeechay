@@ -3,7 +3,7 @@ import {hideLoader, showLoader} from '../loader/loaderSlice';
 import {UserLogin} from './userTypes';
 import {API_URLS} from '../../api/urls';
 import httpClient from '../../api/httpClient';
-import {User} from '../register/registerTypes';
+import {User} from '../auth/authTypes';
 
 export const loginUser = createAsyncThunk(
   'user/login',

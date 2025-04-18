@@ -1,17 +1,18 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {registerUserAPI} from './registerAPI';
-import {RegisterState, User} from './registerTypes';
+import {loginUserAPI, otpVerificationAPI} from './authAPI';
+import {AuthState, User} from './authTypes';
 import {clearUserData} from './authStorage';
 
-const initialState: RegisterState = {
+const initialState: AuthState = {
   failure: false,
   isFetching: false,
   errorMessage: '',
   data: {} as User,
+  response: {} as Object,
 };
 
 const registerSlice = createSlice({
-  name: 'register',
+  name: 'auth',
   initialState,
   reducers: {
     logout: () => {
@@ -24,12 +25,31 @@ const registerSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(registerUserAPI.pending, state => {
+      .addCase(loginUserAPI.pending, state => {
         state.isFetching = true;
         state.errorMessage = '';
       })
       .addCase(
-        registerUserAPI.fulfilled,
+        loginUserAPI.fulfilled,
+        (state, action: PayloadAction<User>) => {
+          state.isFetching = false;
+          state.failure = false;
+          state.errorMessage = '';
+          state.response = action.payload;
+        },
+      )
+      .addCase(loginUserAPI.rejected, (state, action) => {
+        state.isFetching = false;
+        state.failure = true;
+        state.errorMessage = action.error?.message || 'Something went wrong';
+      });
+    builder
+      .addCase(otpVerificationAPI.pending, state => {
+        state.isFetching = true;
+        state.errorMessage = '';
+      })
+      .addCase(
+        otpVerificationAPI.fulfilled,
         (state, action: PayloadAction<User>) => {
           state.isFetching = false;
           state.failure = false;
@@ -37,7 +57,7 @@ const registerSlice = createSlice({
           state.data = action.payload;
         },
       )
-      .addCase(registerUserAPI.rejected, (state, action) => {
+      .addCase(otpVerificationAPI.rejected, (state, action) => {
         state.isFetching = false;
         state.failure = true;
         state.errorMessage = action.error?.message || 'Something went wrong';

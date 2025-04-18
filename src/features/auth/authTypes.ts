@@ -1,8 +1,9 @@
-export interface RegisterState {
+export interface AuthState {
   isFetching: boolean;
   failure: boolean;
   errorMessage: string;
   data: object;
+  response: object;
 }
 
 export interface User {
@@ -15,7 +16,13 @@ export interface User {
   profileImage: string;
 }
 
-export interface RegisterPayload {
+export interface LoginPayload {
   phoneNumber: string;
+  userType: string;
+}
+
+export interface OTPVerification {
+  username: string;
+  password: string;
   userType: string;
 }

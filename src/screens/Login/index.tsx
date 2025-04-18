@@ -32,12 +32,12 @@ import {
   stagingServerURL,
 } from '../../api/urls';
 import {changeServer} from '../../features/appConfig/appConfigSlice';
-import {logout} from '../../features/register/registerSlice';
 import AppConfig from '../../config/AppConfig';
-import {registerUserAPI} from '../../features/register/registerAPI';
 import {AppDispatch, RootState} from '../../app/store';
 import PasswordInputDialog from '../../components/PasswordInputDialog';
 import {i18nChangeLanguage, isRTL} from '../../i18n';
+import {loginUserAPI} from '../../features/auth/authAPI';
+import {logout} from '../../features/auth/authSlice';
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -150,7 +150,7 @@ const Login: React.FC = () => {
       userType: 'operator',
     };
     // AnalyticsHelper.logEvent('login');
-    dispatch(registerUserAPI({payload, navigation}));
+    dispatch(loginUserAPI({payload, navigation}));
   };
 
   const renderLanguageChangeButton = () => {

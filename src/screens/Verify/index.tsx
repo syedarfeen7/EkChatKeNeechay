@@ -17,9 +17,8 @@ import Util from '../../utils';
 import styles from './style';
 // import {AnalyticsHelper} from '../../helpers';
 import {AppDispatch, RootState} from '../../app/store';
-import {loginUser} from '../../features/user/userAPI';
-import {registerUserAPI} from '../../features/register/registerAPI';
 import CountdownTimer from '../../components/CountDown';
+import {loginUserAPI, otpVerificationAPI} from '../../features/auth/authAPI';
 
 const VERIFY_TIMEOUT = 30000;
 
@@ -68,7 +67,7 @@ const Verify: React.FC = () => {
     if (containerMode === 'deleteAccount') {
       // dispatch(deleteAccount(API_DEACTIVATE_ACCOUNT, {otp: verifyCode}));
     } else {
-      dispatch(loginUser({payload}));
+      dispatch(otpVerificationAPI({payload}));
     }
   };
 
@@ -88,7 +87,7 @@ const Verify: React.FC = () => {
         //   }),
         // );
       } else {
-        dispatch(registerUserAPI({payload, navigation}));
+        dispatch(loginUserAPI({payload, navigation}));
       }
       setShowResend(false);
       setTimeout(() => setShowResend(true), VERIFY_TIMEOUT);

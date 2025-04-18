@@ -1,17 +1,17 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {showLoader, hideLoader} from '../loader/loaderSlice';
-import {RegisterPayload, User} from './registerTypes';
+import {OTPVerification, LoginPayload, User} from './authTypes';
 import {API_URLS} from '../../api/urls';
 import httpClient from '../../api/httpClient';
 import {AppNavigation} from '../../types/navigation';
 
-interface RegisterArgs {
-  payload: RegisterPayload;
+interface LoginArgs {
+  payload: LoginPayload;
   navigation: AppNavigation;
 }
 
-export const registerUserAPI = createAsyncThunk<User, RegisterArgs>(
-  'auth/register',
+export const loginUserAPI = createAsyncThunk<User, LoginArgs>(
+  'auth/login',
   async ({payload, navigation}, {dispatch, rejectWithValue}) => {
     try {
       dispatch(showLoader());
@@ -33,6 +33,29 @@ export const registerUserAPI = createAsyncThunk<User, RegisterArgs>(
         error.message ||
         'Registration failed';
       return rejectWithValue(message);
+    } finally {
+      dispatch(hideLoader());
+    }
+  },
+);
+
+export const otpVerificationAPI = createAsyncThunk(
+  'auth/otp-verification',
+  async ({payload}: {payload: OTPVerification}, {dispatch}): Promise<User> => {
+    try {
+      dispatch(showLoader());
+
+      const {username, password} = payload;
+      if (username && password) {
+        const response = await httpClient.post(API_URLS.USER.LOGIN, {
+          ...payload,
+        });
+        return response?.data;
+      } else {
+        throw new Error('Invalid Credentials!');
+      }
+    } catch (error) {
+      throw error;
     } finally {
       dispatch(hideLoader());
     }
