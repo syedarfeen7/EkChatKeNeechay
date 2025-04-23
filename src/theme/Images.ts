@@ -21,7 +21,7 @@
 // const changePassIcon = require('../assets/images/sideMenu/change_pass.png');
 // const contactUs = require('../assets/images/sideMenu/contact_icon.png');
 
-const editIcon = require('../asstes/images/edit_icon.png');
+const editIcon = require('../assets/images/edit_icon.png');
 // const sidebarPrivacyPolicy = require('../assets/images/privacy_policy.png');
 // const appVersion = require('../assets/images/version_icon.png');
 
@@ -44,8 +44,8 @@ const editIcon = require('../asstes/images/edit_icon.png');
 
 // // =================== login ===================================
 
-const call = require('../asstes/images/call.png');
-const logo = require('../asstes/images/logo.png');
+const call = require('../assets/images/call.png');
+const logo = require('../assets/images/logo.png');
 // const logo2 = require('../assets/images/logo/logo.png');
 
 // const pass = require('../assets/images/pass.png');
@@ -54,7 +54,7 @@ const logo = require('../asstes/images/logo.png');
 
 // const cross = require('../assets/images/cross.png');
 
-const back = require('../asstes/images/back.png');
+const back = require('../assets/images/back.png');
 // const backRTL = require('../assets/images/back_rtl.png');
 
 // const privacyPolicy = require('./../containers/PrivacyPolicy/index.html');
@@ -99,7 +99,7 @@ const back = require('../asstes/images/back.png');
 // const crossGrayCircle = require('../assets/images/crossGray-circleIcon.png');
 
 // // ================ service provider ================
-const progressStarLarge = require('../asstes/images/p-star-large.png');
+const progressStarLarge = require('../assets/images/p-star-large.png');
 // const progressStarFillLarge = require('../assets/images/services/star_filled.png');
 // const checkIconLarge = require('../assets/images/services/check-icon-large.png');
 // const mapIconLarge = require('../assets/images/services/map-icon-large.png');
@@ -109,13 +109,13 @@ const progressStarLarge = require('../asstes/images/p-star-large.png');
 // const filterCalendar = require('../assets/images/services/filter-calendar.png');
 // const resetIcon = require('../assets/images/services/reset.jpg');
 // const camera = require('../assets/images/camera.png');
-// const pinLocation = require('../assets/images/map/pin_location.png');
+const pinLocation = require('../assets/images/pin_location.png');
 
-const cameraWhite = require('../asstes/images/camera_icon.png');
-// const nextArrowIcon = require('../assets/images/next_icon.png');
-// const preArrowIcon = require('../assets/images/preview_icon.png');
+const cameraWhite = require('../assets/images/camera_icon.png');
+const nextArrowIcon = require('../assets/images/next_icon.png');
+const preArrowIcon = require('../assets/images/preview_icon.png');
 // const nextArrowIconOrange = require('../assets/images/next_icon2.png');
-// const preArrowIconOrange = require('../assets/images/previous_icon2.png');
+const preArrowIconOrange = require('../assets/images/previous_icon2.png');
 // const ritArrowGray = require('../assets/images/rite-icon-gray.png');
 
 // // ===========merchant side menu icons============
@@ -165,9 +165,9 @@ export default {
   //   share,
 
   //   nextArrowIconOrange,
-  //   preArrowIconOrange,
-  //   preArrowIcon,
-  //   nextArrowIcon,
+  preArrowIconOrange,
+  preArrowIcon,
+  nextArrowIcon,
   cameraWhite,
   //   crossGrayCircle,
   //   mapIcon,
@@ -264,7 +264,7 @@ export default {
   //   filterCalendar,
   //   resetIcon,
   //   camera,
-  //   pinLocation,
+  pinLocation,
 
   //   // ============sidebar merchant icons
   //   categories,

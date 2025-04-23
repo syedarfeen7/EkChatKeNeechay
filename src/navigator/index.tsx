@@ -13,6 +13,10 @@ import {Colors, Fonts} from '../theme';
 // import {isAccepted} from '../helpers/DataHelper';
 import Utils from '../utils';
 import {RootStackParamList} from '../types/navigation';
+import RegisterProvider from '../screens/RegisterProvider';
+import SelectCountryCode from '../screens/CountryCode';
+import MapComponent from '../screens/Address';
+// import {strings} from '../i18n';
 // import {isRTL, strings} from '../i18n';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -83,6 +87,27 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen
           name="Verify"
           component={Verify}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SelectCountryCode"
+          component={SelectCountryCode}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="RegisterProvider"
+          component={RegisterProvider}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="CreateAddress"
+          component={MapComponent}
           options={{
             headerShown: false,
           }}

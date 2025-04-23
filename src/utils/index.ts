@@ -1,5 +1,6 @@
 import {Alert, NativeModules, Platform, ToastAndroid} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
+import {isRTL} from '../i18n';
 
 const {RNNativeIOSToast} = NativeModules;
 
@@ -94,6 +95,18 @@ class Util {
       textStyle: {fontSize: 14},
       duration: 4000,
     });
+  };
+  isEmailValid(email: string) {
+    const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+  textInputRtlStyling = () => {
+    if (isRTL()) {
+      return {textAlign: 'right'};
+    } else {
+      return {textAlign: 'left'};
+    }
   };
 }
 

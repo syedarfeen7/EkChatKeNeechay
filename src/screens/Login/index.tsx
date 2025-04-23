@@ -31,12 +31,12 @@ import {
   stagingServerURL,
 } from '../../api/urls';
 import {changeServer} from '../../features/appConfig/appConfigSlice';
-import AppConfig from '../../config/AppConfig';
 import {AppDispatch, RootState} from '../../app/store';
 import PasswordInputDialog from '../../components/PasswordInputDialog';
 import {i18nChangeLanguage, isRTL, strings} from '../../i18n';
 import {loginUserAPI} from '../../features/auth/authAPI';
 import {logout} from '../../features/auth/authSlice';
+import Config from 'react-native-config';
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -102,7 +102,7 @@ const Login: React.FC = () => {
   const onPasswordEnter = (textInput: string) => {
     if (textInput === '') {
       Utils.showToast('Please Enter Password');
-    } else if (textInput === AppConfig.serverChangePass) {
+    } else if (textInput === Config.SERVER_CHANGE_PASS) {
       setShowPassDialog(false);
       setTimeout(() => actionSheetRef?.current.show(), 500);
     } else {
@@ -293,7 +293,6 @@ const Login: React.FC = () => {
     );
   };
 
-  console.log('>>>', currentCountryCode);
   return (
     <View style={[ApplicationStyles.flex, styles.bg]}>
       <ScrollView
@@ -321,7 +320,7 @@ const Login: React.FC = () => {
               // Actions.registerProvider({
               //   title: strings('registerProvider.title'),
               // })
-              navigation.navigate('registerProvider')
+              navigation.navigate('RegisterProvider')
             }>
             <View style={styles.becomeAServiceProvider}>
               <Text

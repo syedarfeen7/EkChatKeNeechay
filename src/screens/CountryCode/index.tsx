@@ -6,8 +6,8 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RouteProp} from '@react-navigation/native';
 
 import {Metrics} from '../../theme';
-import {strings} from '../../i18n';
 import {RootStackParamList} from '../../types/navigation';
+import {strings} from '../../i18n';
 
 type SelectCountryCodeRouteProp = RouteProp<
   RootStackParamList,

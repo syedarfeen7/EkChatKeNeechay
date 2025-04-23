@@ -4,8 +4,8 @@ export type RootStackParamList = {
     localeSettings: {
       currentLocale: string;
     };
-  }; // No parameters expected for Login screen
-  Register: undefined;
+  };
+  RegisterProvider: undefined;
   SelectCountryCode: {
     title: string;
     onSubmit: (selectedCode: string) => void;
@@ -13,6 +13,20 @@ export type RootStackParamList = {
   Verify: {
     phoneNumber: string;
   };
-  registerProvider: undefined;
+  CreateAddress: {
+    addressText?: string;
+    addressCoords?: {
+      latitude: number;
+      longitude: number;
+    };
+    onDone: (mapData: {
+      address: string;
+      latitude: number;
+      longitude: number;
+      label?: string;
+    }) => void;
+    isReadonly?: boolean;
+    searchPlaceHolderText?: string;
+  };
 };
 export type AppNavigation = NativeStackNavigationProp<RootStackParamList>;
