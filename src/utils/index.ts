@@ -1,6 +1,7 @@
 import {Alert, NativeModules, Platform, ToastAndroid} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
 import {isRTL} from '../i18n';
+import {FormValues} from '../screens/RegisterProvider/types';
 
 const {RNNativeIOSToast} = NativeModules;
 
@@ -107,6 +108,32 @@ class Util {
     } else {
       return {textAlign: 'left'};
     }
+  };
+  toEnglishDigits = (str: string) => {
+    // convert arabic indic digits [٠١٢٣٤٥٦٧٨٩]
+    str = str.toString();
+    const e = '٠'.charCodeAt(0);
+    str = str.replace(/[٠-٩]/g, function (t) {
+      return t.charCodeAt(0) - e;
+    });
+    return str;
+  };
+  calculateProgress = (values: FormValues) => {
+    const totalFields = 14;
+    let filledFields = 0;
+
+    Object.entries(values).forEach(([key, value]) => {
+      if (
+        (typeof value === 'string' && value.trim() !== '') ||
+        (typeof value === 'object' &&
+          value !== null &&
+          Object.keys(value).length > 0)
+      ) {
+        filledFields += 1;
+      }
+    });
+
+    return filledFields / totalFields;
   };
 }
 

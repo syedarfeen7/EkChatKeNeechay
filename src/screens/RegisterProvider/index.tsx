@@ -15,6 +15,7 @@ import StepTwoForm from './Stepper/StepTwo';
 import {FormValues} from './types';
 import utils from '../../utils';
 import {Location} from '../../helpers';
+import StepThreeForm from './Stepper/StepThree';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -28,8 +29,12 @@ const initialValues: FormValues = {
   mobilePhone: '',
   adminEmail: '',
   officeAddress: '',
-
   headOfficeAddress: '',
+  weekdays: {},
+  paymentMethods: [],
+  legalAgreement: null,
+  businessAgreement: null,
+  iqama: null,
 };
 const mapCoordinates = Location?.getLocation();
 
@@ -71,6 +76,8 @@ const RegisterProvider: React.FC = () => {
             }}
           />
         );
+      case 2:
+        return <StepThreeForm {...{formikProps}} />;
       default:
         return null;
     }
@@ -88,24 +95,6 @@ const RegisterProvider: React.FC = () => {
     }
   };
 
-  const calculateProgress = (values: FormValues) => {
-    const totalFields = 14;
-    let filledFields = 0;
-
-    Object.entries(values).forEach(([key, value]) => {
-      if (
-        (typeof value === 'string' && value.trim() !== '') ||
-        (typeof value === 'object' &&
-          value !== null &&
-          Object.keys(value).length > 0)
-      ) {
-        filledFields += 1;
-      }
-    });
-
-    return filledFields / totalFields;
-  };
-
   return (
     <View style={[ApplicationStyles.flex, styles.bg]}>
       <NavBar
@@ -121,7 +110,7 @@ const RegisterProvider: React.FC = () => {
           console.log('Form Submit:', values);
         }}>
         {formikProps => {
-          const {values, handleSubmit} = formikProps;
+          const {values} = formikProps;
 
           console.log('values', values);
 
@@ -130,7 +119,7 @@ const RegisterProvider: React.FC = () => {
               style={[ApplicationStyles.flex, styles.bg]}
               keyboardShouldPersistTaps="always">
               <ProgressBar
-                progress={calculateProgress(values)}
+                progress={utils.calculateProgress(values)}
                 controlWidth={Metrics.screenWidth * 0.6}
               />
               <CustomStepIndicator

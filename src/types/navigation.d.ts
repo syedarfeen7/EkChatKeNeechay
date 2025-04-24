@@ -1,3 +1,5 @@
+import {Weekdays} from '../controls/WeekDaysTimings';
+
 export type RootStackParamList = {
   Login: {
     countryCode: string;
@@ -27,6 +29,10 @@ export type RootStackParamList = {
     }) => void;
     isReadonly?: boolean;
     searchPlaceHolderText?: string;
+  };
+  ShopTimings: {
+    weekdays: Weekdays;
+    onSet: (updatedWeekdays: Weekdays) => void;
   };
 };
 export type AppNavigation = NativeStackNavigationProp<RootStackParamList>;

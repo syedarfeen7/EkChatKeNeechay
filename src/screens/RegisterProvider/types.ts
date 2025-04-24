@@ -1,3 +1,5 @@
+import {Weekdays} from '../../controls/WeekDaysTimings';
+
 export interface FormValues {
   englishName: string;
   arabicName: string;
@@ -8,7 +10,25 @@ export interface FormValues {
   mobilePhone: string;
   adminEmail: string;
   officeAddress: string;
-  officeCountryCode: string;
-  mobileCountryCode: string;
   headOfficeAddress: string;
+  weekdays: Weekdays;
+  paymentMethods: string[];
+  legalAgreement: {
+    name: string;
+    uri: string;
+    type: string;
+    size: number;
+  } | null;
+  businessAgreement: {
+    name: string;
+    uri: string;
+    type: string;
+    size: number;
+  } | null;
+  iqama: {
+    name: string;
+    uri: string;
+    type: string;
+    size: number;
+  } | null;
 }

@@ -6,7 +6,7 @@ import ImagePicker from './ImagePicker';
 import InputField from './InputField';
 import ProgressBar from './ProgressBar';
 import CarhubButton from './Button';
-
+import UploadField from './UploadField';
 export {
   Text,
   ButtonView,
@@ -16,4 +16,5 @@ export {
   InputField,
   ProgressBar,
   CarhubButton,
+  UploadField,
 };

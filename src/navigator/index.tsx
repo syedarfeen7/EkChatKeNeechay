@@ -16,6 +16,7 @@ import {RootStackParamList} from '../types/navigation';
 import RegisterProvider from '../screens/RegisterProvider';
 import SelectCountryCode from '../screens/CountryCode';
 import MapComponent from '../screens/Address';
+import ShopTimings from '../screens/ShopTimings';
 // import {strings} from '../i18n';
 // import {isRTL, strings} from '../i18n';
 
@@ -108,6 +109,13 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen
           name="CreateAddress"
           component={MapComponent}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="ShopTimings"
+          component={ShopTimings}
           options={{
             headerShown: false,
           }}
