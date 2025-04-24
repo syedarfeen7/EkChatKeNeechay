@@ -74,14 +74,14 @@ const back = require('../assets/images/back.png');
 // const homeIcon = require('../assets/images/sideMenu/home_icon.png');
 // const moreSide = require('../assets/images/moreSide.png');
 
-// const arrowdown = require('../assets/images/arrowdown.png');
+const arrowdown = require('../assets/images/arrowdown.png');
 
 // const closeButtonIcon = require('../assets/icons/close_button.png');
 
 // const profileRound = require('../assets/images/profile_round.png');
 // const rateStarEmpty = require('../assets/images/unfilled_star.png');
 // const starFull = require('../assets/images/star_filled_border.png');
-// const dustbin = require('../assets/images/dustbin.png');
+const dustbin = require('../assets/images/dustbin.png');
 
 // const filterIcon = require('../assets/images/filter-icon.png');
 // const filterIconFilled = require('../assets/images/filter-icon-filled.png');
@@ -106,7 +106,7 @@ const progressStarLarge = require('../assets/images/p-star-large.png');
 // const crosshair = require('../assets/images/services/crosshair.png');
 // const serviceIconGrey = require('../assets/images/services/services-icon-grey.png');
 // const serviceIconWhite = require('../assets/images/services/services-icon-white.png');
-// const filterCalendar = require('../assets/images/services/filter-calendar.png');
+const filterCalendar = require('../assets/images/filter-calendar.png');
 // const resetIcon = require('../assets/images/services/reset.jpg');
 // const camera = require('../assets/images/camera.png');
 const pinLocation = require('../assets/images/pin_location.png');
@@ -143,7 +143,7 @@ const preArrowIconOrange = require('../assets/images/previous_icon2.png');
 // const cashIcon = require('../assets/images/paymentType/cash_icon.png');
 // const spanIcon = require('../assets/images/paymentType/span_icon.png');
 // const arrowDown2 = require('../assets/images/Arrowdown2.png');
-// const uploadBtn = require('../assets/icons/upload-btn.png');
+const uploadBtn = require('../assets/images/upload-btn.png');
 // const plus_white = require('../assets/images/white_plus.png');
 
 // const mapType = require('../assets/images/map/map_type.png');
@@ -155,7 +155,7 @@ export default {
   //   mapType,
   //   target,
   //   plus_white,
-  //   uploadBtn,
+  uploadBtn,
   //   arrowDown2,
   //   ritArrowGray,
   //   rightArrowWhite,
@@ -182,7 +182,7 @@ export default {
   //   filterIcon,
   //   filterIconFilled,
 
-  //   dustbin,
+  dustbin,
 
   //   rateStarEmpty,
   //   starFull,
@@ -248,7 +248,7 @@ export default {
   //   scanImage,
   //   cartImage,
   //   moreSide,
-  //   arrowdown,
+  arrowdown,
   //   closeButtonIcon,
   //   profileRound,
   //   barcodeScanIcon,
@@ -261,7 +261,7 @@ export default {
   //   mapIconLarge,
   //   serviceIconWhite,
   //   serviceIconGrey,
-  //   filterCalendar,
+  filterCalendar,
   //   resetIcon,
   //   camera,
   pinLocation,
