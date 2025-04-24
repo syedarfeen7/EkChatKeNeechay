@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
@@ -8,22 +8,10 @@ import {store, persistor} from './src/app/store'; // ✅ Ensure single correct i
 // import {loadInitialLanguage} from './src/i18n';
 // import Loader from './src/components/Loader';
 import {I18nextProvider} from 'react-i18next';
-import i18n, {initLanguage} from './src/i18n';
+import i18n from './src/i18n';
 // import {clearError} from './src/features/register/registerSlice';
 
 const App = () => {
-  useEffect(() => {
-    // initializeApp();
-  }, []);
-
-  const initializeApp = async () => {
-    try {
-      // await loadInitialLanguage();
-      initLanguage();
-    } catch (err) {
-      console.log(err);
-    }
-  };
   return (
     <View style={styles.appContainer}>
       <Provider store={store}>
