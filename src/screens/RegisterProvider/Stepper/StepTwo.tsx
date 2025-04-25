@@ -19,6 +19,7 @@ interface StepTwoFormProps {
   };
   setMobileCountryCode: (code: string) => void;
   setOfficeCountryCode: (code: string) => void;
+  setLocation: (coords: number[]) => void;
 }
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
@@ -30,6 +31,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
   mobileCountryCode,
   setMobileCountryCode,
   setOfficeCountryCode,
+  setLocation,
 }) => {
   const {
     setFieldValue,
@@ -45,13 +47,16 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
 
   console.log('values', values);
 
-  const handleMapData = (setFieldValue, mapData) => {
+  const handleMapData = (mapData: {
+    detailAddress: string;
+    coordinates: {longitude: number; latitude: number};
+  }) => {
     setFieldValue('headOfficeAddress', mapData?.detailAddress);
 
     let location = [];
     location.push(mapData.coordinates.longitude, mapData.coordinates.latitude);
-    setFieldValue('mapCoordinates', mapData?.coordinates);
-    setFieldValue('location', location);
+
+    setLocation(location);
 
     setToggleViewMap(false);
   };
@@ -164,10 +169,11 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
       )}
 
       <View>
-        <View style={{flexDirection: 'row'}}>
+        <View style={styles.addressView}>
           <ButtonView
             style={[
               styles.switchWrapper,
+              // eslint-disable-next-line react-native/no-inline-styles
               {
                 justifyContent: 'flex-start',
                 marginLeft: Metrics.ratio(25),
@@ -183,7 +189,7 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
               navigation.navigate('CreateAddress', {
                 addressText: values?.headOfficeAddress,
                 addressCoords: mapCoordinates,
-                onDone: mapData => handleMapData(setFieldValue, mapData),
+                onDone: mapData => handleMapData(mapData),
                 isReadonly: false,
                 searchPlaceHolderText: 'Search',
               });
@@ -206,16 +212,12 @@ const StepTwoForm: React.FC<StepTwoFormProps> = ({
               navigation.navigate('CreateAddress', {
                 addressText: values?.headOfficeAddress,
                 addressCoords: mapCoordinates,
-                onDone: mapData => handleMapData(setFieldValue, mapData),
+                onDone: mapData => handleMapData(mapData),
                 isReadonly: false,
                 searchPlaceHolderText: 'Search',
               });
             }}
-            style={{
-              flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
+            style={styles.buttonViewMap}>
             <Image
               style={{
                 width: Metrics.ratio(16),
@@ -322,4 +324,10 @@ const styles = StyleSheet.create({
     marginLeft: Metrics.ratio(20),
     alignSelf: 'flex-start',
   },
+  buttonViewMap: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addressView: {flexDirection: 'row'},
 });

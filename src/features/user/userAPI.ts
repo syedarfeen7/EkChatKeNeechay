@@ -9,7 +9,8 @@ export const loginUser = createAsyncThunk(
   'user/login',
   async ({payload}: {payload: UserLogin}, {dispatch}): Promise<User> => {
     try {
-      dispatch(showLoader());
+      const isBlockingLoader = false;
+      dispatch(showLoader({isBlockingLoader}));
 
       const {username, password} = payload;
       if (username && password) {

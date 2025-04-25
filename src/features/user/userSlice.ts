@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loginUser} from './userAPI';
-import {User} from '../register/registerTypes';
 import {UserState} from './userTypes';
+import {User} from '../auth/authTypes';
 
 const initialState: UserState = {
   failure: false,

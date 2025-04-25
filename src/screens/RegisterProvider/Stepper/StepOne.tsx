@@ -18,17 +18,20 @@ const StepOneForm: React.FC<StepOneFormProps> = ({formikProps}) => {
     setFieldValue,
   } = formikProps;
 
+  console.log('>>> values', values);
   return (
     <View>
       <View style={styles.editProfileHeaderInfo}>
         <ImagePicker
-          onImagePicked={(image: string) => setFieldValue('image', image)}
-          source={values?.image ? {uri: values?.image} : Images.logo}
-          containerStyle={styles.editImageContainer}
-          imageStyle={styles.imageHeader}
-          isCropping
-          iconStyle={styles.icon}
-          smallIcon={Images.cameraWhite}
+          {...{
+            onImagePicked: (image: string) => setFieldValue('image', image),
+            source: values?.image ? {uri: values?.image?.uri} : Images.logo,
+            containerStyle: styles.editImageContainer,
+            imageStyle: styles.imageHeader,
+            iconStyle: styles.icon,
+            smallIcon: Images.cameraWhite,
+            isCropping: true,
+          }}
         />
       </View>
       <InputField

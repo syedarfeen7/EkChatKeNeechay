@@ -52,13 +52,20 @@ const resizeImageHandling = (
   }
 
   ImageResizer.createResizedImage(
-    selectedData.path || selectedData.uri,
+    selectedData.path,
     calculatedWidth,
     calculatedHeight,
     'JPEG',
     100,
   )
-    .then(resizedImage => callback(resizedImage))
+    .then(resizedImage => {
+      callback({
+        ...resizedImage,
+        mime: selectedData.mime, // include mime type (like image/jpeg)
+        originalFilename:
+          selectedData.filename || selectedData.path?.split('/').pop(),
+      });
+    })
     .catch(err => {
       console.log(err);
       callback(null);
@@ -66,8 +73,8 @@ const resizeImageHandling = (
 };
 
 const ImagePicker: React.FC<ImagePickerProps> = ({
-  source,
   onImagePicked,
+  source,
   imageStyle = styles.image,
   iconStyle = styles.editProfileBtn,
   iconContainerStyle = styles.editProfileBtnContainer,
@@ -80,6 +87,8 @@ const ImagePicker: React.FC<ImagePickerProps> = ({
 }) => {
   const [loaded, setLoaded] = useState(false);
   const actionSheetRef = useRef<ActionSheet>(null);
+
+  console.log('>>> source', source);
 
   const handlePressActionSheet = (index: number) => {
     if (index === 0) {
@@ -172,17 +181,14 @@ const ImagePicker: React.FC<ImagePickerProps> = ({
       </Text>
     </View>
   );
-
-  const showAlert = () => {
-    return Alert.alert(
-      'Choose an option',
-      'Select a method to update your profile picture',
-      [
-        {text: 'Capture from Camera', onPress: () => showCameraImagePicker()},
-        {text: 'Choose from Gallery', onPress: () => showImageGalleryPicker()},
-        {text: 'Cancel', style: 'cancel'},
-      ],
-    );
+  const getImageSource = (src: any) => {
+    if (src?.uri && typeof src.uri === 'string') {
+      return {
+        uri: src.uri,
+        headers: {imagekey: Config.IMAGE_KEY},
+      };
+    }
+    return src || {};
   };
 
   return (
@@ -190,7 +196,6 @@ const ImagePicker: React.FC<ImagePickerProps> = ({
       <ButtonView
         style={containerStyle}
         onPress={() => {
-          showAlert();
           !hideActionSheet && actionSheetRef.current?.show();
         }}>
         {renderLoader()}
@@ -200,11 +205,7 @@ const ImagePicker: React.FC<ImagePickerProps> = ({
           <FastImage
             resizeMode={FastImage.resizeMode.cover}
             style={imageStyle}
-            source={
-              source?.uri
-                ? {uri: source.uri, headers: {imagekey: Config.IMAGE_KEY}}
-                : source
-            }
+            source={getImageSource(source)}
             onLoadEnd={() => setLoaded(true)}
           />
         )}
@@ -213,7 +214,6 @@ const ImagePicker: React.FC<ImagePickerProps> = ({
         <View style={iconContainerStyle}>
           <ButtonView
             onPress={() => {
-              showAlert();
               actionSheetRef.current?.show();
             }}
             style={styles.editProfileBtn}>

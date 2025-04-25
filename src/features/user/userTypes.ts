@@ -1,4 +1,4 @@
-import {User} from '../register/registerTypes';
+import {User} from '../auth/authTypes';
 
 export interface UserLogin {
   username: string;

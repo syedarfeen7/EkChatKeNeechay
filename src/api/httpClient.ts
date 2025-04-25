@@ -3,21 +3,25 @@ import {BASE_URL} from './urls';
 
 const httpClient = axios.create({
   baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
-// ✅ Attach Auth Token Before Requests
+// 🔁 Dynamically Attach Headers Before Each Request
 httpClient.interceptors.request.use(async config => {
-  //   const token = localStorage.getItem('token'); // Adjust this for React Native
-  //   if (token) {
-  //     config.headers.Authorization = `Bearer ${token}`;
-  //   }
+  const token = ''; // Fetch from SecureStore, AsyncStorage, etc.
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  // Only set Content-Type if not already provided
+  if (!config.headers['Content-Type']) {
+    config.headers['Content-Type'] = 'application/json';
+  }
+
   return config;
 });
 
-// ✅ Handle API Errors
+// 🔐 Error Handling
 httpClient.interceptors.response.use(
   response => response,
   error => {

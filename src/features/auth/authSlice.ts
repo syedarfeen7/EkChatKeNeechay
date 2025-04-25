@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {loginUserAPI, otpVerificationAPI} from './authAPI';
+import {loginUserAPI, otpVerificationAPI, registerProviderAPI} from './authAPI';
 import {AuthState, LoginResponse, User} from './authTypes';
 import {clearUserData} from './authStorage';
 
@@ -58,6 +58,25 @@ const registerSlice = createSlice({
         },
       )
       .addCase(otpVerificationAPI.rejected, (state, action) => {
+        state.isFetching = false;
+        state.failure = true;
+        state.errorMessage = action.error?.message || 'Something went wrong';
+      });
+    builder
+      .addCase(registerProviderAPI.pending, state => {
+        state.isFetching = true;
+        state.errorMessage = '';
+      })
+      .addCase(
+        registerProviderAPI.fulfilled,
+        (state, action: PayloadAction<object>) => {
+          state.isFetching = false;
+          state.failure = false;
+          state.errorMessage = '';
+          state.data = action.payload;
+        },
+      )
+      .addCase(registerProviderAPI.rejected, (state, action) => {
         state.isFetching = false;
         state.failure = true;
         state.errorMessage = action.error?.message || 'Something went wrong';

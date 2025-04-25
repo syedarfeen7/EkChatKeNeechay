@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {View, ScrollView, Image} from 'react-native';
 import {ApplicationStyles, Colors, Images, Metrics} from '../../theme';
 import styles from './style';
@@ -9,13 +9,17 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {isRTL, strings} from '../../i18n';
 import CustomStepIndicator from './Stepper/StepIndicator';
 import StepOneForm from './Stepper/StepOne';
-import {Formik, FormikHelpers} from 'formik';
+import {Formik, FormikProps} from 'formik';
 import * as Yup from 'yup';
 import StepTwoForm from './Stepper/StepTwo';
 import {FormValues} from './types';
 import utils from '../../utils';
 import {Location} from '../../helpers';
 import StepThreeForm from './Stepper/StepThree';
+import {useDispatch} from 'react-redux';
+import {AppDispatch} from '../../app/store';
+import {registerProviderAPI} from '../../features/auth/authAPI';
+import {RegisterProvider as RegisterProviderState} from '../../features/auth/authTypes';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -24,11 +28,10 @@ const initialValues: FormValues = {
   arabicName: '',
   englishDescription: '',
   arabicDescription: '',
-  image: '',
+  image: null,
   officePhone: '',
   mobilePhone: '',
   adminEmail: '',
-  officeAddress: '',
   headOfficeAddress: '',
   weekdays: {},
   paymentMethods: [],
@@ -50,6 +53,9 @@ const RegisterProvider: React.FC = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [officeCountryCode, setOfficeCountryCode] = useState('966');
   const [mobileCountryCode, setMobileCountryCode] = useState('966');
+  const [location, setLocation] = useState<number[]>([]);
+  const formikRef = useRef<FormikProps<FormValues>>(null);
+  const dispatch = useDispatch<AppDispatch>();
 
   const onStepsPress = (position: number, values: FormValues) => {
     if (position === 1 && values.englishName) {
@@ -73,6 +79,7 @@ const RegisterProvider: React.FC = () => {
               mobileCountryCode,
               setOfficeCountryCode,
               setMobileCountryCode,
+              setLocation,
             }}
           />
         );
@@ -91,8 +98,41 @@ const RegisterProvider: React.FC = () => {
     } else if (currentPosition === 1 && mobilePhone && adminEmail) {
       setCurrentPosition(currentPosition + 1);
     } else if (currentPosition === 2) {
-      // this.onSubmit();
+      formikRef.current?.handleSubmit();
     }
+  };
+
+  const submitRegistration = (values: FormValues) => {
+    const payload: RegisterProviderState = {
+      isMerchantApp: true,
+      englishName: values.englishName,
+      arabicName: values.arabicName,
+      englishDescription: values.englishDescription,
+      arabicDescription: values.arabicDescription,
+      adminEmail: values.adminEmail,
+      headOfficeAddress:
+        values.headOfficeAddress ||
+        'JABA3197، 3197 ابراهيم بن احمد الرقي، 7391، حي البغدادية الغربية، جدة 22231, Saudi Arabia',
+      weekdays: values.weekdays,
+      paymentMethods: values.paymentMethods,
+      documents: {
+        iqamaDoc: values?.iqama || null,
+        legalAgreementDoc: values?.legalAgreement || null,
+        businessAgreementDoc: values?.businessAgreement || null,
+      },
+      location: [39.169999938458204, 21.4999997281514],
+    };
+    if (values?.officePhone) {
+      payload.officePhone = '+' + officeCountryCode + values?.officePhone;
+    }
+    if (values?.mobilePhone) {
+      payload.mobilePhone = '+' + mobileCountryCode + values?.mobilePhone;
+    }
+    // if (location) {
+    //   payload.location = location;
+    // }
+
+    dispatch(registerProviderAPI({payload, navigation, image: values?.image}));
   };
 
   return (
@@ -104,15 +144,14 @@ const RegisterProvider: React.FC = () => {
         leftImage={Images.back}
       />
       <Formik
+        innerRef={formikRef}
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values: FormValues, actions: FormikHelpers<any>) => {
-          console.log('Form Submit:', values);
+        onSubmit={(values: FormValues) => {
+          submitRegistration(values);
         }}>
         {formikProps => {
           const {values} = formikProps;
-
-          console.log('values', values);
 
           return (
             <ScrollView

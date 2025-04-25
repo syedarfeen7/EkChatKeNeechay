@@ -4,6 +4,7 @@ import {Metrics} from '../../theme';
 
 export default StyleSheet.create({
   container: {
+    flex: 1,
     top: 0,
     position: 'absolute',
     alignItems: 'center',

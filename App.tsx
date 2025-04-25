@@ -1,14 +1,15 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, View} from 'react-native';
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {Provider as PaperProvider} from 'react-native-paper';
 import AppNavigator from './src/navigator';
-import {store, persistor} from './src/app/store'; // ✅ Ensure single correct import
+import {store, persistor, RootState} from './src/app/store'; // ✅ Ensure single correct import
 // import {loadInitialLanguage} from './src/i18n';
 // import Loader from './src/components/Loader';
 import {I18nextProvider} from 'react-i18next';
 import i18n from './src/i18n';
+import {Loading} from './src/components';
 // import {clearError} from './src/features/register/registerSlice';
 
 const App = () => {
@@ -39,9 +40,16 @@ const App = () => {
 };
 
 const AppContent = () => {
+  const {loading} = useSelector((state: RootState) => state.loader);
+
   return (
     <>
-      {/* <Loader visible={loading} /> */}
+      <Loading
+        {...{
+          loading: loading,
+          isBlockingLoader: false,
+        }}
+      />
       <SafeAreaView style={styles.container}>
         {/* <InternetMsgBar /> */}
         <PaperProvider>

@@ -1,15 +1,15 @@
 import {Weekdays} from '../../controls/WeekDaysTimings';
+import {FileType} from '../../types/file';
 
 export interface FormValues {
   englishName: string;
   arabicName: string;
   englishDescription: string;
   arabicDescription: string;
-  image: string;
+  image: FileType | null;
   officePhone: string;
   mobilePhone: string;
   adminEmail: string;
-  officeAddress: string;
   headOfficeAddress: string;
   weekdays: Weekdays;
   paymentMethods: string[];
