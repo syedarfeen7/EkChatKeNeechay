@@ -4,7 +4,7 @@
 
 // const loadingState = require('../assets/images/emptyImage.png');
 
-// const menu = require('../assets/images/menu.png');
+const menu = require('../assets/images/menu.png');
 
 // // ==================== Drawer ===========================
 
@@ -49,7 +49,7 @@ const logo = require('../assets/images/logo.png');
 // const logo2 = require('../assets/images/logo/logo.png');
 
 // const pass = require('../assets/images/pass.png');
-// const contactUsLogo = require('../assets/images/logo/logo.png');
+const headerLogo = require('../assets/images/headerLogo.png');
 // // =================== complete order ==========================
 
 // const cross = require('../assets/images/cross.png');
@@ -69,8 +69,8 @@ const back = require('../assets/images/back.png');
 // const videoPlayBtn = require('../assets/icons/vid_play_btn.png');
 // const fullScreenVidPlay = require('../assets/images/sideMenu/full_screen.png');
 
-// const scanImage = require('../assets/images/icons/scan_icon.png');
-// const cartImage = require('../assets/images/icons/cart_icon.png');
+const scanImage = require('../assets/images/scan_icon.png');
+const cartImage = require('../assets/images/cart_icon.png');
 // const homeIcon = require('../assets/images/sideMenu/home_icon.png');
 // const moreSide = require('../assets/images/moreSide.png');
 
@@ -189,7 +189,7 @@ export default {
   //   // ====== loading image
   //   loadingState,
 
-  //   menu,
+  menu,
 
   //   // ================ Side Menu ================
   //   walkInCustomer,
@@ -227,7 +227,7 @@ export default {
   logo,
   //   logo2,
   //   pass,
-  //   contactUsLogo,
+  headerLogo,
   //   // ================= complete order ==============
 
   //   cross,
@@ -245,8 +245,8 @@ export default {
   //   videoPlayBtn,
   //   fullScreenVidPlay,
 
-  //   scanImage,
-  //   cartImage,
+  scanImage,
+  cartImage,
   //   moreSide,
   arrowdown,
   //   closeButtonIcon,
