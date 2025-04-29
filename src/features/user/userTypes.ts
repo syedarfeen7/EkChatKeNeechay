@@ -1,5 +1,3 @@
-import {User} from '../auth/authTypes';
-
 export interface UserLogin {
   username: string;
   password: string;
@@ -11,4 +9,15 @@ export interface UserState {
   isFetching: boolean;
   error: string;
   failure: boolean;
+}
+
+export interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  termsAccepted: boolean;
+  address?: string;
+  profileImage: string;
+  isDefaultOperator: boolean;
 }

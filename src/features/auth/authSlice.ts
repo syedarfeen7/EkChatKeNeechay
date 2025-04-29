@@ -1,14 +1,14 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {loginUserAPI, otpVerificationAPI, registerProviderAPI} from './authAPI';
-import {AuthState, LoginResponse, User} from './authTypes';
+import {AuthState} from './authTypes';
 import {clearUserData} from './authStorage';
 
 const initialState: AuthState = {
   failure: false,
   isFetching: false,
   errorMessage: '',
-  data: {} as User,
-  response: {} as Object,
+  isAuthenticated: false,
+  response: {} as object,
 };
 
 const registerSlice = createSlice({
@@ -31,7 +31,7 @@ const registerSlice = createSlice({
       })
       .addCase(
         loginUserAPI.fulfilled,
-        (state, action: PayloadAction<LoginResponse>) => {
+        (state, action: PayloadAction<object>) => {
           state.isFetching = false;
           state.failure = false;
           state.errorMessage = '';
@@ -48,34 +48,28 @@ const registerSlice = createSlice({
         state.isFetching = true;
         state.errorMessage = '';
       })
-      .addCase(
-        otpVerificationAPI.fulfilled,
-        (state, action: PayloadAction<User>) => {
-          state.isFetching = false;
-          state.failure = false;
-          state.errorMessage = '';
-          state.data = action.payload;
-        },
-      )
+      .addCase(otpVerificationAPI.fulfilled, state => {
+        state.isFetching = false;
+        state.failure = false;
+        state.errorMessage = '';
+        state.isAuthenticated = true;
+      })
       .addCase(otpVerificationAPI.rejected, (state, action) => {
         state.isFetching = false;
         state.failure = true;
         state.errorMessage = action.error?.message || 'Something went wrong';
+        state.isAuthenticated = false;
       });
     builder
       .addCase(registerProviderAPI.pending, state => {
         state.isFetching = true;
         state.errorMessage = '';
       })
-      .addCase(
-        registerProviderAPI.fulfilled,
-        (state, action: PayloadAction<object>) => {
-          state.isFetching = false;
-          state.failure = false;
-          state.errorMessage = '';
-          state.data = action.payload;
-        },
-      )
+      .addCase(registerProviderAPI.fulfilled, state => {
+        state.isFetching = false;
+        state.failure = false;
+        state.errorMessage = '';
+      })
       .addCase(registerProviderAPI.rejected, (state, action) => {
         state.isFetching = false;
         state.failure = true;
