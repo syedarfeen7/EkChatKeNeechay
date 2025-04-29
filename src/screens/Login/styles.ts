@@ -87,6 +87,7 @@ export default StyleSheet.create({
     borderRadius: Metrics.ratio(5),
     marginTop: Metrics.ratio(19),
     marginBottom: Metrics.ratio(19),
+    margin: 'auto',
   },
   serverURLParent: {
     width: Metrics.screenWidth,

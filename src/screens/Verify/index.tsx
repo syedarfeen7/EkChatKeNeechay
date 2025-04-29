@@ -53,8 +53,7 @@ const Verify: React.FC = () => {
     const parsedVerifyCode = commonUtils.parseArabic(verifyCode);
 
     if (parsedVerifyCode.length < 5) {
-      //   Util.showAlert(strings('alertMessages.invalidVerifCode'));
-      Util.showAlert('Error', 'Invalid Verification Code');
+      Util.showAlert(strings('alertMessages.invalidVerifCode'), 'error');
       return;
     }
 
