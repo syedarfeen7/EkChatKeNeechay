@@ -1,8 +1,7 @@
 import {Alert, NativeModules, Platform, ToastAndroid} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
-import {isRTL} from '../i18n';
+import {isRTL, strings} from '../i18n';
 import {FormValues} from '../screens/RegisterProvider/types';
-
+import Toast from 'react-native-toast-message';
 const {RNNativeIOSToast} = NativeModules;
 
 type ShowYesNoMessage = (
@@ -87,14 +86,15 @@ class Util {
       );
     }, 150);
   };
-  showAlert = (title: string, message: string) => {
-    showMessage({
-      message: title,
-      description: message,
-      type: 'danger', // "success" | "info" | "warning" | "danger"
-      titleStyle: {fontWeight: 'bold'},
-      textStyle: {fontSize: 14},
-      duration: 4000,
+  showAlert = (message: string, type: string) => {
+    Toast.show({
+      type,
+      text1: strings('alertMessages.error'),
+      text2: message,
+      position: 'top',
+      visibilityTime: 4000,
+      autoHide: true,
+      topOffset: 50,
     });
   };
   isEmailValid(email: string) {

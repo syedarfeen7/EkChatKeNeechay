@@ -20,4 +20,7 @@ export interface User {
   address?: string;
   profileImage: string;
   isDefaultOperator: boolean;
+  fullName: string;
+  arabicName: string;
+  accessToken: string;
 }

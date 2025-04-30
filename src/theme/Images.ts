@@ -63,11 +63,11 @@ const back = require('../assets/images/back.png');
 
 // const vid1 = require('../assets/videos/vid1_b.mp4');
 // const vid2 = require('../assets/videos/vid2.mp4');
-// const vid1snap = require('../assets/videos/vid1snap.png');
+const vid1snap = require('../assets/images/vid1snap.png');
 // const vid2snap = require('../assets/videos/vid2snap.png');
 
-// const videoPlayBtn = require('../assets/icons/vid_play_btn.png');
-// const fullScreenVidPlay = require('../assets/images/sideMenu/full_screen.png');
+const videoPlayBtn = require('../assets/images/vid_play_btn.png');
+const fullScreenVidPlay = require('../assets/images/full_screen.png');
 
 const scanImage = require('../assets/images/scan_icon.png');
 const cartImage = require('../assets/images/cart_icon.png');
@@ -240,10 +240,10 @@ export default {
 
   //   vid1,
   //   vid2,
-  //   vid1snap,
+  vid1snap,
   //   vid2snap,
-  //   videoPlayBtn,
-  //   fullScreenVidPlay,
+  videoPlayBtn,
+  fullScreenVidPlay,
 
   scanImage,
   cartImage,

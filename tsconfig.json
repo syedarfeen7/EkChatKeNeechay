@@ -3,7 +3,8 @@
   "compilerOptions": {
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "types": ["react-native"]
+    "types": ["react-native"],
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": ["src", "src/types"]
 }

@@ -4,6 +4,7 @@ import userSlice from '../features/user/userSlice';
 import localeSlice from '../features/locale/localeSlice';
 import appConfigSlice from '../features/appConfig/appConfigSlice';
 import authSlice from '../features/auth/authSlice';
+import navigationSlice from '../features/navigation/navigationSlice';
 
 const rootReducer = combineReducers({
   user: userSlice,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   loader: loaderSlice,
   language: localeSlice,
   appConfig: appConfigSlice,
+  navigation: navigationSlice,
 });
 
 export default rootReducer;

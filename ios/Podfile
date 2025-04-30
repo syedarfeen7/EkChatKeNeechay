@@ -32,6 +32,12 @@ target 'AutohubApp' do
   # pod 'GoogleMaps'
   # pod 'Google-Maps-iOS-Utils'
 
+  # Enable Video Caching
+  $RNVideoUseVideoCaching=true
+  $RNVideoUseGoogleIMA=true
+
+
+
   target 'AutohubAppTests' do
     inherit! :complete
   end

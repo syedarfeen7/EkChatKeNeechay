@@ -8,7 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {BackHandler} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
-import {Login, Verify} from '../screens';
+import {Login, Verify, VideoPlayerScreen} from '../screens';
 import {Colors, Fonts} from '../theme';
 // import {isAccepted} from '../helpers/DataHelper';
 import Utils from '../utils';
@@ -17,6 +17,7 @@ import RegisterProvider from '../screens/RegisterProvider';
 import SelectCountryCode from '../screens/CountryCode';
 import MapComponent from '../screens/Address';
 import ShopTimings from '../screens/ShopTimings';
+import DrawerMenu from './Drawer';
 // import {strings} from '../i18n';
 // import {isRTL, strings} from '../i18n';
 
@@ -119,6 +120,16 @@ const AppNavigator: React.FC = () => {
           options={{
             headerShown: false,
           }}
+        />
+        <Stack.Screen
+          name="dashboard"
+          component={DrawerMenu}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="VideoPlayer"
+          component={VideoPlayerScreen}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

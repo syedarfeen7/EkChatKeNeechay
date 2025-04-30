@@ -10,6 +10,7 @@ import {store, persistor, RootState} from './src/app/store'; // ✅ Ensure singl
 import {I18nextProvider} from 'react-i18next';
 import i18n from './src/i18n';
 import {Loading} from './src/components';
+import Toast from 'react-native-toast-message';
 // import {clearError} from './src/features/register/registerSlice';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <PersistGate persistor={persistor} loading={null}>
           <I18nextProvider i18n={i18n}>
             <AppContent />
+            <Toast />
           </I18nextProvider>
         </PersistGate>
       </Provider>

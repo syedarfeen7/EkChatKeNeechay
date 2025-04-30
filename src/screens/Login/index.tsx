@@ -37,6 +37,7 @@ import {i18nChangeLanguage, isRTL, strings} from '../../i18n';
 import {loginUserAPI} from '../../features/auth/authAPI';
 import {logout} from '../../features/auth/authSlice';
 import Config from 'react-native-config';
+import utils from '../../utils';
 
 type NavigationProp = StackNavigationProp<RootStackParamList>;
 
@@ -320,7 +321,7 @@ const Login: React.FC = () => {
               // Actions.registerProvider({
               //   title: strings('registerProvider.title'),
               // })
-              navigation.navigate('RegisterProvider')
+              navigation.navigate('dashboard')
             }>
             <View style={styles.becomeAServiceProvider}>
               <Text

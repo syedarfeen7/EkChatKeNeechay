@@ -34,5 +34,18 @@ export type RootStackParamList = {
     weekdays: Weekdays;
     onSet: (updatedWeekdays: Weekdays) => void;
   };
+  dashboard: undefined;
+  sp_dashboard: {
+    type: string;
+  };
+  so_dashboard: {
+    type: string;
+  };
+  VideoPlayer: {
+    lockOrientation: () => void;
+    source: number;
+    onBack: () => void;
+  };
 };
+
 export type AppNavigation = NativeStackNavigationProp<RootStackParamList>;

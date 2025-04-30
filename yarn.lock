@@ -2652,6 +2652,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-navigation/drawer@npm:^7.3.9":
+  version: 7.3.9
+  resolution: "@react-navigation/drawer@npm:7.3.9"
+  dependencies:
+    "@react-navigation/elements": "npm:^2.3.8"
+    color: "npm:^4.2.3"
+    react-native-drawer-layout: "npm:^4.1.6"
+    use-latest-callback: "npm:^0.2.1"
+  peerDependencies:
+    "@react-navigation/native": ^7.1.6
+    react: ">= 18.2.0"
+    react-native: "*"
+    react-native-gesture-handler: ">= 2.0.0"
+    react-native-reanimated: ">= 2.0.0"
+    react-native-safe-area-context: ">= 4.0.0"
+    react-native-screens: ">= 4.0.0"
+  checksum: 10c0/00a793c69628b62e946f1b7f427e9bffcf9cb56793f0990750e045a313bb76997158b03b3161b6f79daf419fc436c82dfbbe438440fa13af367214247bc24b41
+  languageName: node
+  linkType: hard
+
 "@react-navigation/elements@npm:^2.2.5, @react-navigation/elements@npm:^2.3.6":
   version: 2.3.6
   resolution: "@react-navigation/elements@npm:2.3.6"
@@ -2667,6 +2687,24 @@ __metadata:
     "@react-native-masked-view/masked-view":
       optional: true
   checksum: 10c0/a7632eec49f9788e0476a974bd13d9de25b2f83baba67634648ca1a3b0e8f13a21cfcb425f95b8bf33e41d631d4600d1bd2d1761b0bdc72cbd282054b2f8fcfd
+  languageName: node
+  linkType: hard
+
+"@react-navigation/elements@npm:^2.3.8":
+  version: 2.3.8
+  resolution: "@react-navigation/elements@npm:2.3.8"
+  dependencies:
+    color: "npm:^4.2.3"
+  peerDependencies:
+    "@react-native-masked-view/masked-view": ">= 0.2.0"
+    "@react-navigation/native": ^7.1.6
+    react: ">= 18.2.0"
+    react-native: "*"
+    react-native-safe-area-context: ">= 4.0.0"
+  peerDependenciesMeta:
+    "@react-native-masked-view/masked-view":
+      optional: true
+  checksum: 10c0/8fc053bc853f2c588f3275b891a1e06d2638881e785bfa0b5086d2c813a2577992eb91cc080a3d723779ce6d8fd21242eaffdd6ac8e474743c2788a93509d6d5
   languageName: node
   linkType: hard
 
@@ -2883,6 +2921,13 @@ __metadata:
   dependencies:
     "@babel/types": "npm:^7.20.7"
   checksum: 10c0/5386f0af44f8746b063b87418f06129a814e16bb2686965a575e9d7376b360b088b89177778d8c426012abc43dd1a2d8ec3218bfc382280c898682746ce2ffbd
+  languageName: node
+  linkType: hard
+
+"@types/crypto-js@npm:^4":
+  version: 4.2.2
+  resolution: "@types/crypto-js@npm:4.2.2"
+  checksum: 10c0/760a2078f36f2a3a1089ef367b0d13229876adcf4bcd6e8824d00d9e9bfad8118dc7e6a3cc66322b083535e12be3a29044ccdc9603bfb12519ff61551a3322c6
   languageName: node
   linkType: hard
 
@@ -3446,6 +3491,7 @@ __metadata:
     "@react-native/metro-config": "npm:0.76.5"
     "@react-native/typescript-config": "npm:^0.77.0"
     "@react-navigation/bottom-tabs": "npm:^7.2.0"
+    "@react-navigation/drawer": "npm:^7.3.9"
     "@react-navigation/elements": "npm:^2.2.5"
     "@react-navigation/native": "npm:^7.0.14"
     "@react-navigation/native-stack": "npm:^7.2.0"
@@ -3454,6 +3500,7 @@ __metadata:
     "@rneui/base": "npm:^0.0.0-edge.2"
     "@rneui/themed": "npm:^0.0.0-edge.2"
     "@types/async": "npm:^3"
+    "@types/crypto-js": "npm:^4"
     "@types/lodash": "npm:^4"
     "@types/react": "npm:^19.1.2"
     "@types/react-native-actionsheet": "npm:^2"
@@ -3463,6 +3510,7 @@ __metadata:
     async: "npm:^3.2.6"
     axios: "npm:^1.8.3"
     babel-jest: "npm:^29.6.3"
+    crypto-js: "npm:^4.2.0"
     eslint: "npm:^8.19.0"
     formik: "npm:^2.4.6"
     i18next: "npm:^24.2.0"
@@ -3483,7 +3531,6 @@ __metadata:
     react-native-country-codes-picker: "npm:^2.3.5"
     react-native-elements: "npm:^3.4.3"
     react-native-fast-image: "npm:^8.6.3"
-    react-native-flash-message: "npm:^0.4.2"
     react-native-geocoder-reborn: "npm:^0.9.0"
     react-native-gesture-handler: "npm:^2.21.2"
     react-native-get-random-values: "npm:^1.11.0"
@@ -3495,6 +3542,7 @@ __metadata:
     react-native-localize: "npm:^3.3.0"
     react-native-maps: "npm:1.20.0"
     react-native-modal: "npm:^14.0.0-rc.1"
+    react-native-orientation-locker: "npm:^1.7.0"
     react-native-paper: "npm:^5.13.1"
     react-native-permissions: "npm:^5.3.0"
     react-native-reanimated: "npm:^3.16.7"
@@ -3503,7 +3551,10 @@ __metadata:
     react-native-safe-area-context: "npm:^5.0.0"
     react-native-screens: "npm:^4.4.0"
     react-native-step-indicator: "npm:^1.0.3"
+    react-native-toast-message: "npm:^2.3.0"
     react-native-vector-icons: "npm:^10.2.0"
+    react-native-video: "npm:^6.13.0"
+    react-native-video-controls: "npm:^2.8.1"
     react-redux: "npm:^9.2.0"
     react-test-renderer: "npm:18.3.1"
     redux-persist: "npm:^6.0.0"
@@ -4439,6 +4490,13 @@ __metadata:
     shebang-command: "npm:^2.0.0"
     which: "npm:^2.0.1"
   checksum: 10c0/053ea8b2135caff68a9e81470e845613e374e7309a47731e81639de3eaeb90c3d01af0e0b44d2ab9d50b43467223b88567dfeb3262db942dc063b9976718ffc1
+  languageName: node
+  linkType: hard
+
+"crypto-js@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "crypto-js@npm:4.2.0"
+  checksum: 10c0/8fbdf9d56f47aea0794ab87b0eb9833baf80b01a7c5c1b0edc7faf25f662fb69ab18dc2199e2afcac54670ff0cd9607a9045a3f7a80336cccd18d77a55b9fdf0
   languageName: node
   linkType: hard
 
@@ -7299,7 +7357,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
+"lodash@npm:^4.16.4, lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
@@ -8955,6 +9013,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-drawer-layout@npm:^4.1.6":
+  version: 4.1.6
+  resolution: "react-native-drawer-layout@npm:4.1.6"
+  dependencies:
+    use-latest-callback: "npm:^0.2.1"
+  peerDependencies:
+    react: ">= 18.2.0"
+    react-native: "*"
+    react-native-gesture-handler: ">= 2.0.0"
+    react-native-reanimated: ">= 2.0.0"
+  checksum: 10c0/d3089dbcf0fa418d7f675b4c41bd8a10e4a866e73c3b2f3b716baa50876ab4329107f6caa3543331d3ce55edc8767024965b890fbd26893e88e291b27d952c2e
+  languageName: node
+  linkType: hard
+
 "react-native-elements@npm:^3.4.3":
   version: 3.4.3
   resolution: "react-native-elements@npm:3.4.3"
@@ -8981,20 +9053,6 @@ __metadata:
     react: ^17 || ^18
     react-native: ">=0.60.0"
   checksum: 10c0/4ebeae53ffeadf1e7e5e133c1cfda81f9efe978f9ece10c732a0338149fe9104681bfdabc8427dad7c934b02bfcbd0e205bb6ca43e2844abc6054630ebe34454
-  languageName: node
-  linkType: hard
-
-"react-native-flash-message@npm:^0.4.2":
-  version: 0.4.2
-  resolution: "react-native-flash-message@npm:0.4.2"
-  dependencies:
-    prop-types: "npm:^15.8.1"
-    react-native-iphone-screen-helper: "npm:^2.0.2"
-  peerDependencies:
-    prop-types: ^15.0 || ^16.0
-    react: "*"
-    react-native: "*"
-  checksum: 10c0/dfbf51174eeb884be4b3982be6ac04de74d78d314f6bbd5308c2f6c93beeee10f1f950e057349308ae566465b0ffd77d75f61067c995dbbf90e595d877ec46cc
   languageName: node
   linkType: hard
 
@@ -9074,15 +9132,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-iphone-screen-helper@npm:^2.0.2":
-  version: 2.1.2
-  resolution: "react-native-iphone-screen-helper@npm:2.1.2"
-  peerDependencies:
-    react-native: ">=0.42.0"
-  checksum: 10c0/199b62adac0c2aeb853f7ec79d8e5b6f7f581dea231ff264b23d7174f17639d85b3d156637626ebcd98e2ba2dba337acbe14cbb2df11c52f9d2b2c5267473863
-  languageName: node
-  linkType: hard
-
 "react-native-is-edge-to-edge@npm:1.1.6":
   version: 1.1.6
   resolution: "react-native-is-edge-to-edge@npm:1.1.6"
@@ -9158,6 +9207,20 @@ __metadata:
     react: "*"
     react-native: ">=0.70.0"
   checksum: 10c0/f392008da6456d73819536f2628d4fb536a0634131c957a62ac0b68f65391a0e1473fa297c9873dd5a5c8de32c380464bb48cbfaafe9cfff0abfda6db3486154
+  languageName: node
+  linkType: hard
+
+"react-native-orientation-locker@npm:^1.7.0":
+  version: 1.7.0
+  resolution: "react-native-orientation-locker@npm:1.7.0"
+  peerDependencies:
+    react: ">=16.13.1"
+    react-native: ">=0.63.2"
+    react-native-windows: ">=0.63.3"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: 10c0/68ac54460a0722c203cda17d8a26cf8409115e6ed1ecc4324c25b60f94476f6200ae6646fa71495288d553f3a77a20c5548d0d33b434066ef8d7284dbbd094ff
   languageName: node
   linkType: hard
 
@@ -9312,6 +9375,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-toast-message@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "react-native-toast-message@npm:2.3.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/84a4ed66108c7517cfa2e06d6a8a65933ad37d0f21a1ba5674658ad2c8d95a3035c1c7f99e191568d7c5d5328f5aa048e32170b393a90ada2b2bb602f9878d45
+  languageName: node
+  linkType: hard
+
 "react-native-vector-icons@npm:^10.2.0":
   version: 10.2.0
   resolution: "react-native-vector-icons@npm:10.2.0"
@@ -9324,6 +9397,28 @@ __metadata:
     fa6-upgrade: bin/fa6-upgrade.sh
     generate-icon: bin/generate-icon.js
   checksum: 10c0/76a7f327b40b29e567f48a49ebc3ad87b755d4e431d66fec3566dfe5e673084cee9b1663f10903a6572aab31c7bcec45100172afb1d46055dfacbbe46b92b348
+  languageName: node
+  linkType: hard
+
+"react-native-video-controls@npm:^2.8.1":
+  version: 2.8.1
+  resolution: "react-native-video-controls@npm:2.8.1"
+  dependencies:
+    lodash: "npm:^4.16.4"
+  peerDependencies:
+    react-native: ">=0.46.0"
+    react-native-video: ">=2.0.0"
+  checksum: 10c0/e5214bf8c0adb8f8f58fccba0f15db69fa172f993170fb0c981f0e344bfa841c806f25635ac07b8b3db84a27d1f431287a3968d8956de4ad5ca5d6249f756b35
+  languageName: node
+  linkType: hard
+
+"react-native-video@npm:^6.13.0":
+  version: 6.13.0
+  resolution: "react-native-video@npm:6.13.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/99fa383a2423adddd6de1584cf98e1f3c4e5ddc9fbe35e4f3e96b1fa0e8b4a4ba57ea26a2572bbffcfc0634bc81f58e5ac035c25f617b6cfb23bee2f71c26782
   languageName: node
   linkType: hard
 

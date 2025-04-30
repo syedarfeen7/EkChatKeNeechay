@@ -22,7 +22,7 @@ const API_URLS = {
     REGISTER_PROVIDER: `${BASE_URL}${API}/cms/register/shop`,
   },
   USER: {
-    LOGIN: `${BASE_URL}/auth/login`,
+    LOGIN: `${BASE_URL}${API}/auth/login`,
     UPLOAD: (userId: string) => `${BASE_URL}/users/upload/${userId}`,
   },
   SETTINGS: {
