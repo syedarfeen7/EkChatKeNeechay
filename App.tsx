@@ -17,7 +17,7 @@ const AppContent = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(clearError());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
