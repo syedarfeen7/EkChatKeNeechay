@@ -53,6 +53,7 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
   });
 
   const onSubmit = (payload: FormValues) => {
+    payload.phoneNumber = `+92${payload.phoneNumber}`;
     dispatch(registerUserAPI({payload, navigation}));
   };
 
