@@ -59,7 +59,7 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
   return (
     <View style={styles.mainContainer}>
       <LinearGradient
-        colors={['#9B1B1B', '#220F30']}
+        colors={['#4286f4', '#373B44']}
         start={{x: 0, y: 0.5}}
         end={{x: 1, y: 0.5}}>
         <LanguageToggle />
@@ -152,7 +152,7 @@ const RegisterScreen: React.FC<Props> = ({navigation}) => {
           style={styles.button}
           onPress={handleSubmit(onSubmit)}>
           <LinearGradient
-            colors={['#9B1B1B', '#220F30']}
+            colors={['#4286f4', '#373B44']}
             start={{x: 0.3, y: 0.5}}
             end={{x: 1, y: 0.5}}
             style={styles.buttonGradient}>

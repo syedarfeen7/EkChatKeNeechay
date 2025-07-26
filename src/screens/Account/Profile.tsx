@@ -135,7 +135,7 @@ const Profile: React.FC<Props> = ({}) => {
           style={styles.scrollContainer}
           showsVerticalScrollIndicator={false}>
           <LinearGradient
-            colors={['#9B1B1B', '#220F30']}
+            colors={['#4286f4', '#373B44']}
             start={{x: 0, y: 0.5}}
             end={{x: 1, y: 0.5}}
             style={styles.gradient}
@@ -219,7 +219,7 @@ const Profile: React.FC<Props> = ({}) => {
                 style={styles.button}
                 onPress={handleSubmit(onSubmit)}>
                 <LinearGradient
-                  colors={['#9B1B1B', '#220F30']}
+                   colors={['#4286f4', '#373B44']}
                   start={{x: 0.3, y: 0.5}}
                   end={{x: 1, y: 0.5}}
                   style={styles.buttonGradient}>

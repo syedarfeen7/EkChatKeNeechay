@@ -32,7 +32,7 @@ const Checkbox: React.FC<CheckboxFieldProps> = ({
         textStyle={styles.checkboxLabel}
         containerStyle={styles.container}
         size={20}
-        checkedColor="#9B1B1B"
+        checkedColor="#4286f4"
       />
       {error && <Text style={styles.errorText}>{error}</Text>}
     </View>

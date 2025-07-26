@@ -31,7 +31,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) => {
 
   return (
     <LinearGradient
-      colors={['#9B1B1B', '#220F30']}
+      colors={['#4286f4', '#373B44']}
       start={{x: 0, y: 0.5}}
       end={{x: 1, y: 0.5}}
       style={styles.container}>
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     width: 35,
     height: 35,
     lineHeight: 35,
-    color: '#9B1B1B',
+    color: '#4286f4',
     borderRadius: 100,
     backgroundColor: '#FFFFFF',
     textAlign: 'center',

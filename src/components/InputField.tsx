@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   icon: {
     marginRight: 10,
     marginLeft: 10,
-    color: '#9B1B1B',
+    color: '#4286f4',
   },
   countryCode: {
     fontSize: 16,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: 0,
   },
   focusedInput: {
-    borderColor: '#9B1B1B',
+    borderColor: '#4286f4',
   },
 });
 

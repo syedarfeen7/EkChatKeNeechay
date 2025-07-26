@@ -54,7 +54,7 @@ const screenOptions = ({
 }): BottomTabNavigationOptions => ({
   tabBarIcon: ({color, size}) => getTabBarIcon(route.name, color, size),
   tabBarShowLabel: true, // Show labels
-  tabBarActiveTintColor: '#9B1B1B',
+  tabBarActiveTintColor: '#4286f4',
   tabBarInactiveTintColor: '#8e8e93',
   tabBarStyle: {
     backgroundColor: '#ffffff',
